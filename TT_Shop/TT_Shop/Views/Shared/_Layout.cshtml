@@ -4,26 +4,84 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+    <!-- Thêm Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <style>
+        /* Tùy chỉnh thêm cho giống Thế Giới Di Động */
+        .navbar {
+            background-color: #fdd835; /* Màu vàng cho navbar */
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: black !important; /* Màu đen cho chữ */
+        }
+
+        .navbar-nav .nav-link {
+            color: black !important;
+            font-weight: bold;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+    <!-- Thanh điều hướng -->
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm">
         <div class="container">
-            @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Thế Giới Di Động", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Điện thoại", "Phones", "Products", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Laptop", "Laptops", "Products", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Phụ kiện", "Accessories", "Products", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <!-- Thêm các mục khác nếu cần -->
+                </ul>
+                <ul class="navbar-nav">
+                    @if (Session["User"] != null)
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink(Session["User"].ToString(), "Details", "User", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Đăng xuất", "Logout", "User", null, new { @class = "nav-link" })
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("Đăng nhập", "Login", "User", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Đăng ký", "Register", "User", null, new { @class = "nav-link" })
+                        </li>
+                    }
                 </ul>
             </div>
         </div>
     </nav>
+
+    <!-- Nội dung chính -->
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -32,6 +90,7 @@
         </footer>
     </div>
 
+    <!-- Scripts -->
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

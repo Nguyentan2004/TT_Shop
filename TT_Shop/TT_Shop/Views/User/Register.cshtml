@@ -1,0 +1,59 @@
+﻿@model TT_Shop.Models.User
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4 style="color:red; text-align:center;">@ViewBag.Thongbao</h4>
+
+<table align="center">
+    <h3 style="text-align:center">ĐĂNG KÝ</h3>
+    @using (Html.BeginForm("Register", "User", FormMethod.Post))
+    {
+        @Html.ValidationSummary(true)
+        <tr style="height:40px">
+            <td align="right">Tên đăng nhập:</td>
+            <td>
+                @Html.TextBoxFor(model => model.username)
+                <span style="color:red">@ViewData["Loi1"]</span>
+            </td>
+        </tr>
+
+        <tr style="height:40px">
+            <td align="right">Mật khẩu:</td>
+            <td>
+                @Html.PasswordFor(model => model.password)
+                <span style="color:red">@ViewData["Loi2"]</span>
+            </td>
+        </tr>
+
+        <tr style="height:40px">
+            <td align="right">Nhập lại mật khẩu:</td>
+            <td>
+                <input type="password" name="confirmPassword" />
+                <span style="color:red">@ViewData["Loi3"]</span>
+            </td>
+        </tr>
+
+        <tr style="height:40px">
+            <td align="right">Email:</td>
+            <td>
+                @Html.TextBoxFor(model => model.email)
+                <span style="color:red">@ViewData["Loi4"]</span>
+            </td>
+        </tr>
+
+        <tr style="height:40px">
+            <td colspan="2" align="center">
+                <input type="Submit" value="Đăng ký" />
+            </td>
+        </tr>
+        <tr style="height:40px">
+            <td colspan="2" align="center">
+                <p>Đã có tài khoản? <a href="/User/login">Đăng nhập</a></p>
+            </td>
+        </tr>
+    }
+</table>
+

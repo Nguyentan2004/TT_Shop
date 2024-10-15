@@ -1,0 +1,43 @@
+﻿@model TT_Shop.Models.User
+
+@{
+    ViewBag.Title = "login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h4 style="color:red; text-align:center;">@ViewBag.Thongbao</h4>
+
+<table align="center">
+    <h3 style="text-align:center">ĐĂNG NHẬP</h3>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <tr style="height:40px">
+            <td align="right">Tên đăng nhập:</td>
+            <td>
+                @Html.TextBox("TenDN")
+                <span style="color:red">@ViewData["Loi1"]</span>
+            </td>
+        </tr>
+
+        <tr style="height:40px">
+            <td align="right">Mật khẩu:</td>
+            <td>
+                @Html.Password("Matkhau")
+                <span style="color:red">@ViewData["Loi2"]</span>
+            </td>
+        </tr>
+
+        <tr style="height:40px">
+            <td colspan="2" align="center">
+                <input type="Submit" value="Đăng nhập" />
+            </td>
+        </tr>
+
+        <!-- Đoạn liên kết Đăng ký nằm ngay dưới nút Đăng nhập -->
+        <tr style="height:40px">
+            <td colspan="2" align="center">
+                <p>Chưa có tài khoản? <a href="/User/Register">Đăng ký</a></p>
+            </td>
+        </tr>
+    }
+</table>
