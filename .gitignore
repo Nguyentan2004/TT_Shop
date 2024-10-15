@@ -93,3 +93,21 @@ ScaffoldingReadMe.txt
 
 # IIS
 _IISExpress/
+*.cache
+*.cache
+TT_Shop/TT_Shop/Models/Wishlist.cs
+TT_Shop/TT_Shop/Models/User.cs
+TT_Shop/TT_Shop/Models/TTShopModel.tt
+TT_Shop/TT_Shop/Models/TTShopModel.Designer.cs
+TT_Shop/TT_Shop/Models/TTShopModel.cs
+TT_Shop/TT_Shop/Models/TTShopModel.Context.tt
+TT_Shop/TT_Shop/Models/TTShopModel.Context.cs
+TT_Shop/TT_Shop/Models/sysdiagram.cs
+TT_Shop/TT_Shop/Models/Promotion.cs
+TT_Shop/TT_Shop/Models/Product_Reviews.cs
+TT_Shop/TT_Shop/Models/Product_Price_History.cs
+TT_Shop/TT_Shop/Models/Product.cs
+TT_Shop/TT_Shop/Models/Payment.cs
+TT_Shop/TT_Shop/Models/Order_Details.cs
+TT_Shop/TT_Shop/Models/Order.cs
+TT_Shop/TT_Shop/Models/Category.cs
