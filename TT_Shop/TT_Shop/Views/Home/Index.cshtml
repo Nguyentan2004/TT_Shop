@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Trang chủ";
+    int productCount = 0;
 }
 
 <main>
@@ -16,18 +17,27 @@
     <section class="container">
         <h2>Sản phẩm mới nhất</h2>
 
-        @*<div class="row">
-            @foreach (var product in Model)
+        @foreach (var product in Model)
+        {
+            if (productCount % 3 == 0)
             {
-                <div class="col-md-3 text-center">
-                    <img src="@Url.Content(product.image_url)" alt="@product.name" class="img-fluid mb-2" />
-                    <h5>@product.name</h5>
-                    <p>Giá: @String.Format("{0:0,0}đ", product.price)</p>
-                    <p>@product.description</p>
-                    <a href="#" class="btn btn-success">Mua ngay</a>
-                </div>
+                if (productCount > 0)
+                {
+                    @:</div> <!-- Close previous row -->
+                }
+                @:<div class="row">
             }
 
-        </div>*@
+            <div class="col-md-4 text-center">
+                <img src="@Url.Content(product.image_url)" alt="@product.name" class="img-fluid mb-2" />
+                <h5>@product.name</h5>
+                <p>Giá: @String.Format("{0:0,0}đ", product.price)</p>
+                <p>@product.description</p>
+                <a href="#" class="btn btn-success">Mua ngay</a>
+            </div>
+
+            productCount++;
+        }
+
     </section>
 </main>
