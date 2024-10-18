@@ -111,3 +111,5 @@ TT_Shop/TT_Shop/Models/Payment.cs
 TT_Shop/TT_Shop/Models/Order_Details.cs
 TT_Shop/TT_Shop/Models/Order.cs
 TT_Shop/TT_Shop/Models/Category.cs
+*.db-shm
+*.db-wal
