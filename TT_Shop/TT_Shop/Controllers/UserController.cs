@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using TT_Shop.Models;
+#if !IGNORE_TT_SHOP_MODEL
+using TT_Shop.Model;
+#endif
+
 
 namespace TT_Shop.Controllers
 {

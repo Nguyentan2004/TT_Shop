@@ -1,0 +1,55 @@
+﻿@model IEnumerable<TT_Shop.Model.User>
+
+@{
+    ViewBag.Title = "User List";
+}
+
+<h2>User List</h2>
+
+<p>
+    @Html.ActionLink("Create New User", "CreateUser", null, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.created_at)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.updated_at)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.created_at)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.updated_at)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditUser", new { id = item.user_id }, new { @class = "btn btn-warning" }) |
+                    @Html.ActionLink("Details", "UserDetails", new { id = item.user_id }, new { @class = "btn btn-info" }) |
+                    @Html.ActionLink("Delete", "DeleteUser", new { id = item.user_id }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

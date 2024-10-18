@@ -1,0 +1,41 @@
+﻿@model IEnumerable<TT_Shop.Model.Carts>
+
+@{
+    ViewBag.Title = "Checkout";
+}
+
+<h2>Checkout</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.product_id)</td>
+                <td>@Html.DisplayFor(modelItem => item.quantity)</td>
+                <td>@Html.DisplayFor(modelItem => item.price)</td>
+                <td>@Html.DisplayFor(modelItem => item.price * item.quantity)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Total: @Model.Sum(item => item.price * item.quantity)</h3>
+
+@using (Html.BeginForm("ProcessPayment", "Carts", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        @Html.Label("Shipping Address")
+        @Html.TextBox("shippingAddress", null, new { @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-primary">Place Order</button>
+}

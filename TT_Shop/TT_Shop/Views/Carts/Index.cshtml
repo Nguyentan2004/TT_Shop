@@ -1,0 +1,35 @@
+﻿@model IEnumerable<TT_Shop.Model.Carts>
+
+@{
+    ViewBag.Title = "Cart List";
+}
+
+<h2>Cart List</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.product_id)</td>
+                <td>@Html.DisplayFor(modelItem => item.quantity)</td>
+                <td>@Html.DisplayFor(modelItem => item.price)</td>
+                <td>@Html.DisplayFor(modelItem => item.price * item.quantity)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Total: @Model.Sum(item => item.price * item.quantity)</h3>
+
+<p>
+    @Html.ActionLink("Proceed to Checkout", "Checkout", null, new { @class = "btn btn-primary" })
+</p>
