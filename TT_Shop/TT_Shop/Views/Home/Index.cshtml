@@ -23,21 +23,21 @@
             {
                 if (productCount > 0)
                 {
-                    @:</div> <!-- Close previous row -->
+                    @:</div>
                 }
                 @:<div class="row">
+                }
+
+                <div class="col-md-4 text-center">
+                    <img src="@Url.Content(product.image_url)" alt="@product.name" class="img-fluid mb-2" />
+                    <h5>@product.name</h5>
+                    <p>Giá: @String.Format("{0:0,0}đ", product.price)</p>
+                    <p>@product.description</p>
+                    <a href="@Url.Action("Detail", "Home", new { id = product.product_id })" class="btn btn-success">Mua ngay</a>
+                </div>
+
+                productCount++;
             }
 
-            <div class="col-md-4 text-center">
-                <img src="@Url.Content(product.image_url)" alt="@product.name" class="img-fluid mb-2" />
-                <h5>@product.name</h5>
-                <p>Giá: @String.Format("{0:0,0}đ", product.price)</p>
-                <p>@product.description</p>
-                <a href="#" class="btn btn-success">Mua ngay</a>
-            </div>
-
-            productCount++;
-        }
-
-    </section>
+</section>
 </main>

@@ -1,0 +1,45 @@
+﻿@model TT_Shop.Models.Product
+
+@{
+    ViewBag.Title = "Chi tiết sản phẩm";
+}
+
+<main class="container mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="@Url.Content(Model.image_url)" alt="@Model.name" class="img-fluid" />
+        </div>
+        <div class="col-md-6">
+            <h1>@Model.name</h1>
+            <h2 class="text-danger">Giá: @String.Format("{0:0,0}đ", Model.price)</h2>
+            <p>@Model.description</p>
+            <form>
+                <div class="form-group">
+                    <label for="quantity">Số lượng:</label>
+                    <input type="number" id="quantity" name="quantity" class="form-control" value="1" min="1" />
+                </div>
+                <button type="submit" class="btn btn-success btn-lg">Mua ngay</button>
+            </form>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <h3>Đánh giá sản phẩm</h3>
+            <!-- Thêm phần đánh giá sản phẩm ở đây -->
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <h3>Sản phẩm liên quan</h3>
+            <div class="row">
+                <!-- Thêm các sản phẩm liên quan ở đây -->
+            </div>
+        </div>
+    </div>
+</main>

@@ -17,7 +17,6 @@ namespace TT_Shop.Controllers
             return View(allProducts);
         }
 
-
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -29,5 +28,19 @@ namespace TT_Shop.Controllers
             ViewBag.Message = "Your contact page.";
             return View();
         }
+
+        public ActionResult Detail(int id)
+        {
+            var product = db.Products.FirstOrDefault(p => p.product_id == id);
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+
+            var reviews = db.Product_Reviews.Where(r => r.product_id == id).ToList();
+
+            return View(product);
+        }
     }
+
 }
