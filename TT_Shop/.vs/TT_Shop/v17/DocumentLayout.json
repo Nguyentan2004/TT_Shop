@@ -115,9 +115,9 @@
               "Title": "Site.css",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Content\\Site.css",
               "RelativeDocumentMoniker": "TT_Shop\\Content\\Site.css",
-              "ToolTip": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Content\\Site.css*",
-              "RelativeToolTip": "TT_Shop\\Content\\Site.css*",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAQwBcAAAAQAAAAAAAAAA==",
+              "ToolTip": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Content\\Site.css",
+              "RelativeToolTip": "TT_Shop\\Content\\Site.css",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAQwBkAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2024-10-18T02:55:55.864Z",
               "EditorCaption": ""
@@ -145,7 +145,8 @@
               "RelativeToolTip": "TT_Shop\\Views\\Home\\Detail.cshtml",
               "ViewState": "AgIAAAUAAAAAAAAAAAAQwC0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-18T01:48:25.293Z"
+              "WhenOpened": "2024-10-18T01:48:25.293Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -157,7 +158,8 @@
               "RelativeToolTip": "TT_Shop\\Views\\Shared\\Error.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-15T15:41:51.465Z"
+              "WhenOpened": "2024-10-15T15:41:51.465Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -182,7 +184,8 @@
               "RelativeToolTip": "TT_Shop\\Views\\User\\Register.cshtml",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABAAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-15T15:22:57.839Z"
+              "WhenOpened": "2024-10-15T15:22:57.839Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -194,7 +197,8 @@
               "RelativeToolTip": "TT_Shop\\Views\\User\\login.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-15T15:20:05.463Z"
+              "WhenOpened": "2024-10-15T15:20:05.463Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -206,7 +210,8 @@
               "RelativeToolTip": "TT_Shop\\Controllers\\UserController.cs",
               "ViewState": "AgIAACEAAAAAAAAAAAAYwDYAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-15T15:12:25.857Z"
+              "WhenOpened": "2024-10-15T15:12:25.857Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -218,7 +223,8 @@
               "RelativeToolTip": "TT_Shop\\Controllers\\HomeController.cs",
               "ViewState": "AgIAAA0AAAAAAAAAAAAzwCoAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-15T15:09:30.67Z"
+              "WhenOpened": "2024-10-15T15:09:30.67Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -229,7 +235,8 @@
               "ToolTip": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Models\\TTShopModel.edmx [Diagram1]",
               "RelativeToolTip": "TT_Shop\\Models\\TTShopModel.edmx [Diagram1]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
-              "WhenOpened": "2024-10-15T15:02:34.604Z"
+              "WhenOpened": "2024-10-15T15:02:34.604Z",
+              "EditorCaption": " [Diagram1]"
             }
           ]
         }

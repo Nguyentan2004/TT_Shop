@@ -133,3 +133,6 @@ TT_Shop/TT_Shop/Model/Category.cs
 TT_Shop/TT_Shop/Model/Order.cs
 *.cache
 *.cache
+*.cache
+*.db-shm
+*.db-wal
