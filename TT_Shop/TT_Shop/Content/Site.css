@@ -31,6 +31,9 @@ textarea {
     height: 100%;
     display: flex;
     flex-direction: column;
+    margin-bottom: 10px;
+    border: 1px solid #ccc; /* Add this line to add a border around the card */
+    border-radius: 5px; /* Optional: Add rounded corners to the card */
 }
 
 .card-body {
@@ -51,6 +54,7 @@ textarea {
 .row {
     display: flex;
     flex-wrap: wrap;
+    margin: 0;
 }
 
 .col-md-4 {
@@ -71,12 +75,13 @@ textarea {
     min-height: 50px; /* Điều chỉnh chiều cao này theo nhu cầu của bạn */
 }
 
-..left-sidebar, .right-sidebar {
+.left-sidebar, .right-sidebar {
     background-color: #f8f9fa;
     padding: 15px;
     border-radius: 5px;
     margin-bottom: 20px;
     height: 100vh; /* Chiếm toàn bộ chiều cao của màn hình */
+    flex: 0 0 20%; /* Đặt chiều rộng cố định cho sidebar */
 }
 
 .left-sidebar {
@@ -90,15 +95,49 @@ textarea {
 .container-fluid {
     padding: 0;
 }
+
 .row.no-gutters {
     margin-right: 0;
     margin-left: 0;
+    display: flex; /* Sử dụng Flexbox để đảm bảo các cột nằm trên cùng một hàng */
 }
-.col-md-1, .col-md-10 {
+
+.col-md-1, .col-md-10, .col-md-2, .col-md-8 {
     padding: 0;
 }
 
+.col-md-8 {
+    flex: 0 0 60%; /* Đặt chiều rộng cố định cho phần nội dung chính */
+}
 
-.card-title, .card-text {
-    min-height: 50px; /* Điều chỉnh chiều cao này theo nhu cầu của bạn */
+.highlight-heading {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ff5722; /* Màu cam nổi bật */
+    margin-bottom: 20px;
+}
+
+.navbar {
+    background-color: #fdd835; /* Màu vàng cho navbar */
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: black !important; /* Màu đen cho chữ */
+}
+
+.navbar-nav .nav-link {
+    color: black !important;
+    font-weight: bold;
+}
+
+.container {
+    margin-top: 20px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 50px;
 }

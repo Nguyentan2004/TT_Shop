@@ -21,19 +21,21 @@ namespace TT_Shop.Controllers
             }
             catch (Exception ex)
             {
-                // Log lỗi (bạn có thể sử dụng bất kỳ công cụ log nào bạn muốn, ví dụ: log4net, NLog, v.v.)
                 System.Diagnostics.Debug.WriteLine("Error loading categories: " + ex.Message);
-                // Hoặc bạn có thể lưu lỗi vào cơ sở dữ liệu hoặc file log
             }
         }
 
 
-        public ActionResult Index()
+        public ActionResult Index(int page = 1, int pageSize = 6)
         {
             LoadCategories(); // Gọi phương thức LoadCategories để lấy danh sách Categories
-            var allProducts = db.Products.ToList();
-            return View(allProducts);
+            var products = db.Products.OrderBy(p => p.product_id).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            int totalProducts = db.Products.Count();
+            ViewBag.TotalPages = (int)Math.Ceiling((double)totalProducts / pageSize);
+            ViewBag.CurrentPage = page;
+            return View(products);
         }
+
 
         public ActionResult About()
         {

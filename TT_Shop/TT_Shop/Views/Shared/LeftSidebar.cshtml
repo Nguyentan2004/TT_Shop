@@ -9,12 +9,14 @@
         {
             foreach (var category in categories)
             {
-                <li class="list-group-item">
-                    <a href="javascript:void(0);" onclick="loadProducts(@category.category_id)">
-                        @(string.IsNullOrEmpty(category.name) ? "Unnamed Category" : category.name)
-
-                    </a>
-                </li>
+                if (!string.IsNullOrEmpty(category.name))
+                {
+                    <li class="list-group-item">
+                        <a href="javascript:void(0);" onclick="loadProducts(@category.category_id)">
+                            @category.name
+                        </a>
+                    </li>
+                }
             }
         }
     </ul>
