@@ -7,7 +7,7 @@
 
 <main>
     <!-- Phần banner khuyến mãi -->
-    <section class="promo-banner text-center p-4 mb-4" style="background-color: #e0e0e0;">
+    <section class="custom-banner">
         <h1>Khuyến mãi hấp dẫn</h1>
         <p class="lead">Phụ kiện iPhone 16 Series chỉ từ 190.000đ</p>
         <a href="#" class="btn btn-primary btn-md">Xem chi tiết &raquo;</a>
@@ -23,21 +23,30 @@
             {
                 if (productCount > 0)
                 {
-                    @:</div>
+                    @:</div> <!-- Đóng thẻ row khi đã có 3 sản phẩm -->
                 }
                 @:<div class="row">
                 }
 
-                <div class="col-md-4 text-center">
-                    <img src="@Url.Content(product.image_url)" alt="@product.name" class="img-fluid mb-2" />
-                    <h5>@product.name</h5>
-                    <p>Giá: @String.Format("{0:0,0}đ", product.price)</p>
-                    <p>@product.description</p>
-                    <a href="@Url.Action("Detail", "Home", new { id = product.product_id })" class="btn btn-success">Mua ngay</a>
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="@Url.Content("~/Images/Images/" + product.image_url)" alt="@product.name" class="card-img-top img-fluid fixed-size-img" />
+                        <div class="card-body text-center">
+                            <h5 class="card-title">@product.name</h5>
+                            <p class="card-text">Giá: @String.Format("{0:0,0}đ", product.price)</p>
+                            <p class="card-text">@product.description</p>
+                            <a href="@Url.Action("Detail", "Home", new { id = product.product_id })" class="btn btn-success card-footer">Mua ngay</a>
+                        </div>
+                    </div>
                 </div>
 
                 productCount++;
             }
 
+        if (productCount % 3 != 0)
+        {
+       
+    </div> <!-- Đóng row nếu còn sản phẩm chưa đủ bộ 3 ở cuối -->
+    }
 </section>
 </main>

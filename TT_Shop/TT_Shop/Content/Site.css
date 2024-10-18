@@ -18,3 +18,44 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.fixed-size-img {
+    width: 100%; /* Đặt chiều rộng đầy đủ của thẻ cha */
+    height: 200px; /* Đặt chiều cao cố định */
+    object-fit: cover; /* Đảm bảo ảnh được cắt để vừa với khung */
+}
+
+.card {
+    height: 100%; /* Đảm bảo thẻ card chiếm toàn bộ chiều cao của cột */
+    display: flex;
+    flex-direction: column;
+}
+
+.card-body {
+    flex-grow: 1; /* Đảm bảo nội dung thẻ card chiếm không gian còn lại */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Đảm bảo các phần tử bên trong được căn chỉnh đều */
+}
+
+.card-footer {
+    margin-top: auto; /* Đẩy footer xuống dưới cùng */
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col-md-4 {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+.custom-banner {
+    background-color: #ffcc00; /* Custom background color */
+    color: #333; /* Custom text color */
+    padding: 20px; /* Custom padding */
+    text-align: center; /* Center the text */
+    border-radius: 5px; /* Rounded corners */
+}
