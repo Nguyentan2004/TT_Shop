@@ -1,35 +1,15 @@
 ﻿@model IEnumerable<TT_Shop.Models.Product>
 
 @{
-    ViewBag.Title = "Trang chủ";
     int productCount = 0;
 }
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-    function loadProducts(categoryId) {
-        $.ajax({
-            url: '@Url.Action("GetProductsByCategory", "Home")',
-            type: 'GET',
-            data: { id: categoryId },
-            success: function (data) {
-                $('#product-container').html(data);
-            },
-            error: function () {
-                alert('Failed to load products.');
-            }
-        });
-    }
-</script>
-
-<div id="product-container">
-    @* Existing product display code *@
-    @foreach (var product in Model)
+@foreach (var product in Model)
+{
+    if (productCount % 3 == 0)
     {
-        if (productCount % 3 == 0)
+        if (productCount > 0)
         {
-            if (productCount > 0)
-            {
             @:</div> <!-- Đóng thẻ row khi đã có 3 sản phẩm -->
         }
         @:<div class="row">
@@ -52,8 +32,7 @@
         productCount++;
     }
 
-    @if (productCount % 3 != 0)
-    {
-    @:</div> <!-- Đóng thẻ row nếu số lượng sản phẩm không chia hết cho 3 -->
+@if (productCount % 3 != 0)
+{
+@:</div> <!-- Đóng thẻ row nếu số lượng sản phẩm không chia hết cho 3 -->
 }
-    </div>

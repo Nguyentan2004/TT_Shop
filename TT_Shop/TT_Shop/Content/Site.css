@@ -21,26 +21,31 @@ textarea {
 
 .fixed-size-img {
     width: 100%; /* Chiều rộng ảnh tự động giãn ra 100% theo thẻ cha */
-    height: 100%px; /* Đặt chiều cao cố định cho tất cả các ảnh */
-    object-fit: cover; /* Đảm bảo ảnh không bị méo, phần thừa sẽ bị cắt */
+    height: 200px; /* Đặt chiều cao cố định cho tất cả các ảnh */
+    object-fit: contain; /* Đảm bảo ảnh không bị méo, toàn bộ ảnh sẽ được hiển thị */
     object-position: center; /* Canh giữa ảnh nếu nó bị cắt */
 }
 
+/* Đảm bảo thẻ card chiếm toàn bộ chiều cao của cột */
 .card {
-    height: 100%; /* Đảm bảo thẻ card chiếm toàn bộ chiều cao của cột */
+    height: 100%;
     display: flex;
     flex-direction: column;
 }
 
 .card-body {
-    flex-grow: 1; /* Đảm bảo nội dung thẻ card chiếm không gian còn lại */
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Đảm bảo các phần tử bên trong được căn chỉnh đều */
+    justify-content: space-between;
 }
 
 .card-footer {
-    margin-top: auto; /* Đẩy footer xuống dưới cùng */
+    margin-top: auto;
+}
+
+.card-title, .card-text {
+    min-height: 50px; /* Điều chỉnh chiều cao này theo nhu cầu của bạn */
 }
 
 .row {
@@ -53,10 +58,47 @@ textarea {
     flex-direction: column;
     margin-bottom: 20px;
 }
+
 .custom-banner {
     background-color: #ffcc00; /* Custom background color */
     color: #333; /* Custom text color */
     padding: 20px; /* Custom padding */
     text-align: center; /* Center the text */
     border-radius: 5px; /* Rounded corners */
+}
+
+.card-title, .card-text {
+    min-height: 50px; /* Điều chỉnh chiều cao này theo nhu cầu của bạn */
+}
+
+..left-sidebar, .right-sidebar {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    height: 100vh; /* Chiếm toàn bộ chiều cao của màn hình */
+}
+
+.left-sidebar {
+    margin-left: 0;
+}
+
+.right-sidebar {
+    margin-right: 0;
+}
+
+.container-fluid {
+    padding: 0;
+}
+.row.no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+}
+.col-md-1, .col-md-10 {
+    padding: 0;
+}
+
+
+.card-title, .card-text {
+    min-height: 50px; /* Điều chỉnh chiều cao này theo nhu cầu của bạn */
 }

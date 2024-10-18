@@ -1,0 +1,21 @@
+﻿@{
+    var categories = ViewBag.Categories as List<TT_Shop.Models.Category>;
+}
+
+<div class="left-sidebar" style="height: 100vh; border: 1px solid #ccc; background-color: #f8f9fa;">
+    <h3>Phân loại sản phẩm</h3>
+    <ul class="list-group">
+        @if (categories != null && categories.Any())
+        {
+            foreach (var category in categories)
+            {
+                <li class="list-group-item">
+                    <a href="javascript:void(0);" onclick="loadProducts(@category.category_id)">
+                        @(string.IsNullOrEmpty(category.name) ? "Unnamed Category" : category.name)
+
+                    </a>
+                </li>
+            }
+        }
+    </ul>
+</div>

@@ -260,6 +260,10 @@
     <Content Include="Views\User\login.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\Home\Detail.cshtml" />
+    <Content Include="Views\Shared\LeftSidebar.cshtml" />
+    <Content Include="Views\Shared\RightSidebar.cshtml" />
+    <Content Include="Views\Home\Category.cshtml" />
+    <Content Include="Views\Home\GetProductsByCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
