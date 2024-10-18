@@ -125,52 +125,52 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Category.cs">
+    <Compile Include="Model\Category.cs">
       <DependentUpon>TTShopModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Order.cs">
+    <Compile Include="Model\Order.cs">
       <DependentUpon>TTShopModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Order_Details.cs">
+    <Compile Include="Model\Order_Details.cs">
       <DependentUpon>TTShopModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Payment.cs">
+    <Compile Include="Model\Payment.cs">
       <DependentUpon>TTShopModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Product.cs">
+    <Compile Include="Model\Product.cs">
       <DependentUpon>TTShopModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Product_Price_History.cs">
+    <Compile Include="Model\Product_Price_History.cs">
       <DependentUpon>TTShopModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Product_Reviews.cs">
+    <Compile Include="Model\Product_Reviews.cs">
       <DependentUpon>TTShopModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Promotion.cs">
+    <Compile Include="Model\Promotion.cs">
       <DependentUpon>TTShopModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagram.cs">
+    <Compile Include="Model\sysdiagram.cs">
       <DependentUpon>TTShopModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TTShopModel.Context.cs">
+    <Compile Include="Model\TTShopModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TTShopModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TTShopModel.cs">
+    <Compile Include="Model\TTShopModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TTShopModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TTShopModel.Designer.cs">
+    <Compile Include="Model\TTShopModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TTShopModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\User.cs">
+    <Compile Include="Model\User.cs">
       <DependentUpon>TTShopModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Wishlist.cs">
+    <Compile Include="Model\Wishlist.cs">
       <DependentUpon>TTShopModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -195,22 +195,15 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\TTShopModel.Context.tt">
+    <Content Include="Model\TTShopModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>TTShopModel.Context.cs</LastGenOutput>
       <DependentUpon>TTShopModel.edmx</DependentUpon>
+      <LastGenOutput>TTShopModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\TTShopModel.tt">
+    <Content Include="Model\TTShopModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TTShopModel.edmx</DependentUpon>
       <LastGenOutput>TTShopModel.cs</LastGenOutput>
-    </Content>
-    <EntityDeploy Include="Models\TTShopModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TTShopModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\TTShopModel.edmx.diagram">
-      <DependentUpon>TTShopModel.edmx</DependentUpon>
     </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -218,6 +211,13 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Model\TTShopModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TTShopModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Model\TTShopModel.edmx.diagram">
+      <DependentUpon>TTShopModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
