@@ -8,11 +8,12 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="~/Content/Site.css" />
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    @RenderSection("styles", required: false)
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <style>
-        /* Tùy chỉnh thêm cho giống Thế Giới Di Động */
         .navbar {
             background-color: #fdd835; /* Màu vàng cho navbar */
         }

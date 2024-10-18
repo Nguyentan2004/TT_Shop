@@ -20,9 +20,10 @@ textarea {
 }
 
 .fixed-size-img {
-    width: 100%; /* Đặt chiều rộng đầy đủ của thẻ cha */
-    height: 200px; /* Đặt chiều cao cố định */
-    object-fit: cover; /* Đảm bảo ảnh được cắt để vừa với khung */
+    width: 100%; /* Chiều rộng ảnh tự động giãn ra 100% theo thẻ cha */
+    height: 100%px; /* Đặt chiều cao cố định cho tất cả các ảnh */
+    object-fit: cover; /* Đảm bảo ảnh không bị méo, phần thừa sẽ bị cắt */
+    object-position: center; /* Canh giữa ảnh nếu nó bị cắt */
 }
 
 .card {
