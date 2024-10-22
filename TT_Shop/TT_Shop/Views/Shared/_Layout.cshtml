@@ -31,6 +31,15 @@
                 </ul>
 
                 <ul class="navbar-nav">
+
+                    <div style="border: 1px solid #ccc; padding: 10px; display: flex; align-items: center; justify-content: center; background-color: #4cff00; color: white; border-radius: 5px;">
+                        <a href="@Url.Action("Index", "Cart")" style="color: black; display: flex; align-items: center;">
+                            <img src="~/Images/Giohang.png" title="Giỏ hàng" style="width: 24px; height: 24px; margin-right: 5px;" /> Giỏ hàng
+                            <span>(@ViewBag.CartItemCount)</span>
+                        </a>
+                    </div>
+
+
                     <li class="nav-item">
                         <form class="d-flex" method="get" action="@Url.Action("Search", "Products")">
                             <input class="form-control me-2" type="search" name="query" placeholder="Nhập sản phẩm" aria-label="Search" />
@@ -63,15 +72,16 @@
     <!-- Nội dung chính -->
     <div class="container-fluid p-0">
         <div class="row no-gutters">
-            <div class="col-md-2" style="width: 20%;">
+            <div class="col-md-2">
                 @Html.Partial("LeftSidebar")
             </div>
-            <div class="col-md-8" style="width: 60%;">
+            <div class="col-md-8">
                 @RenderBody()
             </div>
-            <div class="col-md-2" style="width: 20%;">
-                @Html.Partial("RightSidebar")
-            </div>
+            
+        </div>
+        <div class="col-md-2">
+            @Html.Partial("RightSidebar")
         </div>
         <hr />
         <footer>

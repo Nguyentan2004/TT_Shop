@@ -78,7 +78,7 @@ textarea {
 .left-sidebar, .right-sidebar {
     background-color: #f8f9fa;
     padding: 15px;
-    border-radius: 5px;
+    border-radius: 1px;
     margin-bottom: 20px;
     height: 100vh; /* Chiếm toàn bộ chiều cao của màn hình */
     flex: 0 0 20%; /* Đặt chiều rộng cố định cho sidebar */
