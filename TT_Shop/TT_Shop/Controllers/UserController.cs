@@ -37,6 +37,7 @@ namespace TT_Shop.Controllers
                 {
                     // Nếu thông tin đăng nhập hợp lệ, lưu thông tin người dùng vào session
                     Session["User"] = user.username;
+                    Session["user_id"] = user.user_id; // Lưu user_id vào session
                     // Chuyển hướng đến trang chủ hoặc trang dashboard
                     return RedirectToAction("Index", "Home");
                 }
@@ -51,6 +52,7 @@ namespace TT_Shop.Controllers
         public ActionResult Logout()
         {
             Session["User"] = null;
+            Session["user_id"] = null; // Xóa user_id khỏi session
             return RedirectToAction("Index", "Home");
         }
 

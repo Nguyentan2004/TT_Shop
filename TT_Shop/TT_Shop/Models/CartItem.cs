@@ -15,10 +15,10 @@ namespace TT_Shop.Models
     public partial class CartItem
     {
         public int UserId { get; set; }
-        public int IdSanPham { get; set; }
+        public Nullable<int> IdSanPham { get; set; }
         public string TenSanPham { get; set; }
-        public decimal Gia { get; set; }
-        public int SoLuong { get; set; }
+        public Nullable<decimal> Gia { get; set; }
+        public Nullable<int> SoLuong { get; set; }
         public string ImageUrl { get; set; }
     
         public virtual User User { get; set; }

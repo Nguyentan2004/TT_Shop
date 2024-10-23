@@ -5,8 +5,6 @@
     int productCount = 0;
 }
 
-@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>*@
-
 <script>
     function loadProducts(categoryId) {
         $.ajax({
@@ -17,7 +15,7 @@
                 $('#product-container').html(data);
             },
             error: function () {
-                alert('Failed to load products.');  
+                alert('Failed to load products.');
             }
         });
     }
@@ -46,24 +44,24 @@
                 <div class="card-footer text-center">
                     <p class="card-text">@product.description</p>
                     <a href="@Url.Action("Detail", "Home", new { id = product.product_id })" class="btn btn-success">Mua ngay</a>
+                    <a href="@Url.Action("AddToCart", "Cart", new { product_id = product.product_id })" class="btn btn-primary">Thêm vào giỏ hàng</a>
                 </div>
             </div>
         </div>
 
         productCount++;
-    
-}
-    </div>
+    }
+</div>
 
-
-    <!-- Pagination Controls -->
-    <nav aria-label="Page navigation">
-        <ul class="pagination justify-content-center">
-            @for (int i = 1; i <= ViewBag.TotalPages; i++)
-            {
-                <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
-                    <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
-                </li>
-            }
-        </ul>
-    </nav>
+<!-- Pagination Controls -->
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
+            </li>
+        }
+    </ul>
+</nav>
+</div>
