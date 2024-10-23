@@ -1,41 +1,51 @@
 ﻿@model IEnumerable<TT_Shop.Models.CartItem>
 
 @{
-    ViewBag.Title = "Giỏ hàng";
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Giỏ hàng của bạn</h2>
+<h2>Giỏ hàng</h2>
 
-<table class="table table-bordered">
-    <thead>
+<table>
+    <tr>
+        <th>Sản phẩm</th>
+        <th>Giá</th>
+        <th>Số lượng</th>
+        <th>Tổng</th>
+        <th>Hành động</th>
+    </tr>
+    @foreach (var item in Model)
+    {
         <tr>
-            <th>Hình ảnh</th>
-            <th>Tên sản phẩm</th>
-            <th>Giá</th>
-            <th>Số lượng</th>
-            <th>Tổng</th>
-            <th>Hành động</th>
+            <td>@item.TenSanPham</td>
+            <td>@item.Gia</td>
+            <td>
+                <input type="number" value="@item.SoLuong" onchange="updateQuantity(@item.IdSanPham, this.value)" />
+            </td>
+            <td>@(item.Gia * item.SoLuong)</td>
+            <td>
+                <!-- Thêm nút xóa nếu cần -->
+            </td>
         </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    <img src="@item.ImageUrl" alt="@item.TenSanPham" style="width: 50px; height: 50px;" />
-                </td>
-                <td>@item.TenSanPham</td>
-                <td>@item.Gia</td>
-                <td>@item.SoLuong</td>
-                <td>@(item.Gia * item.SoLuong)</td>
-                <td>
-                    <a href="@Url.Action("Remove", "Cart", new { id = item.IdSanPham })" class="btn btn-danger">Xóa</a>
-                </td>
-            </tr>
-        }
-    </tbody>
+    }
 </table>
 
-<div class="text-right">
-    <a href="@Url.Action("Checkout", "Cart")" class="btn btn-success">Thanh toán</a>
-</div>
+@section Scripts {
+    <script>
+        function updateQuantity(cartItemId, quantity) {
+            $.ajax({
+                url: '@Url.Action("UpdateQuantity", "Cart")',
+                type: 'POST',
+                data: { cartItemId: cartItemId, quantity: quantity },
+                success: function (response) {
+                    if (response.success) {
+                        location.reload(); // Tải lại trang để cập nhật giỏ hàng
+                    } else {
+                        alert(response.message);
+                    }
+                }
+            });
+        }
+    </script>
+}

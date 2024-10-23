@@ -273,6 +273,7 @@
     <Content Include="Views\Home\GetProductsByCategory.cshtml" />
     <Content Include="Views\Products\Search.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using TT_Shop.Models; // Adjust the namespace according to your project
+using TT_Shop.Models;
 
 namespace TT_Shop.Controllers
 {
     public class ProductsController : Controller
     {
         private QLTTShopEntities db = new QLTTShopEntities();
+
         public ActionResult Search(string query)
         {
             var products = db.Products
@@ -17,6 +16,17 @@ namespace TT_Shop.Controllers
                              .ToList();
 
             return View(products);
+        }
+
+        public ActionResult Index()
+        {
+            IEnumerable<Product> products = GetProducts();
+            return View(products);
+        }
+
+        private IEnumerable<Product> GetProducts()
+        {
+            return db.Products.ToList();
         }
     }
 }
