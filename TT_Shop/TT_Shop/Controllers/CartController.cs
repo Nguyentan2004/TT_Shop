@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web.Mvc;
 using TT_Shop.Models;
@@ -17,13 +18,16 @@ namespace TT_Shop.Controllers
             int orderId = GenerateOrderId();
             ViewBag.OrderId = orderId;
 
-            // Calculate total price
+            // Tính tổng giá tiền của các sản phẩm trong giỏ hàng
             decimal totalPrice = cart.Sum(item => item.Gia.GetValueOrDefault() * item.SoLuong.GetValueOrDefault());
             ViewBag.TotalPrice = totalPrice;
 
+            // Lấy danh sách sản phẩm đã chọn từ Session
+            List<int> selectedProducts = Session["SelectedProducts"] as List<int> ?? new List<int>();
+            ViewBag.SelectedProducts = selectedProducts;
+
             return View(cart);
         }
-
 
         private int GenerateOrderId()
         {
@@ -118,7 +122,11 @@ namespace TT_Shop.Controllers
             {
                 cartItem.SoLuong = quantity;
                 Session["Cart"] = cart;
-                return Json(new { success = true });
+
+                // Calculate the updated total price
+                decimal totalPrice = cart.Sum(item => item.Gia.GetValueOrDefault() * item.SoLuong.GetValueOrDefault());
+
+                return Json(new { success = true, totalPrice = totalPrice.ToString("N0") });
             }
             return Json(new { success = false, message = "Item not found" });
         }
@@ -138,21 +146,106 @@ namespace TT_Shop.Controllers
         }
 
         [HttpPost]
-        public JsonResult CalculateTotal(List<int> selectedProductIds)
+        [ValidateAntiForgeryToken]
+        public ActionResult XoaHetGioHang()
         {
-            List<CartItem> cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>();
-            decimal total = 0;
+            Session["Cart"] = new List<CartItem>();
+            return RedirectToAction("Index");
+        }
 
-            foreach (var id in selectedProductIds)
+        [HttpPost]
+        public ActionResult SaveSelectedProducts(List<int> selectedProductIds)
+        {
+            Session["SelectedProducts"] = selectedProductIds;
+            return Json(new { success = true });
+        }
+
+        [HttpGet]
+        public ActionResult GetSelectedProducts()
+        {
+            var selectedProductIds = Session["SelectedProducts"] as List<int> ?? new List<int>();
+            return Json(new { success = true, selectedProductIds = selectedProductIds }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Payment()
+        {
+            var cartItems = GetCartItems(); 
+            return View(cartItems);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Complete()
+        {
+            var cart = Session["Cart"] as List<CartItem>;
+            if (cart == null || !cart.Any())
             {
-                var cartItem = cart.FirstOrDefault(c => c.IdSanPham == id);
-                if (cartItem != null)
-                {
-                    total += cartItem.Gia.GetValueOrDefault() * cartItem.SoLuong.GetValueOrDefault();
-                }
+                return RedirectToAction("Index", "Home");
             }
 
-            return Json(new { total });
+            // Create a new order
+            var order = new Order
+            {
+                user_id = (int)Session["user_id"], // Get the current user ID
+                order_status = "Pending",
+                total_amount = cart.Sum(item => item.Gia.GetValueOrDefault() * item.SoLuong.GetValueOrDefault()),
+                order_date = DateTime.Now,
+                shipping_address = "Your shipping address", // Get the shipping address
+                updated_at = DateTime.Now
+            };
+
+            db.Orders.Add(order);
+            db.SaveChanges();
+
+            // Create order details for each cart item
+            foreach (var item in cart)
+            {
+                var orderDetail = new Order_Details
+                {
+                    order_id = order.order_id,
+                    product_id = item.IdSanPham,
+                    quantity = item.SoLuong,
+                    price = item.Gia
+                };
+
+                db.Order_Details.Add(orderDetail);
+            }
+
+            db.SaveChanges();
+
+            // Create a payment record
+            var payment = new Payment
+            {
+                order_id = order.order_id,
+                payment_method = "CreditCard", // Ensure this value matches the allowed values in the database
+                payment_status = "Completed",
+                payment_date = DateTime.Now
+            };
+
+
+            db.Payments.Add(payment);
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                // Log the inner exception message
+                var innerException = ex.InnerException?.InnerException?.Message;
+                // Handle the exception as needed
+            }
+
+            // Clear the cart
+            Session["Cart"] = null;
+
+            return View();
+        }
+
+
+        private IEnumerable<CartItem> GetCartItems()
+        {
+            // Replace with your logic to get cart items from the session or database
+            return Session["Cart"] as List<CartItem> ?? new List<CartItem>();
         }
     }
 }

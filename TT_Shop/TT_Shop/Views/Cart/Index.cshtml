@@ -4,7 +4,6 @@
     ViewBag.Title = "Cart";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <div class="cart-container">
     <h2>Giỏ hàng</h2>
 
@@ -18,21 +17,21 @@
             <th>Tổng</th>
             <th>Hành động</th>
         </tr>
-        @foreach (var item in Model)
+        @foreach (var item in Model.Reverse())
         {
             <tr>
                 <td class="select-column">
-                    <input type="checkbox" name="selectedProducts" value="@item.IdSanPham" class="round-checkbox" data-price="@item.Gia" data-quantity="@item.SoLuong" />
+                    <input type="checkbox" name="selectedProducts" value="@item.IdSanPham" class="round-checkbox" data-price="@item.Gia" data-quantity="@item.SoLuong" onchange="calculateTotal()" />
                 </td>
                 <td>
                     <img src="@Url.Content("~/Images/Images/" + item.ImageUrl)" alt="@item.TenSanPham" class="product-image" />
                 </td>
                 <td>@item.TenSanPham</td>
-                <td>@item.Gia</td>
+                <td>@String.Format("{0:N0}", item.Gia)</td>
                 <td>
-                    <input type="number" value="@item.SoLuong" onchange="updateQuantity(@item.IdSanPham, this.value)" />
+                    <input type="number" value="@item.SoLuong" min="1" onchange="updateQuantity(@item.IdSanPham, this.value)" data-id="@item.IdSanPham" class="quantity-input" />
                 </td>
-                <td>@(item.Gia * item.SoLuong)</td>
+                <td>@String.Format("{0:N0}", item.Gia * item.SoLuong)</td>
                 <td>
                     @using (Html.BeginForm("XoaGioHang", "Cart", FormMethod.Post))
                     {
@@ -46,8 +45,8 @@
     </table>
 
     <div class="cart-total">
-        <button type="button" class="btn btn-info" onclick="calculateTotal()">Tổng tiền các sản phẩm được đánh tích</button>
-        <span id="totalPrice"></span>
+        <span>Tổng tiền: </span>
+        <span id="totalPrice">0 VND</span>
     </div>
 
     <div class="cart-actions">
@@ -56,9 +55,11 @@
             @Html.AntiForgeryToken()
             <button type="submit" class="btn btn-danger">Xóa hết giỏ hàng</button>
         }
-        <a href="@Url.Action("ThanhToan", "Cart")" class="btn btn-success">Thanh toán</a>
+        <a href="@Url.Action("Payment", "Cart")" class="btn btn-success">Thanh toán</a>
     </div>
 </div>
+
+<script src="~/Scripts/cart.js"></script>
 
 <style>
     .cart-container {
