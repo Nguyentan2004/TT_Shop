@@ -22,46 +22,62 @@
 </script>
 
 <div id="product-container">
-    <h2 class="highlight-heading">Sản phẩm mới</h2>
-    @foreach (var product in Model)
-    {
-        if (productCount % 3 == 0)
+    <h2 class="highlight-heading text-center">Sản phẩm mới</h2>
+    <div class="row">
+        @foreach (var product in Model)
         {
-            if (productCount > 0)
-            {
-            @:</div> <!-- Đóng thẻ row khi đã có 3 sản phẩm -->
-        }
-        @:<div class="row">
-        }
-
-        <div class="col-md-4">
-            <div class="card mb-4">
-                <img src="@Url.Content("~/Images/Images/" + product.image_url)" alt="@product.name" class="card-img-top img-fluid fixed-size-img" />
-                <div class="card-body text-center">
-                    <h5 class="card-title">@product.name</h5>
-                    <p class="card-text">Giá: @String.Format("{0:0,0}đ", product.price)</p>
-                </div>
-                <div class="card-footer text-center">
-                    <p class="card-text">@product.description</p>
-                    <a href="@Url.Action("Detail", "Home", new { id = product.product_id })" class="btn btn-success">Mua ngay</a>
-                    <a href="@Url.Action("AddToCart", "Cart", new { product_id = product.product_id })" class="btn btn-primary">Thêm vào giỏ hàng</a>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="@Url.Content("~/Images/Images/" + product.image_url)" alt="@product.name" class="card-img-top img-fluid fixed-size-img" />
+                    <div class="card-body text-center">
+                        <h5 class="card-title">@product.name</h5>
+                        <p class="card-text">Giá: @String.Format("{0:0,0}đ", product.price)</p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <p class="card-text">@product.description</p>
+                        <a href="@Url.Action("Detail", "Home", new { id = product.product_id })" class="btn btn-success">Mua ngay</a>
+                        <p></p>
+                        <a href="@Url.Action("AddToCart", "Cart", new { product_id = product.product_id })" class="btn btn-primary">Thêm vào giỏ hàng</a>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        productCount++;
-    }
+            @* Close and open a new row every 3 products *@
+            productCount++;
+            if (productCount % 3 == 0)
+            {
+            @:</div><div class="row">
+            }
+        }
+    </div>
 </div>
 
 <!-- Pagination Controls -->
 <nav aria-label="Page navigation">
     <ul class="pagination justify-content-center">
+        @if (ViewBag.CurrentPage > 1)
+        {
+            <li class="page-item">
+                <a class="page-link" href="@Url.Action("Index", new { page = ViewBag.CurrentPage - 1 })" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+        }
+
         @for (int i = 1; i <= ViewBag.TotalPages; i++)
         {
             <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
                 <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
             </li>
         }
+
+        @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+        {
+            <li class="page-item">
+                <a class="page-link" href="@Url.Action("Index", new { page = ViewBag.CurrentPage + 1 })" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        }
     </ul>
 </nav>
-</div>

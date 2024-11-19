@@ -25,27 +25,8 @@
             </td>
             <td>@(item.Gia * item.SoLuong)</td>
             <td>
-                <!-- Thêm nút xóa nếu cần -->
+                <button onclick="removeFromCart(@item.IdSanPham)">Xóa</button>
             </td>
         </tr>
     }
 </table>
-
-@section Scripts {
-    <script>
-        function updateQuantity(cartItemId, quantity) {
-            $.ajax({
-                url: '@Url.Action("UpdateQuantity", "Cart")',
-                type: 'POST',
-                data: { cartItemId: cartItemId, quantity: quantity },
-                success: function (response) {
-                    if (response.success) {
-                        location.reload(); // Tải lại trang để cập nhật giỏ hàng
-                    } else {
-                        alert(response.message);
-                    }
-                }
-            });
-        }
-    </script>
-}

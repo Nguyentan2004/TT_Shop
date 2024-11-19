@@ -16,9 +16,20 @@ namespace TT_Shop.Controllers
         {
             // Assuming you want to pass the cart items to the view
             List<CartItem> cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>();
+
+            // Generate a new order ID or retrieve an existing one
+            int orderId = GenerateOrderId();
+            ViewBag.OrderId = orderId;
+
             return View(cart);
         }
 
+        private int GenerateOrderId()
+        {
+            // Implement logic to generate or retrieve the current orderId
+            // This could be from the database or session
+            return new Random().Next(1000, 9999); // Example orderId, replace with actual logic
+        }
 
         // Action to add product to cart
         public ActionResult AddToCart(int product_id)
@@ -65,6 +76,7 @@ namespace TT_Shop.Controllers
 
             return RedirectToAction("Index");
         }
+
         [HttpPost]
         public JsonResult AddToCartAjax(int product_id)
         {
@@ -114,20 +126,16 @@ namespace TT_Shop.Controllers
         [HttpPost]
         public ActionResult UpdateQuantity(int cartItemId, int quantity)
         {
-            int userId = (int)Session["user_id"];
-            var cartItem = db.CartItems.FirstOrDefault(ci => ci.IdSanPham == cartItemId && ci.UserId == userId);
+            List<CartItem> cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>();
+            var cartItem = cart.FirstOrDefault(c => c.IdSanPham == cartItemId);
             if (cartItem != null)
             {
                 cartItem.SoLuong = quantity;
-                db.SaveChanges();
+                Session["Cart"] = cart;
                 return Json(new { success = true });
             }
             return Json(new { success = false, message = "Item not found" });
+        
         }
-
-
-
     }
-
-
 }
