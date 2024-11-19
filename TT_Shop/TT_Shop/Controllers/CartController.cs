@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web.Mvc;
 using TT_Shop.Models;
@@ -14,24 +13,23 @@ namespace TT_Shop.Controllers
         // GET: Cart
         public ActionResult Index()
         {
-            // Assuming you want to pass the cart items to the view
             List<CartItem> cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>();
-
-            // Generate a new order ID or retrieve an existing one
             int orderId = GenerateOrderId();
             ViewBag.OrderId = orderId;
+
+            // Calculate total price
+            decimal totalPrice = cart.Sum(item => item.Gia.GetValueOrDefault() * item.SoLuong.GetValueOrDefault());
+            ViewBag.TotalPrice = totalPrice;
 
             return View(cart);
         }
 
+
         private int GenerateOrderId()
         {
-            // Implement logic to generate or retrieve the current orderId
-            // This could be from the database or session
-            return new Random().Next(1000, 9999); // Example orderId, replace with actual logic
+            return new Random().Next(1000, 9999);
         }
 
-        // Action to add product to cart
         public ActionResult AddToCart(int product_id)
         {
             if (Session["user_id"] == null)
@@ -40,17 +38,13 @@ namespace TT_Shop.Controllers
             }
 
             int userId = (int)Session["user_id"];
-
-            // Ensure the product exists in the database before proceeding
             var product = db.Products.Find(product_id);
             if (product == null)
             {
                 return HttpNotFound("Product not found.");
             }
 
-            // Retrieve the cart from session or create a new one if it doesn't exist
             List<CartItem> cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>();
-
             var cartItem = cart.FirstOrDefault(c => c.IdSanPham == product_id);
 
             if (cartItem == null)
@@ -60,9 +54,9 @@ namespace TT_Shop.Controllers
                     UserId = userId,
                     IdSanPham = product_id,
                     SoLuong = 1,
-                    TenSanPham = product.name, // Lấy tên sản phẩm từ product
-                    Gia = product.price, // Lấy giá sản phẩm từ product
-                    ImageUrl = product.image_url // Lấy URL hình ảnh từ product
+                    TenSanPham = product.name,
+                    Gia = product.price,
+                    ImageUrl = product.image_url
                 };
                 cart.Add(cartItem);
             }
@@ -71,9 +65,7 @@ namespace TT_Shop.Controllers
                 cartItem.SoLuong++;
             }
 
-            // Save the cart back to the session
             Session["Cart"] = cart;
-
             return RedirectToAction("Index");
         }
 
@@ -86,17 +78,13 @@ namespace TT_Shop.Controllers
             }
 
             int userId = (int)Session["user_id"];
-
-            // Ensure the product exists in the database before proceeding
             var product = db.Products.Find(product_id);
             if (product == null)
             {
                 return Json(new { success = false, message = "Product not found." });
             }
 
-            // Retrieve the cart from session or create a new one if it doesn't exist
             List<CartItem> cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>();
-
             var cartItem = cart.FirstOrDefault(c => c.IdSanPham == product_id);
 
             if (cartItem == null)
@@ -106,9 +94,9 @@ namespace TT_Shop.Controllers
                     UserId = userId,
                     IdSanPham = product_id,
                     SoLuong = 1,
-                    TenSanPham = product.name, // Lấy tên sản phẩm từ product
-                    Gia = product.price, // Lấy giá sản phẩm từ product
-                    ImageUrl = product.image_url // Lấy URL hình ảnh từ product
+                    TenSanPham = product.name,
+                    Gia = product.price,
+                    ImageUrl = product.image_url
                 };
                 cart.Add(cartItem);
             }
@@ -117,9 +105,7 @@ namespace TT_Shop.Controllers
                 cartItem.SoLuong++;
             }
 
-            // Save the cart back to the session
             Session["Cart"] = cart;
-
             return Json(new { success = true, message = "Product added to cart.", cartItemCount = cart.Count });
         }
 
@@ -135,7 +121,38 @@ namespace TT_Shop.Controllers
                 return Json(new { success = true });
             }
             return Json(new { success = false, message = "Item not found" });
-        
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult XoaGioHang(int iMaSach)
+        {
+            List<CartItem> cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>();
+            var sanpham = cart.SingleOrDefault(n => n.IdSanPham == iMaSach);
+            if (sanpham != null)
+            {
+                cart.Remove(sanpham);
+                Session["Cart"] = cart;
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public JsonResult CalculateTotal(List<int> selectedProductIds)
+        {
+            List<CartItem> cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>();
+            decimal total = 0;
+
+            foreach (var id in selectedProductIds)
+            {
+                var cartItem = cart.FirstOrDefault(c => c.IdSanPham == id);
+                if (cartItem != null)
+                {
+                    total += cartItem.Gia.GetValueOrDefault() * cartItem.SoLuong.GetValueOrDefault();
+                }
+            }
+
+            return Json(new { total });
         }
     }
 }

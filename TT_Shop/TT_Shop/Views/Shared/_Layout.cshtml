@@ -77,11 +77,11 @@
             <div class="col-md-8">
                 @RenderBody()
             </div>
-
+            <div class="col-md-2">
+                @Html.Partial("RightSidebar")
+            </div>
         </div>
-        <div class="col-md-2">
-            @Html.Partial("RightSidebar")
-        </div>
+        
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>

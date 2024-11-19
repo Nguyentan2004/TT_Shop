@@ -5,28 +5,102 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Giỏ hàng</h2>
+<div class="cart-container">
+    <h2>Giỏ hàng</h2>
 
-<table>
-    <tr>
-        <th>Sản phẩm</th>
-        <th>Giá</th>
-        <th>Số lượng</th>
-        <th>Tổng</th>
-        <th>Hành động</th>
-    </tr>
-    @foreach (var item in Model)
-    {
+    <table class="cart-table">
         <tr>
-            <td>@item.TenSanPham</td>
-            <td>@item.Gia</td>
-            <td>
-                <input type="number" value="@item.SoLuong" onchange="updateQuantity(@item.IdSanPham, this.value)" />
-            </td>
-            <td>@(item.Gia * item.SoLuong)</td>
-            <td>
-                <button onclick="removeFromCart(@item.IdSanPham)">Xóa</button>
-            </td>
+            <th class="select-column">Chọn mua</th>
+            <th>Hình ảnh</th>
+            <th>Sản phẩm</th>
+            <th>Giá</th>
+            <th>Số lượng</th>
+            <th>Tổng</th>
+            <th>Hành động</th>
         </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="select-column">
+                    <input type="checkbox" name="selectedProducts" value="@item.IdSanPham" class="round-checkbox" data-price="@item.Gia" data-quantity="@item.SoLuong" />
+                </td>
+                <td>
+                    <img src="@Url.Content("~/Images/Images/" + item.ImageUrl)" alt="@item.TenSanPham" class="product-image" />
+                </td>
+                <td>@item.TenSanPham</td>
+                <td>@item.Gia</td>
+                <td>
+                    <input type="number" value="@item.SoLuong" onchange="updateQuantity(@item.IdSanPham, this.value)" />
+                </td>
+                <td>@(item.Gia * item.SoLuong)</td>
+                <td>
+                    @using (Html.BeginForm("XoaGioHang", "Cart", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="iMaSach" value="@item.IdSanPham" />
+                        <button type="submit">Xóa</button>
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+
+    <div class="cart-total">
+        <button type="button" class="btn btn-info" onclick="calculateTotal()">Tổng tiền các sản phẩm được đánh tích</button>
+        <span id="totalPrice"></span>
+    </div>
+
+    <div class="cart-actions">
+        @using (Html.BeginForm("XoaHetGioHang", "Cart", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-danger">Xóa hết giỏ hàng</button>
+        }
+        <a href="@Url.Action("ThanhToan", "Cart")" class="btn btn-success">Thanh toán</a>
+    </div>
+</div>
+
+<style>
+    .cart-container {
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        margin-top: 20px;
     }
-</table>
+
+    .cart-table th, .cart-table td {
+        padding: 10px;
+    }
+
+        .cart-table th.select-column, .cart-table td.select-column {
+            border-right: 1px solid #ccc;
+        }
+
+    .cart-total {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .cart-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .product-image {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+    }
+
+    .round-checkbox {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        vertical-align: middle;
+    }
+</style>
