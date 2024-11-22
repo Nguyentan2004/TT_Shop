@@ -8,49 +8,6 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    function loadProducts(categoryId) {
-        $.ajax({
-            url: '@Url.Action("GetProductsByCategory", "Home")',
-            type: 'GET',
-            data: { id: categoryId },
-            success: function (data) {
-                $('#product-container').html(data);
-            },
-            error: function () {
-                alert('Failed to load products.');
-            }
-        });
-    }
-
-    function showNotification(message) {
-        var overlay = document.getElementById('notification-overlay');
-        var messageDiv = document.getElementById('notification-message');
-        messageDiv.innerHTML = message;
-        overlay.style.display = 'flex';
-        setTimeout(function() {
-            overlay.style.display = 'none';
-        }, 3000); // Hide after 3 seconds
-    }
-
-    function addToCart(productId) {
-        $.ajax({
-            url: '@Url.Action("AddToCartAjax", "Cart")',
-            type: 'GET',
-            data: { product_id: productId },
-            success: function(response) {
-                if (response.success) {
-                    showNotification(response.message); // Show notification
-                } else {
-                    showNotification('Failed to add product to cart.');
-                }
-            },
-            error: function() {
-                showNotification('An error occurred. Please try again.');
-            }
-        });
-    }
-</script>
 
 <div id="notification-overlay" class="notification-overlay">
     <div id="notification-message" class="notification-message"></div>
@@ -72,7 +29,7 @@
                         <p class="card-text">@product.description</p>
                         <a href="@Url.Action("AddToCart", "Cart", new { product_id = product.product_id })" class="btn btn-success">Mua ngay</a>
                         <p></p>
-                        <a href="javascript:void(0);" onclick="addToCart(@product.product_id)" class="btn btn-primary">Thêm vào giỏ hàng</a>
+                        <a href="javascript:void(0);" class="btn btn-primary add-to-cart-ajax" data-product-id="@product.product_id">Thêm vào giỏ hàng</a>
                     </div>
                 </div>
             </div>
@@ -116,3 +73,27 @@
         }
     </ul>
 </nav>
+
+<script>
+    $(document).ready(function() {
+        $('.add-to-cart-ajax').click(function() {
+            var productId = $(this).data('product-id');
+            $.ajax({
+                url: '@Url.Action("AddToCartAjax", "Cart")',
+                type: 'GET',
+                data: { product_id: productId },
+                success: function(response) {
+                    if (response.success) {
+                        toastr.success(response.message);
+                        $('#cartItemCount').text(response.totalQuantity); // Update the cart quantity
+                    } else {
+                        toastr.error(response.message);
+                    }
+                },
+                error: function() {
+                    toastr.error('An error occurred while adding the product to the cart.');
+                }
+            });
+        });
+    });
+</script>
