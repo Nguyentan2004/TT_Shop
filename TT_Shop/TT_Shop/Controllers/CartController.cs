@@ -73,19 +73,19 @@ namespace TT_Shop.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        public JsonResult AddToCartAjax(int product_id)
+        [HttpGet]
+        public ActionResult AddToCartAjax(int product_id)
         {
             if (Session["user_id"] == null)
             {
-                return Json(new { success = false, message = "User not logged in." });
+                return RedirectToAction("Login", "User");
             }
 
             int userId = (int)Session["user_id"];
             var product = db.Products.Find(product_id);
             if (product == null)
             {
-                return Json(new { success = false, message = "Product not found." });
+                return HttpNotFound("Product not found.");
             }
 
             List<CartItem> cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>();
@@ -110,7 +110,14 @@ namespace TT_Shop.Controllers
             }
 
             Session["Cart"] = cart;
-            return Json(new { success = true, message = "Product added to cart.", cartItemCount = cart.Count });
+            if (Request.IsAjaxRequest())
+            {
+                return Json(new { success = true, message = "Product added to cart.", cartItemCount = cart.Count });
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpPost]
