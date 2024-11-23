@@ -27,3 +27,10 @@
         }
     </ul>
 </div>
+
+<script>
+    function loadProducts(categoryId) {
+        // Example: Redirect to a URL with the category ID as a query parameter
+        window.location.href = '@Url.Action("Index", "Products")?categoryId=' + categoryId;
+    }
+</script>

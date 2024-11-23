@@ -1,0 +1,93 @@
+﻿@model TT_Shop.Models.Order
+
+@{
+    ViewBag.Title = "Order Details";
+}
+
+<h2>Order Details</h2>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.order_id)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.order_id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.User.fullname)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.User.fullname)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.order_status)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.order_status)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.total_amount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.total_amount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.shipping_address)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.shipping_address)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.order_date)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.order_date)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.updated_at)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.updated_at)
+        </dd>
+    </dl>
+</div>
+
+<h4>Order Items</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Order_Details.First().Product.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order_Details.First().quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order_Details.First().price)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Order_Details)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.price)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

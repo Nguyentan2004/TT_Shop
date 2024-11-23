@@ -120,10 +120,15 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccoutManagementController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ApplicationDbContext.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\ProductManagementsController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -173,6 +178,7 @@
     <Compile Include="Models\User.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModel.cs" />
     <Compile Include="Models\Wishlist.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -275,6 +281,25 @@
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Cart\Payment.cshtml" />
     <Content Include="Views\Cart\Complete.cshtml" />
+    <Content Include="Views\ProductManagements\Create.cshtml" />
+    <Content Include="Views\ProductManagements\Delete.cshtml" />
+    <Content Include="Views\ProductManagements\Details.cshtml" />
+    <Content Include="Views\ProductManagements\Edit.cshtml" />
+    <Content Include="Views\ProductManagements\Index.cshtml" />
+    <Content Include="Views\Report\ReportsView.cshtml" />
+    <Content Include="Views\Report\_SalesDetails.cshtml" />
+    <Content Include="Views\Orders\Create.cshtml" />
+    <Content Include="Views\Orders\Delete.cshtml" />
+    <Content Include="Views\Orders\Details.cshtml" />
+    <Content Include="Views\Orders\Edit.cshtml" />
+    <Content Include="Views\Orders\Index.cshtml" />
+    <Content Include="Views\AccoutManagement\Create.cshtml" />
+    <Content Include="Views\AccoutManagement\Delete.cshtml" />
+    <Content Include="Views\AccoutManagement\Details.cshtml" />
+    <Content Include="Views\AccoutManagement\Edit.cshtml" />
+    <Content Include="Views\AccoutManagement\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

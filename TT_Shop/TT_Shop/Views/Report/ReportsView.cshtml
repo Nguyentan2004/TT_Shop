@@ -1,0 +1,109 @@
+﻿@model TT_Shop.Models.OrdersReportViewModel
+
+@{
+    ViewBag.Title = "ReportsView";
+    Layout = "~/Views/Shared/_LayoutAmin.cshtml";
+    var today = DateTime.Now.ToString("yyyy-MM-dd");
+}
+
+<h2>ReportsView</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Monthly Income and Total Products Sold</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>Income</th>
+                        <th>Total Products Sold</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.MonthlyIncome != null && Model.MonthlyIncome.Any())
+                    {
+                        foreach (var item in Model.MonthlyIncome)
+                        {
+                            <tr>
+                                <td>@item.Key</td>
+                                <td>@item.Value.ToString("C")</td>
+                                <td>@Model.TotalProductsSold</td>
+                                <td>
+                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#salesDetailsModal" data-month="@item.Key">View Sales Details</button>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4">No data available</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post" action="@Url.Action("GenerateReport", "Report")" class="form-inline">
+                <div class="form-group">
+                    <label for="selectedDate">Select Date:</label>
+                    <input type="date" id="selectedDate" name="selectedDate" class="form-control" value="@Model?.SelectedDate.ToString(" yyyy-MM-dd") ?? today" required />
+                </div>
+                <button type="submit" class="btn btn-primary">Generate Report</button>
+            </form>
+        </div>
+    </div>
+
+    @if (Model != null)
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Report for @Model.SelectedDate.ToString("yyyy-MM-dd")</h3>
+                <p>Total Orders: @Model.TotalOrders</p>
+                <p>Daily Income: @Model.DailyIncome.ToString("C")</p>
+            </div>
+        </div>
+    }
+
+    <!-- Modal -->
+    <div class="modal fade" id="salesDetailsModal" tabindex="-1" role="dialog" aria-labelledby="salesDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="salesDetailsModalLabel">Sales Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Content will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('#salesDetailsModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var month = button.data('month');
+                var modal = $(this);
+                $.ajax({
+                    url: '@Url.Action("ViewSalesDetails", "Report")',
+                    type: 'POST',
+                    data: { month: month },
+                    success: function (data) {
+                        modal.find('.modal-body').html(data);
+                    }
+                });
+            });
+        });
+    </script>
+}
