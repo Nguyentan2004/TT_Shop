@@ -3,21 +3,39 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Admin Index</h2>
+<h2>Admin Dashboard</h2>
 
 <div class="container mt-4">
     <div class="row">
-        <div class="col-md-3">
-            <button class="btn btn-primary btn-block" onclick="location.href='@Url.Action("Index", "AccoutManagement")'">Customers Management</button>
+        <!-- Customers Management Button -->
+        <div class="col-md-3 mb-3">
+            <button class="btn btn-primary btn-block" onclick="location.href='@Url.Action("Index", "AccoutManagement")'">
+                <i class="fas fa-users"></i> Customers Management
+            </button>
         </div>
-        <div class="col-md-3">
-            <button class="btn btn-secondary btn-block" onclick="location.href='@Url.Action("Index", "ProductManagements")'">Product Management</button>
+
+        <!-- Product Management Button -->
+        <div class="col-md-3 mb-3">
+            <button class="btn btn-secondary btn-block" onclick="location.href='@Url.Action("Index", "ProductManagements")'">
+                <i class="fas fa-cogs"></i> Product Management
+            </button>
         </div>
-        <div class="col-md-3">
-            <button class="btn btn-success btn-block" onclick="location.href='@Url.Action("Index", "Orders")'">Orders</button>
+
+        <!-- Orders Button -->
+        <div class="col-md-3 mb-3">
+            <button class="btn btn-success btn-block" onclick="location.href='@Url.Action("Index", "Orders")'">
+                <i class="fas fa-box"></i> Orders
+            </button>
         </div>
-        <div class="col-md-3">
-            <button class="btn btn-info btn-block" onclick="location.href='@Url.Action("ReportsView", "Report")'">Reports</button>
+
+        <!-- Reports Button -->
+        <div class="col-md-3 mb-3">
+            <button class="btn btn-info btn-block" onclick="location.href='@Url.Action("ReportsView", "Report")'">
+                <i class="fas fa-chart-line"></i> Reports
+            </button>
         </div>
     </div>
 </div>
+
+@* Include Font Awesome icons for better UX *@
+@Styles.Render("~/Content/font-awesome")

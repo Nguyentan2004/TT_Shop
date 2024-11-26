@@ -6,9 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <!-- Thêm Bootstrap -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet" />
-
     <link rel="stylesheet" href="~/Content/Site.css" />
-    @*<link rel="stylesheet" href="~/Content/bootstrap.min.css" />*@
 
     @RenderSection("styles", required: false)
 
@@ -17,14 +15,15 @@
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
     <!-- Thanh điều hướng -->
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm">
         <div class="container">
-            @Html.ActionLink("Thế Giới Di Động", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Điện tử tối cổ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -34,14 +33,10 @@
                     <!-- Other nav items can go here if needed -->
                 </ul>
 
-                <ul class="navbar-nav">
-
-                    <div class="navbar-inner">
-                        <ul class="nav">
-                            <li><a href="@Url.Action("Index", "Cart")">Giỏ hàng (<span id="cartItemCount">@((Session["Cart"] as List<TT_Shop.Models.CartItem>)?.Count ?? 0)</span>)</a></li>
-                        </ul>
-                    </div>
-
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "Cart")">Giỏ hàng (<span id="cartItemCount">@((Session["Cart"] as List<TT_Shop.Models.CartItem>)?.Count ?? 0)</span>)</a>
+                    </li>
 
                     <li class="nav-item">
                         <form class="d-flex" method="get" action="@Url.Action("Search", "Products")">
@@ -49,24 +44,34 @@
                             <button class="btn btn-outline-success" type="submit">Tìm kiếm</button>
                         </form>
                     </li>
+
                     @if (Session["User"] != null)
                     {
-                        <li class="nav-item">
-                            @Html.ActionLink(Session["User"].ToString(), "Details", "User", null, new { @class = "nav-link" })
-                        </li>
-                        <li class="nav-item">
-                            @Html.ActionLink("Đăng xuất", "Logout", "User", null, new { @class = "nav-link" })
+                        TT_Shop.Models.User user = Session["User"] as TT_Shop.Models.User;
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Xin chào, @user.username
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="@Url.Action("Details", "User", new { id = user.user_id })">Thông tin tài khoản</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Logout", "User")">Đăng xuất</a></li>
+                                @if (user.role == "admin")
+                                {
+                                    <li><a class="dropdown-item" href="@Url.Action("Index", "Admin")">Quản lý web</a></li>
+                                }
+                            </ul>
                         </li>
                     }
                     else
                     {
                         <li class="nav-item">
-                            @Html.ActionLink("Đăng nhập", "Login", "User", null, new { @class = "nav-link" })
+                            @Html.ActionLink("Đăng nhập", "Login", "User", null, new { @class = "nav-link text-white" })
                         </li>
                         <li class="nav-item">
-                            @Html.ActionLink("Đăng ký", "Register", "User", null, new { @class = "nav-link" })
+                            @Html.ActionLink("Đăng ký", "Register", "User", null, new { @class = "nav-link text-white" })
                         </li>
                     }
+
                 </ul>
             </div>
         </div>
@@ -85,7 +90,7 @@
                 @Html.Partial("RightSidebar")
             </div>
         </div>
-        
+
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>

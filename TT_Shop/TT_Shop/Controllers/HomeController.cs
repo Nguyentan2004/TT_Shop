@@ -14,21 +14,14 @@ namespace TT_Shop.Controllers
         // Phương thức để lấy danh sách Categories và lưu trữ trong ViewBag
         private void LoadCategories()
         {
-            try
-            {
-                var categories = db.Categories.ToList(); // Lấy tất cả các Category từ cơ sở dữ liệu
-                ViewBag.Categories = categories; // Truyền danh sách Category đến view
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine("Error loading categories: " + ex.Message);
-            }
+            var categories = db.Categories.ToList();
+            ViewBag.Categories = categories;
         }
 
 
         public ActionResult Index(int page = 1, int pageSize = 6)
         {
-            LoadCategories(); // Gọi phương thức LoadCategories để lấy danh sách Categories
+            LoadCategories(); // Call LoadCategories to populate ViewBag.Categories
             var products = db.Products.OrderBy(p => p.product_id).Skip((page - 1) * pageSize).Take(pageSize).ToList();
             int totalProducts = db.Products.Count();
             ViewBag.TotalPages = (int)Math.Ceiling((double)totalProducts / pageSize);

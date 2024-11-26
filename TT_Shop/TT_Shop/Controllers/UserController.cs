@@ -36,9 +36,9 @@ namespace TT_Shop.Controllers
                 if (user != null)
                 {
                     // Nếu thông tin đăng nhập hợp lệ, lưu thông tin người dùng vào session
-                    Session["User"] = user.username;
+                    Session["User"] = user; // Store the entire user object
                     Session["user_id"] = user.user_id; // Lưu user_id vào session
-                    // Chuyển hướng đến trang chủ hoặc trang dashboard
+                                                       // Chuyển hướng đến trang chủ hoặc trang dashboard
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -49,12 +49,26 @@ namespace TT_Shop.Controllers
             return View();
         }
 
+
         public ActionResult Logout()
         {
             Session["User"] = null;
             Session["user_id"] = null; // Xóa user_id khỏi session
             return RedirectToAction("Index", "Home");
         }
+
+        public ActionResult Details()
+        {
+
+            if (Session["User"] == null)
+            {
+                return RedirectToAction("login", "User");
+            }
+            var khachHang = Session["User"] as User;
+            return View(khachHang);
+
+        }
+
 
         public ActionResult Register()
         {

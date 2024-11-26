@@ -20,6 +20,9 @@ namespace TT_Shop.Controllers
 
         public ActionResult Index()
         {
+            var categories = db.Categories.ToList();
+            ViewBag.Categories = categories;
+
             IEnumerable<Product> products = GetProducts();
             return View(products);
         }

@@ -1,43 +1,27 @@
 ﻿@model IEnumerable<TT_Shop.Models.User>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Quản lý tài khoản";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Quản lý tài khoản</h2>
+<h2 class="mb-4">Quản lý tài khoản</h2>
 
 <p>
-    <a href="@Url.Action("Create")" class="btn btn-primary" data-toggle="modal" data-target="#modalWindow" data-title="Tạo người dùng mới">Create New</a>
+    <a href="@Url.Action("Create")" class="btn btn-primary mb-3" data-toggle="modal" data-target="#modalWindow" data-title="Tạo người dùng mới">Tạo người dùng mới</a>
 </p>
+
 <table class="table table-striped table-bordered">
     <thead class="thead-dark">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.fullname)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.username)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.password)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.role)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.created_at)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.updated_at)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CartItem.TenSanPham)
-            </th>
-            <th>Actions</th>
+            <th>Họ và tên</th>
+            <th>Tên đăng nhập</th>
+            <th>Email</th>
+            <th>Vai trò</th>
+            <th>Ngày tạo</th>
+            <th>Ngày cập nhật</th>
+            <th>Tên sản phẩm trong giỏ</th>
+            <th>Thao tác</th>
         </tr>
     </thead>
     <tbody>
@@ -54,24 +38,21 @@
                     @Html.DisplayFor(modelItem => item.email)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.password)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.role)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.created_at)
+                    @(item.created_at?.ToString("dd/MM/yyyy") ?? "N/A")
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.updated_at)
+                    @(item.updated_at?.ToString("dd/MM/yyyy") ?? "N/A")
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CartItem.TenSanPham)
                 </td>
                 <td>
                     <div class="btn-group" role="group">
-                        <a href="@Url.Action("Edit", new { id = item.user_id })" class="btn btn-warning btn-sm me-2" data-toggle="modal" data-target="#modalWindow" data-title="Chỉnh sửa">Edit</a>
-                        <a href="@Url.Action("Delete", new { id = item.user_id })" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalWindow" data-title="Xóa người dùng">Delete</a>
+                        <a href="@Url.Action("Edit", new { id = item.user_id })" class="btn btn-warning btn-sm me-2" data-toggle="modal" data-target="#modalWindow" data-title="Chỉnh sửa người dùng">Chỉnh sửa</a>
+                        <a href="@Url.Action("Delete", new { id = item.user_id })" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalWindow" data-title="Xóa người dùng">Xóa</a>
                     </div>
                 </td>
             </tr>
@@ -85,9 +66,10 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
             </div>
             <div class="modal-body">
-                <!-- Content will be loaded here -->
+                <!-- Nội dung sẽ được tải vào đây -->
             </div>
         </div>
     </div>

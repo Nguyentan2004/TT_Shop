@@ -113,16 +113,29 @@ namespace TTshop.Controllers
             return View(order);
         }
 
-        // POST: Orders/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Order order = await db.Orders.FindAsync(id);
+            if (order == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Retrieve related Order_Details entries
+            var orderDetails = db.Order_Details.Where(od => od.order_id == id);
+
+            // Remove related Order_Details entries
+            db.Order_Details.RemoveRange(orderDetails);
+
+            // Remove the Order
             db.Orders.Remove(order);
+
+            // Save changes
             await db.SaveChangesAsync();
+
             return RedirectToAction("Index");
         }
+
 
         protected override void Dispose(bool disposing)
         {
