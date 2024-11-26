@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Payment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid p-4">
+    <div class="card">
+        <div class="card-header bg-warning text-white">
+            <h4>Xác nhận thanh toán</h4>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Đơn hàng của bạn</h5>
+            <div class="order-summary mb-4">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Sản phẩm</th>
+                            <th>Số lượng</th>
+                            <th>Giá</th>
+                            <th>Tổng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in (Session["Cart"] as List<TT_Shop.Models.CartItem>))
+                        {
+                            <tr>
+                                <td>@item.TenSanPham</td>
+                                <td>@item.SoLuong</td>
+                                <td>@String.Format("{0:N0}", item.Gia) VND</td>
+                                <td>@String.Format("{0:N0}", item.Gia * item.SoLuong) VND</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="order-total text-end">
+                <h5><strong>Tổng thanh toán: </strong>@String.Format("{0:N0}", (Session["Cart"] as List<TT_Shop.Models.CartItem>).Sum(i => i.Gia.GetValueOrDefault() * i.SoLuong.GetValueOrDefault())) VND</h5>
+            </div>
+            <div class="mt-4">
+                <form method="post" action="@Url.Action("Complete", "Cart")">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-success btn-lg">Xác nhận thanh toán</button>
+                </form>
+                <a href="@Url.Action("Index", "Cart")" class="btn btn-outline-secondary btn-lg mt-3">Quay lại giỏ hàng</a>
+            </div>
+        </div>
+    </div>
+</div>

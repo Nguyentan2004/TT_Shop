@@ -52,9 +52,7 @@ textarea {
 }
 
 .row {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0;
+    justify-content: center; /* Căn giữa ngang */
 }
 
 .col-md-4 {
@@ -78,7 +76,6 @@ textarea {
 .left-sidebar, .right-sidebar {
     background-color: #f8f9fa;
     padding: 15px;
-    border-radius: 1px;
     margin-bottom: 20px;
     height: 100vh; /* Chiếm toàn bộ chiều cao của màn hình */
     flex: 0 0 20%; /* Đặt chiều rộng cố định cho sidebar */
@@ -140,4 +137,28 @@ textarea {
 footer {
     text-align: center;
     margin-top: 50px;
+}
+
+.custom-sidebar {
+    height: 100vh;
+    border: 1px solid #ccc;
+    background-color: #f8f9fa;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 1rem;
+}
+.custom-sidebar h4 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+.custom-sidebar .list-group-item {
+    border: none;
+    padding: 0.5rem;
+}
+.custom-sidebar .list-group-item a {
+    color: #343a40;
+    text-decoration: none;
+}
+.custom-sidebar .list-group-item a:hover {
+    color: #007bff; /* Optional: Add a hover color for links */
 }

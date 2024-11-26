@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Complete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid p-4">
+    <div class="card">
+        <div class="card-header bg-warning text-white">
+            <h4>Xác nhận thanh toán</h4>
+        </div>
+        <div class="card-body text-center">
+            <div class="my-4">
+                <img src="~/images/QRThanhToan.png" alt="QR Thanh Toán" class="img-fluid" style="max-width: 200px;" />
+            </div>
+            <div class="mt-4">
+                <form method="post" action="@Url.Action("Complete", "Cart")">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-success btn-lg">Đã thanh toán</button>
+                </form>
+                <a href="@Url.Action("StorePayment", "Cart")" class="btn btn-outline-primary btn-lg mt-3">Thanh toán tại cửa hàng</a>
+            </div>
+        </div>
+    </div>
+</div>

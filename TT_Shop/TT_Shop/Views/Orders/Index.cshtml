@@ -1,0 +1,64 @@
+﻿@model IEnumerable<TT_Shop.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.order_status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.total_amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.shipping_address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.order_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.updated_at)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.fullname)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.order_status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.total_amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.shipping_address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.order_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.updated_at)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.fullname)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.order_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.order_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.order_id })
+        </td>
+    </tr>
+}
+
+</table>

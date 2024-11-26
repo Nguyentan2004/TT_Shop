@@ -1,0 +1,26 @@
+﻿@model TT_Shop.Models.OrdersReportViewModel
+
+@if (Model.SalesDetails != null && Model.SalesDetails.Any())
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Quantity Sold</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var detail in Model.SalesDetails)
+            {
+                <tr>
+                    <td>@detail.ProductName</td>
+                    <td>@detail.QuantitySold</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No sales details available for this month.</p>
+}
