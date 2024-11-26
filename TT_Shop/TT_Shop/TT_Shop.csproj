@@ -139,6 +139,7 @@
     <Compile Include="Models\Category.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -272,8 +273,6 @@
     <Content Include="Views\User\login.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\Home\Detail.cshtml" />
-    <Content Include="Views\Shared\LeftSidebar.cshtml" />
-    <Content Include="Views\Shared\RightSidebar.cshtml" />
     <Content Include="Views\Home\Category.cshtml" />
     <Content Include="Views\Home\GetProductsByCategory.cshtml" />
     <Content Include="Views\Products\Search.cshtml" />
@@ -301,6 +300,8 @@
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\Shared\LeftSideBar.cshtml" />
+    <Content Include="Views\Shared\RightSideBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
