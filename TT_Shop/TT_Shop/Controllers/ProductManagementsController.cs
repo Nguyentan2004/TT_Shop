@@ -49,10 +49,12 @@ namespace TTshop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "product_id,name,description,price,stock,category_id,image_url,created_at,updated_at")] Product product)
+        public async Task<ActionResult> Create([Bind(Include = "product_id,name,description,price,stock,category_id,image_url")] Product product)
         {
             if (ModelState.IsValid)
             {
+                product.created_at = DateTime.Now; // Set the created_at field to the current date and time
+                product.updated_at = DateTime.Now; // Set the updated_at field to the current date and time
                 db.Products.Add(product);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -61,6 +63,7 @@ namespace TTshop.Controllers
             ViewBag.category_id = new SelectList(db.Categories, "category_id", "name", product.category_id);
             return View(product);
         }
+
 
         // GET: ProductManagements/Edit/5
         public async Task<ActionResult> Edit(int? id)
@@ -83,10 +86,11 @@ namespace TTshop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "product_id,name,description,price,stock,category_id,image_url,created_at,updated_at")] Product product)
+        public async Task<ActionResult> Edit([Bind(Include = "product_id,name,description,price,stock,category_id,image_url,created_at")] Product product)
         {
             if (ModelState.IsValid)
             {
+                product.updated_at = DateTime.Now; // Set the updated_at field to the current date and time
                 db.Entry(product).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");

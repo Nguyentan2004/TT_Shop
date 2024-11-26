@@ -31,6 +31,10 @@
                     {
                         <span class="badge bg-warning text-dark">Chưa giải quyết</span>
                     }
+                    else if (item.order_status == "Approved")
+                    {
+                        <span class="badge bg-success">Đã duyệt</span>
+                    }
                     else
                     {
                         @Html.DisplayFor(modelItem => item.order_status)
@@ -39,18 +43,15 @@
                 <td>
                     @(item.total_amount?.ToString("N2") + " VNĐ" ?? "N/A")
                 </td>
-
                 <td>
                     @Html.DisplayFor(modelItem => item.shipping_address)
                 </td>
                 <td>
                     @(item.order_date?.ToString("dd/MM/yyyy") ?? "N/A")
                 </td>
-
                 <td>
                     @(item.updated_at?.ToString("dd/MM/yyyy") ?? "N/A")
                 </td>
-
                 <td>
                     @Html.DisplayFor(modelItem => item.User.fullname)
                 </td>
@@ -58,6 +59,7 @@
                     <div class="btn-group" role="group">
                         @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.order_id }, new { @class = "btn btn-warning btn-sm me-2" })
                         @Html.ActionLink("Chi tiết", "Details", new { id = item.order_id }, new { @class = "btn btn-info btn-sm me-2" })
+                        <button class="btn btn-success btn-sm me-2 approve-order" data-order-id="@item.order_id">Duyệt</button>
                         @Html.ActionLink("Xóa", "Delete", new { id = item.order_id }, new { @class = "btn btn-danger btn-sm" })
                     </div>
                 </td>
@@ -65,3 +67,31 @@
         }
     </tbody>
 </table>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('.approve-order').click(function () {
+                var orderId = $(this).data('order-id');
+                if (confirm('Bạn có chắc chắn muốn duyệt hóa đơn này?')) {
+                    $.ajax({
+                        url: '@Url.Action("ApproveOrder", "OrderManagement")',
+                        type: 'POST',
+                        data: { id: orderId },
+                        success: function (response) {
+                            if (response.success) {
+                                alert('Hóa đơn đã được duyệt thành công!');
+                                location.reload(); // Refresh the page to update the status
+                            } else {
+                                alert('Có lỗi xảy ra khi duyệt hóa đơn.');
+                            }
+                        },
+                        error: function () {
+                            alert('Có lỗi xảy ra khi gửi yêu cầu.');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}

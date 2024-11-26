@@ -9,6 +9,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<style>
+    .custom-link {
+        color: black;
+        text-decoration: none;
+    }
+
+        .custom-link:hover {
+            color: black;
+            text-decoration: none;
+        }
+</style>
+
 <div id="notification-overlay" class="notification-overlay">
     <div id="notification-message" class="notification-message"></div>
 </div>
@@ -20,9 +32,13 @@
         {
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="@Url.Content("~/Images/Images/" + product.image_url)" alt="@product.name" class="card-img-top img-fluid fixed-size-img" />
+                    <a href="@Url.Action("Detail", "Home", new { id = product.product_id })" class="custom-link">
+                        <img src="@Url.Content("~/Images/Images/" + product.image_url)" alt="@product.name" class="card-img-top img-fluid fixed-size-img" />
+                    </a>
                     <div class="card-body text-center">
-                        <h5 class="card-title">@product.name</h5>
+                        <h5 class="card-title">
+                            <a href="@Url.Action("Detail", "Home", new { id = product.product_id })" class="custom-link">@product.name</a>
+                        </h5>
                         <p class="card-text">Giá: @String.Format("{0:0,0}đ", product.price)</p>
                     </div>
                     <div class="card-footer text-center">

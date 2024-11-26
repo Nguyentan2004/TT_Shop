@@ -2,11 +2,11 @@
 
 @if (Model.SalesDetails != null && Model.SalesDetails.Any())
 {
-    <table class="table table-bordered">
-        <thead>
+    <table class="table table-bordered table-hover">
+        <thead class="thead-light">
             <tr>
-                <th>Product Name</th>
-                <th>Quantity Sold</th>
+                <th>Tên sản phẩm</th>
+                <th class="text-center">Số lượng đã bán</th>
             </tr>
         </thead>
         <tbody>
@@ -14,7 +14,7 @@
             {
                 <tr>
                     <td>@detail.ProductName</td>
-                    <td>@detail.QuantitySold</td>
+                    <td class="text-center">@detail.QuantitySold</td>
                 </tr>
             }
         </tbody>
@@ -22,5 +22,5 @@
 }
 else
 {
-    <p>No sales details available for this month.</p>
+    <p class="text-center text-muted">Không có chi tiết bán hàng nào trong tháng này.</p>
 }

@@ -18,7 +18,6 @@ namespace TT_Shop.Controllers
             ViewBag.Categories = categories;
         }
 
-
         public ActionResult Index(int page = 1, int pageSize = 6)
         {
             LoadCategories(); // Call LoadCategories to populate ViewBag.Categories
@@ -28,7 +27,6 @@ namespace TT_Shop.Controllers
             ViewBag.CurrentPage = page;
             return View(products);
         }
-
 
         public ActionResult About()
         {
@@ -46,13 +44,41 @@ namespace TT_Shop.Controllers
 
         public ActionResult Detail(int id)
         {
-            LoadCategories(); // Gọi phương thức LoadCategories để lấy danh sách Categories
             var product = db.Products.Find(id);
             if (product == null)
             {
                 return HttpNotFound();
             }
+
+            // Lấy đánh giá
+            var reviews = db.Product_Reviews.Where(r => r.product_id == id).ToList();
+            ViewBag.Reviews = reviews;
+
+            // Lấy sản phẩm liên quan
+            var relatedProducts = db.Products
+                .Where(p => p.category_id == product.category_id && p.category_id != id)
+                .Take(4) // Lấy 4 sản phẩm liên quan
+                .ToList();
+            ViewBag.RelatedProducts = relatedProducts;
+
             return View(product);
+        }
+
+        [HttpPost]
+        public ActionResult AddReview(int productId, int rating, string comment)
+        {
+            var review = new Product_Reviews
+            {
+                product_id = productId,
+                rating = rating,
+                comment = comment,
+                created_at = DateTime.Now
+            };
+
+            db.Product_Reviews.Add(review);
+            db.SaveChanges();
+
+            return RedirectToAction("Detail", new { id = productId });
         }
 
         public ActionResult Category(int id)
@@ -61,11 +87,11 @@ namespace TT_Shop.Controllers
             var products = db.Products.Where(p => p.category_id == id).ToList();
             return View(products);
         }
+
         public ActionResult GetProductsByCategory(int id)
         {
             var products = db.Products.Where(p => p.category_id == id).ToList();
             return PartialView("GetProductsByCategory", products);
         }
-
     }
 }

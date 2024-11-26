@@ -5,40 +5,97 @@
 }
 
 <main class="container mt-4">
+    <!-- Thông tin chi tiết sản phẩm -->
     <div class="row">
+        <!-- Hình ảnh sản phẩm -->
         <div class="col-md-6">
-            <img src="@Url.Content("~/Images/Images/" + Model.image_url)" alt="@Model.name" class="card-img-top img-fluid fixed-size-img" />
+            <img src="@Url.Content("~/Images/Images/" + Model.image_url)" alt="@Model.name" class="card-img-top img-fluid rounded shadow-sm" />
         </div>
+
+        <!-- Chi tiết sản phẩm -->
         <div class="col-md-6">
-            <h1>@Model.name</h1>
-            <h2 class="text-danger">Giá: @String.Format("{0:0,0}đ", Model.price)</h2>
-            <p>@Model.description</p>
-            <form>
+            <h1 class="display-4">@Model.name</h1>
+            <h2 class="text-danger font-weight-bold">Giá: @String.Format("{0:0,0}đ", Model.price)</h2>
+            <p class="text-muted">@Model.description</p>
+            <form method="post" action="@Url.Action("AddToCart", "Cart")">
+                <input type="hidden" name="product_id" value="@Model.product_id" />
                 <div class="form-group">
-                    <label for="quantity">Số lượng:</label>
+                    <label for="quantity" class="font-weight-bold">Số lượng:</label>
                     <input type="number" id="quantity" name="quantity" class="form-control" value="1" min="1" />
                 </div>
-                <button type="submit" class="btn btn-success btn-lg">Mua ngay</button>
+                <button type="submit" class="btn btn-success btn-lg mt-3 w-100">Mua ngay</button>
             </form>
+
         </div>
     </div>
 
     <hr />
 
+    <!-- Phần đánh giá sản phẩm -->
     <div class="row mt-4">
         <div class="col-md-12">
-            <h3>Đánh giá sản phẩm</h3>
-            <!-- Thêm phần đánh giá sản phẩm ở đây -->
+            <h3 class="section-title">Đánh giá sản phẩm</h3>
+            <div class="review-section p-3 bg-light rounded shadow-sm">
+                @if (ViewBag.Reviews != null && ViewBag.Reviews.Count > 0)
+                {
+                    foreach (var review in ViewBag.Reviews)
+                    {
+                        var userName = review?.GetType().GetProperty("UserName") != null ? review.UserName : "Anonymous";
+                        <div class="review-item mb-3">
+                            <h5>@userName</h5>
+                        </div>
+                    }
+                }
+
+                else
+                {
+                    <p class="text-muted">Chưa có đánh giá nào cho sản phẩm này.</p>
+                }
+
+                <!-- Form đánh giá -->
+                <form method="post" action="@Url.Action("AddReview", "Product")">
+                    <input type="hidden" name="productId" value="@Model.product_id" />
+                    <div class="form-group">
+                        <label for="rating">Đánh giá (1-5):</label>
+                        <input type="number" id="rating" name="rating" class="form-control" min="1" max="5" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="comment">Bình luận:</label>
+                        <textarea id="comment" name="comment" class="form-control" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Gửi đánh giá</button>
+                </form>
+            </div>
         </div>
     </div>
 
     <hr />
 
+    <!-- Phần sản phẩm liên quan -->
     <div class="row mt-4">
         <div class="col-md-12">
-            <h3>Sản phẩm liên quan</h3>
+            <h3 class="section-title">Sản phẩm liên quan</h3>
             <div class="row">
-                <!-- Thêm các sản phẩm liên quan ở đây -->
+                @if (ViewBag.RelatedProducts != null && ViewBag.RelatedProducts.Count > 0)
+                {
+                    foreach (var relatedProduct in ViewBag.RelatedProducts)
+                    {
+                        <div class="col-md-3">
+                            <div class="card mb-4 shadow-sm">
+                                <img src="@Url.Content("~/Images/Images/" + relatedProduct.image_url)" alt="@relatedProduct.name" class="card-img-top img-fluid rounded" />
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">@relatedProduct.name</h5>
+                                    <p class="card-text text-danger">@String.Format("{0:0,0}đ", relatedProduct.price)</p>
+                                    <a href="@Url.Action("Detail", "Home", new { id = relatedProduct.product_id })" class="btn btn-outline-primary btn-sm">Xem chi tiết</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p class="text-muted">Không có sản phẩm liên quan nào.</p>
+                }
             </div>
         </div>
     </div>

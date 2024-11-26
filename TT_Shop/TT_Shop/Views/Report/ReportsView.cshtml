@@ -1,24 +1,24 @@
 ﻿@model TT_Shop.Models.OrdersReportViewModel
 
 @{
-    ViewBag.Title = "ReportsView";
+    ViewBag.Title = "Báo cáo doanh thu";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
     var today = DateTime.Now.ToString("yyyy-MM-dd");
 }
 
-<h2>ReportsView</h2>
+<h1 class="text-primary text-center">Báo cáo doanh thu</h1>
 
-<div class="container">
+<div class="container mt-5">
     <div class="row">
         <div class="col-md-12">
-            <h3>Monthly Income and Total Products Sold</h3>
-            <table class="table table-bordered">
-                <thead>
+            <h3 class="text-secondary">Doanh thu hàng tháng và tổng sản phẩm đã bán</h3>
+            <table class="table table-bordered table-hover">
+                <thead class="thead-dark">
                     <tr>
-                        <th>Month</th>
-                        <th>Income</th>
-                        <th>Total Products Sold</th>
-                        <th>Actions</th>
+                        <th>Tháng</th>
+                        <th>Doanh thu</th>
+                        <th>Tổng sản phẩm đã bán</th>
+                        <th>Hành động</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,7 +31,9 @@
                                 <td>@item.Value.ToString("C")</td>
                                 <td>@Model.TotalProductsSold</td>
                                 <td>
-                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#salesDetailsModal" data-month="@item.Key">View Sales Details</button>
+                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#salesDetailsModal" data-month="@item.Key">
+                                        Xem chi tiết bán hàng
+                                    </button>
                                 </td>
                             </tr>
                         }
@@ -39,7 +41,7 @@
                     else
                     {
                         <tr>
-                            <td colspan="4">No data available</td>
+                            <td colspan="4" class="text-center text-muted">Không có dữ liệu</td>
                         </tr>
                     }
                 </tbody>
@@ -47,25 +49,25 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row mt-4">
         <div class="col-md-6">
             <form method="post" action="@Url.Action("GenerateReport", "Report")" class="form-inline">
-                <div class="form-group">
-                    <label for="selectedDate">Select Date:</label>
+                <div class="form-group mr-2">
+                    <label for="selectedDate" class="mr-2">Chọn ngày:</label>
                     <input type="date" id="selectedDate" name="selectedDate" class="form-control" value="@Model?.SelectedDate.ToString(" yyyy-MM-dd") ?? today" required />
                 </div>
-                <button type="submit" class="btn btn-primary">Generate Report</button>
+                <button type="submit" class="btn btn-primary">Xem báo cáo</button>
             </form>
         </div>
     </div>
 
     @if (Model != null)
     {
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-md-12">
-                <h3>Report for @Model.SelectedDate.ToString("yyyy-MM-dd")</h3>
-                <p>Total Orders: @Model.TotalOrders</p>
-                <p>Daily Income: @Model.DailyIncome.ToString("C")</p>
+                <h3>Báo cáo ngày: @Model.SelectedDate.ToString("yyyy-MM-dd")</h3>
+                <p>Tổng đơn hàng: <span class="font-weight-bold">@Model.TotalOrders</span></p>
+                <p>Doanh thu trong ngày: <span class="text-success font-weight-bold">@Model.DailyIncome.ToString("C")</span></p>
             </div>
         </div>
     }
@@ -74,14 +76,14 @@
     <div class="modal fade" id="salesDetailsModal" tabindex="-1" role="dialog" aria-labelledby="salesDetailsModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="salesDetailsModalLabel">Sales Details</h5>
+                <div class="modal-header bg-info text-white">
+                    <h5 class="modal-title" id="salesDetailsModalLabel">Chi tiết bán hàng</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <!-- Content will be loaded here -->
+                    <!-- Content loaded via AJAX -->
                 </div>
             </div>
         </div>
@@ -96,7 +98,7 @@
                 var month = button.data('month');
                 var modal = $(this);
                 $.ajax({
-                    url: '@Url.Action("ViewSalesDetails", "Report")',
+                    url: '@Url.Action("_SalesDetails", "Report")',
                     type: 'POST',
                     data: { month: month },
                     success: function (data) {
@@ -107,3 +109,4 @@
         });
     </script>
 }
+    

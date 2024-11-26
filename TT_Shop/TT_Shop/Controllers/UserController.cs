@@ -153,5 +153,15 @@ namespace TT_Shop.Controllers
 
             return View();
         }
+
+        public ActionResult OrderDetails(int id)
+        {
+            var order = db.Orders.Include("Order_Details").Include("Order_Details.Product").FirstOrDefault(o => o.order_id == id);
+            if (order == null)
+            {
+                return HttpNotFound();
+            }
+            return View(order);
+        }
     }
 }

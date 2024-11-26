@@ -65,7 +65,6 @@ namespace TTshop.Controllers
             return View(order);
         }
 
-        // GET: Orders/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -78,12 +77,10 @@ namespace TTshop.Controllers
                 return HttpNotFound();
             }
             ViewBag.user_id = new SelectList(db.Users, "user_id", "fullname", order.user_id);
+            ViewBag.StatusOptions = new SelectList(new List<string> { "Chưa giải quyết", "Đã duyệt", "Đã hủy" });
             return View(order);
         }
 
-        // POST: Orders/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "order_id,user_id,order_status,total_amount,shipping_address,order_date,updated_at")] Order order)
@@ -95,6 +92,7 @@ namespace TTshop.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.user_id = new SelectList(db.Users, "user_id", "fullname", order.user_id);
+            ViewBag.StatusOptions = new SelectList(new List<string> { "Chưa giải quyết", "Đã duyệt", "Đã hủy" });
             return View(order);
         }
 

@@ -132,7 +132,6 @@ namespace TT_Shop.Controllers
             }
             return Json(new { success = false, message = "Item not found" });
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult XoaGioHang(int iMaSach)
@@ -143,10 +142,10 @@ namespace TT_Shop.Controllers
             {
                 cart.Remove(sanpham);
                 Session["Cart"] = cart;
+                TempData["SuccessMessage"] = "Xóa sản phẩm thành công.";
             }
-            return Json(new { success = true, message = "Product added to cart." }, JsonRequestBehavior.AllowGet);
+            return RedirectToAction("Index");
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult XoaHetGioHang()
@@ -185,14 +184,17 @@ namespace TT_Shop.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
+            // Calculate total amount
+            decimal totalAmount = cart.Sum(item => item.Gia.GetValueOrDefault() * item.SoLuong.GetValueOrDefault());
+
             // Create a new order
             var order = new Order
             {
                 user_id = (int)Session["user_id"], // Get the current user ID
                 order_status = "Pending",
-                total_amount = cart.Sum(item => item.Gia.GetValueOrDefault() * item.SoLuong.GetValueOrDefault()),
+                total_amount = totalAmount,
                 order_date = DateTime.Now,
-                shipping_address = "Your shipping address", // Get the shipping address
+                shipping_address = "Địa chỉ giao hàng của bạn", // Get the shipping address
                 updated_at = DateTime.Now
             };
 
@@ -224,7 +226,6 @@ namespace TT_Shop.Controllers
                 payment_date = DateTime.Now
             };
 
-
             db.Payments.Add(payment);
             try
             {
@@ -235,6 +236,8 @@ namespace TT_Shop.Controllers
                 // Log the inner exception message
                 var innerException = ex.InnerException?.InnerException?.Message;
                 // Handle the exception as needed
+                ModelState.AddModelError("", "Đã xảy ra lỗi khi lưu thông tin thanh toán.");
+                return View("Error"); // Ensure you have an Error view to display the message
             }
 
             // Clear the cart
@@ -242,7 +245,6 @@ namespace TT_Shop.Controllers
 
             return View();
         }
-
 
         private IEnumerable<CartItem> GetCartItems()
         {
