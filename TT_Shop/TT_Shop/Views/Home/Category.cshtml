@@ -1,31 +1,23 @@
-﻿@model TT_Shop.Models.HomeViewModel
+﻿@{
+    var categories = ViewBag.Categories as List<TT_Shop.Models.Category>;
+}
 
-<h2>@ViewBag.CategoryName</h2>
-
-<div>
-    @foreach (var product in Model.Products)
-    {
-        <div>
-            <h3>@product.name</h3>
-            <p>@product.description</p>
-            <p>Price: @product.price</p>
-        </div>
-    }
-</div>
-
-<div>
-    @if (ViewBag.CurrentPage > 1)
-    {
-        <a href="@Url.Action("Category", new { id = ViewBag.CategoryId, page = ViewBag.CurrentPage - 1 })">Previous</a>
-    }
-
-    @for (int i = 1; i <= ViewBag.TotalPages; i++)
-    {
-        <a href="@Url.Action("Category", new { id = ViewBag.CategoryId, page = i })">@i</a>
-    }
-
-    @if (ViewBag.CurrentPage < ViewBag.TotalPages)
-    {
-        <a href="@Url.Action("Category", new { id = ViewBag.CategoryId, page = ViewBag.CurrentPage + 1 })">Next</a>
-    }
+<div class="menu">
+    <h3>Categories</h3>
+    <ul class="list-group">
+        @if (categories != null && categories.Any())
+        {
+            foreach (var category in categories)
+            {
+                if (!string.IsNullOrEmpty(category.name))
+                {
+                    <li class="list-group-item">
+                        <a href="@Url.Action("Category", "Home", new { id = category.category_id })">
+                            @category.name
+                        </a>
+                    </li>
+                }
+            }
+        }
+    </ul>
 </div>

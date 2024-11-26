@@ -11,72 +11,18 @@ namespace TT_Shop.Controllers
     {
         private QLTTShopEntities db = new QLTTShopEntities();
 
-        // Phương thức để lấy danh sách Categories và lưu trữ trong ViewBag
-        private List<Category> LoadCategories()
+        private void LoadCategories()
         {
-            return db.Categories.ToList();
+            ViewBag.Categories = db.Categories.ToList();
         }
 
         public ActionResult Index(int page = 1, int pageSize = 6)
         {
-            var categories = db.Categories.ToList();
+            LoadCategories();
             var products = db.Products.OrderBy(p => p.product_id).Skip((page - 1) * pageSize).Take(pageSize).ToList();
             int totalProducts = db.Products.Count();
             ViewBag.TotalPages = (int)Math.Ceiling((double)totalProducts / pageSize);
             ViewBag.CurrentPage = page;
-
-            var viewModel = new HomeViewModel
-            {
-                Products = products,
-                Categories = categories
-            };
-
-            return View(viewModel);
-        }
-
-
-        public ActionResult About()
-        {
-            LoadCategories(); // Gọi phương thức LoadCategories để lấy danh sách Categories
-            ViewBag.Message = "Your application description page.";
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            LoadCategories(); // Gọi phương thức LoadCategories để lấy danh sách Categories
-            ViewBag.Message = "Your contact page.";
-            return View();
-        }
-
-        public ActionResult Detail(int id)
-        {
-            LoadCategories(); // Gọi phương thức LoadCategories để lấy danh sách Categories
-            var product = db.Products.Find(id);
-            if (product == null)
-            {
-                return HttpNotFound();
-            }
-            return View(product);
-        }
-
-        public ActionResult Category(int id, int page = 1, int pageSize = 6)
-        {
-            LoadCategories(); // Gọi phương thức LoadCategories để lấy danh sách Categories
-            var category = db.Categories.Include("Products").FirstOrDefault(c => c.category_id == id);
-            if (category == null)
-            {
-                return HttpNotFound();
-            }
-
-            var products = category.Products.OrderBy(p => p.product_id)
-                                            .Skip((page - 1) * pageSize)
-                                            .Take(pageSize)
-                                            .ToList();
-            int totalProducts = category.Products.Count();
-            ViewBag.TotalPages = (int)Math.Ceiling((double)totalProducts / pageSize);
-            ViewBag.CurrentPage = page;
-            ViewBag.CategoryName = category.name;
 
             var viewModel = new HomeViewModel
             {
@@ -87,10 +33,35 @@ namespace TT_Shop.Controllers
             return View(viewModel);
         }
 
-        public ActionResult GetProductsByCategory(int id)
+        public ActionResult Categories()
         {
-            var products = db.Products.Where(p => p.category_id == id).ToList();
-            return PartialView("GetProductsByCategory", products);
+            LoadCategories();
+            return PartialView("_Categories");
+        }
+
+        public ActionResult About()
+        {
+            LoadCategories();
+            ViewBag.Message = "Your application description page.";
+            return View();
+        }
+
+        public ActionResult Contact()
+        {
+            LoadCategories();
+            ViewBag.Message = "Your contact page.";
+            return View();
+        }
+
+        public ActionResult Detail(int id)
+        {
+            LoadCategories();
+            var product = db.Products.Find(id);
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+            return View(product);
         }
     }
 }

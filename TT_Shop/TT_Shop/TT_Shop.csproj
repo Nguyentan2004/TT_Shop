@@ -302,6 +302,7 @@
     <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\Shared\LeftSideBar.cshtml" />
     <Content Include="Views\Shared\RightSideBar.cshtml" />
+    <Content Include="Views\Home\Categories.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

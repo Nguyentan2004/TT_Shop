@@ -80,9 +80,18 @@
     <!-- Nội dung chính -->
     <div class="container-fluid p-0">
         <div class="row no-gutters">
-            <div class="col-md-12">
-                @RenderBody()
-            </div>
+            <aside id="left" class="col-md-3">
+                <div id="menu">
+                    <div class="menu">
+                        @Html.Action("Categories", "Home")
+                    </div>
+                </div>
+            </aside>
+            <section class="col-md-9">
+                <div style="background-color: white">
+                    @RenderBody()
+                </div>
+            </section>
         </div>
 
         <hr />
