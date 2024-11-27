@@ -143,5 +143,18 @@ namespace TTshop.Controllers
             }
             base.Dispose(disposing);
         }
+        [HttpPost]
+        public ActionResult ApproveOrder(int id)
+        {
+            // Your logic to approve the order
+            var order = db.Orders.Find(id);
+            if (order != null)
+            {
+                order.order_status = "Approved";
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }
