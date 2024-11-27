@@ -1,7 +1,7 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Payment";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var cartItems = Session["Cart"] as List<TT_Shop.Models.CartItem>;
 }
 
 <div class="container-fluid p-4">
@@ -10,6 +10,12 @@
             <h4>Xác nhận thanh toán</h4>
         </div>
         <div class="card-body">
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger">
+                    @TempData["ErrorMessage"]
+                </div>
+            }
             <h5 class="card-title">Đơn hàng của bạn</h5>
             <div class="order-summary mb-4">
                 <table class="table table-striped">
@@ -22,21 +28,33 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in (Session["Cart"] as List<TT_Shop.Models.CartItem>))
+                        @if (cartItems != null)
+                        {
+                            foreach (var item in cartItems)
+                            {
+                                <tr>
+                                    <td>@item.TenSanPham</td>
+                                    <td>@item.SoLuong</td>
+                                    <td>@String.Format("{0:N0}", item.Gia) VND</td>
+                                    <td>@String.Format("{0:N0}", item.Gia * item.SoLuong) VND</td>
+                                </tr>
+                            }
+                        }
+                        else
                         {
                             <tr>
-                                <td>@item.TenSanPham</td>
-                                <td>@item.SoLuong</td>
-                                <td>@String.Format("{0:N0}", item.Gia) VND</td>
-                                <td>@String.Format("{0:N0}", item.Gia * item.SoLuong) VND</td>
+                                <td colspan="4" class="text-center">Giỏ hàng trống</td>
                             </tr>
                         }
                     </tbody>
                 </table>
             </div>
-            <div class="order-total text-end">
-                <h5><strong>Tổng thanh toán: </strong>@String.Format("{0:N0}", (Session["Cart"] as List<TT_Shop.Models.CartItem>).Sum(i => i.Gia.GetValueOrDefault() * i.SoLuong.GetValueOrDefault())) VND</h5>
-            </div>
+            @if (cartItems != null)
+            {
+                <div class="order-total text-end">
+                    <h5><strong>Tổng thanh toán: </strong>@String.Format("{0:N0}", cartItems.Sum(i => i.Gia.GetValueOrDefault() * i.SoLuong.GetValueOrDefault())) VND</h5>
+                </div>
+            }
             <div class="mt-4">
                 <form method="post" action="@Url.Action("Complete", "Cart")">
                     @Html.AntiForgeryToken()

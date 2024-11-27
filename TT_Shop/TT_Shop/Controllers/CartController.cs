@@ -170,86 +170,75 @@ namespace TT_Shop.Controllers
 
         public ActionResult Payment()
         {
-            var cartItems = GetCartItems(); 
-            return View(cartItems);
+            var cartItems = GetCartItems();
+            if (cartItems == null || !cartItems.Any())
+            {
+                TempData["ErrorMessage"] = "Your cart is empty.";
+                return RedirectToAction("Index");
+            }
+            Session["Cart"] = cartItems;
+            return View();
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Complete()
         {
-            var cart = Session["Cart"] as List<CartItem>;
-            if (cart == null || !cart.Any())
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
-            // Calculate total amount
-            decimal totalAmount = cart.Sum(item => item.Gia.GetValueOrDefault() * item.SoLuong.GetValueOrDefault());
-
-            // Create a new order
-            var order = new Order
-            {
-                user_id = (int)Session["user_id"], // Get the current user ID
-                order_status = "Pending",
-                total_amount = totalAmount,
-                order_date = DateTime.Now,
-                shipping_address = "Địa chỉ giao hàng của bạn", // Get the shipping address
-                updated_at = DateTime.Now
-            };
-
-            db.Orders.Add(order);
-            db.SaveChanges();
-
-            // Create order details for each cart item
-            foreach (var item in cart)
-            {
-                var orderDetail = new Order_Details
-                {
-                    order_id = order.order_id,
-                    product_id = item.IdSanPham,
-                    quantity = item.SoLuong,
-                    price = item.Gia
-                };
-
-                db.Order_Details.Add(orderDetail);
-            }
-
-            db.SaveChanges();
-
-            // Create a payment record
-            var payment = new Payment
-            {
-                order_id = order.order_id,
-                payment_method = "CreditCard", // Ensure this value matches the allowed values in the database
-                payment_status = "Completed",
-                payment_date = DateTime.Now
-            };
-
-            db.Payments.Add(payment);
             try
             {
+                var cartItems = Session["Cart"] as List<CartItem>;
+                if (cartItems == null || !cartItems.Any())
+                {
+                    TempData["ErrorMessage"] = "Your cart is empty.";
+                    return RedirectToAction("Index");
+                }
+
+                // Process the payment and create the order
+                var orderId = GenerateOrderId();
+                var order = new Order
+                {
+                    order_id = orderId,
+                    user_id = 1, // Replace with actual user ID
+                    order_status = "Pending",
+                    total_amount = cartItems.Sum(i => i.Gia.GetValueOrDefault() * i.SoLuong.GetValueOrDefault()),
+                    order_date = DateTime.Now
+                };
+                db.Orders.Add(order);
                 db.SaveChanges();
+
+                foreach (var item in cartItems)
+                {
+                    var orderDetail = new Order_Details
+                    {
+                        order_id = orderId,
+                        product_id = item.IdSanPham,
+                        quantity = item.SoLuong,
+                        price = item.Gia
+                    };
+                    db.Order_Details.Add(orderDetail);
+                }
+                db.SaveChanges();
+
+                // Clear the cart
+                Session["Cart"] = null;
+                TempData["SuccessMessage"] = "Payment completed successfully.";
+                return RedirectToAction("Complete");
             }
-            catch (DbUpdateException ex)
+            catch (Exception ex)
             {
-                // Log the inner exception message
-                var innerException = ex.InnerException?.InnerException?.Message;
-                // Handle the exception as needed
-                ModelState.AddModelError("", "Đã xảy ra lỗi khi lưu thông tin thanh toán.");
-                return View("Error"); // Ensure you have an Error view to display the message
+                TempData["ErrorMessage"] = "An error occurred while processing your request: " + ex.Message;
+                return RedirectToAction("Index");
             }
-
-            // Clear the cart
-            Session["Cart"] = null;
-
-            return View();
         }
+
 
         private IEnumerable<CartItem> GetCartItems()
         {
             // Replace with your logic to get cart items from the session or database
             return Session["Cart"] as List<CartItem> ?? new List<CartItem>();
         }
+
+
     }
 }
