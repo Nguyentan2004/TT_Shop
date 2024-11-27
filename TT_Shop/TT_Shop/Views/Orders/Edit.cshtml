@@ -20,22 +20,25 @@
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.order_id)
 
+                <!-- Khách hàng -->
                 <div class="form-group row">
                     @Html.LabelFor(model => model.user_id, "Khách hàng", htmlAttributes: new { @class = "col-sm-3 col-form-label" })
                     <div class="col-sm-9">
-                        @Html.DropDownList("user_id", null, "Chọn khách hàng", new { @class = "form-control" })
+                        @Html.DropDownListFor(model => model.user_id, (SelectList)ViewBag.UserList, "Chọn khách hàng", new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.user_id, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
+                <!-- Trạng thái đơn hàng -->
                 <div class="form-group row">
-                    @Html.LabelFor(model => model.order_status, "Trạng thái", htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                    @Html.LabelFor(model => model.order_status, "Trạng thái đơn hàng", htmlAttributes: new { @class = "col-sm-3 col-form-label" })
                     <div class="col-sm-9">
-                        @Html.EditorFor(model => model.order_status, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.DropDownListFor(model => model.order_status, new SelectList(new[] { "Chờ xử lý", "Đã duyệt", "Hoàn thành" }), "Chọn trạng thái", new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.order_status, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
+                <!-- Tổng tiền -->
                 <div class="form-group row">
                     @Html.LabelFor(model => model.total_amount, "Tổng tiền", htmlAttributes: new { @class = "col-sm-3 col-form-label" })
                     <div class="col-sm-9">
@@ -44,6 +47,7 @@
                     </div>
                 </div>
 
+                <!-- Địa chỉ giao hàng -->
                 <div class="form-group row">
                     @Html.LabelFor(model => model.shipping_address, "Địa chỉ giao hàng", htmlAttributes: new { @class = "col-sm-3 col-form-label" })
                     <div class="col-sm-9">
@@ -52,6 +56,7 @@
                     </div>
                 </div>
 
+                <!-- Ngày đặt hàng (readonly) -->
                 <div class="form-group row">
                     @Html.LabelFor(model => model.order_date, "Ngày đặt hàng", htmlAttributes: new { @class = "col-sm-3 col-form-label" })
                     <div class="col-sm-9">
@@ -60,6 +65,7 @@
                     </div>
                 </div>
 
+                <!-- Ngày cập nhật (readonly) -->
                 <div class="form-group row">
                     @Html.LabelFor(model => model.updated_at, "Ngày cập nhật", htmlAttributes: new { @class = "col-sm-3 col-form-label" })
                     <div class="col-sm-9">
@@ -68,6 +74,8 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Nút Lưu và Quay lại -->
             <div class="card-footer text-end">
                 <button type="submit" class="btn btn-primary">Lưu</button>
                 <a href="@Url.Action("Index", "Orders")" class="btn btn-secondary">Quay lại</a>
