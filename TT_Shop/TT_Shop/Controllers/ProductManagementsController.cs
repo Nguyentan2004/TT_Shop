@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TT_Shop.Models;
+using System.IO;
 
 namespace TTshop.Controllers
 {
@@ -49,12 +50,20 @@ namespace TTshop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "product_id,name,description,price,stock,category_id,image_url")] Product product)
+        public async Task<ActionResult> Create([Bind(Include = "product_id,name,description,price,stock,category_id")] Product product, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
-                product.created_at = DateTime.Now; // Set the created_at field to the current date and time
-                product.updated_at = DateTime.Now; // Set the updated_at field to the current date and time
+                if (image != null && image.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(image.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Images/Images"), fileName);
+                    image.SaveAs(path);
+                    product.image_url = fileName;
+                }
+
+                product.created_at = DateTime.Now;
+                product.updated_at = DateTime.Now;
                 db.Products.Add(product);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -63,7 +72,6 @@ namespace TTshop.Controllers
             ViewBag.category_id = new SelectList(db.Categories, "category_id", "name", product.category_id);
             return View(product);
         }
-
 
         // GET: ProductManagements/Edit/5
         public async Task<ActionResult> Edit(int? id)
@@ -81,20 +89,26 @@ namespace TTshop.Controllers
             return View(product);
         }
 
-        // POST: ProductManagements/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "product_id,name,description,price,stock,category_id,image_url,created_at")] Product product)
+        public async Task<ActionResult> Edit([Bind(Include = "product_id,name,description,price,stock,category_id,created_at")] Product product, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
-                product.updated_at = DateTime.Now; // Set the updated_at field to the current date and time
+                if (image != null && image.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(image.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Images/Images"), fileName);
+                    image.SaveAs(path);
+                    product.image_url = fileName;
+                }
+
+                product.updated_at = DateTime.Now;
                 db.Entry(product).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+
             ViewBag.category_id = new SelectList(db.Categories, "category_id", "name", product.category_id);
             return View(product);
         }

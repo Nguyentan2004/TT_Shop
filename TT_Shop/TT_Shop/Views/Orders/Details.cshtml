@@ -1,93 +1,98 @@
 ﻿@model TT_Shop.Models.Order
 
 @{
-    ViewBag.Title = "Order Details";
+    ViewBag.Title = "Chi tiết đơn hàng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
 }
 
-<h2>Order Details</h2>
+<h2 class="text-center mb-4">Chi tiết đơn hàng</h2>
 
-<div>
-    <h4>Order</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.order_id)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.order_id)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.User.fullname)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.User.fullname)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.order_status)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.order_status)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.total_amount)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.total_amount)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.shipping_address)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.shipping_address)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.order_date)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.order_date)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.updated_at)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.updated_at)
-        </dd>
-    </dl>
-</div>
+<div class="container">
+    <!-- Thông tin đơn hàng -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Thông tin đơn hàng</h4>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-4">Mã đơn hàng:</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.order_id)</dd>
 
-<h4>Order Items</h4>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Order_Details.First().Product.name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Order_Details.First().quantity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Order_Details.First().price)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Order_Details)
-        {
+                <dt class="col-sm-4">Họ và tên khách hàng:</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.User.fullname)</dd>
+
+                <dt class="col-sm-4">Trạng thái đơn hàng:</dt>
+                <dd class="col-sm-8">
+                    @if (Model.order_status == "Approved")
+                    {
+                        <span class="badge bg-success">Đã duyệt</span>
+                    }
+                    else if (Model.order_status == "Pending")
+                    {
+                        <span class="badge bg-warning">Chờ xử lý</span>
+                    }
+                    else if (Model.order_status == "Shipped")
+                    {
+                        <span class="badge bg-info">Đã giao hàng</span>
+                    }
+                    else if (Model.order_status == "Cancelled")
+                    {
+                        <span class="badge bg-danger">Đã hủy</span>
+                    }
+                    else if (Model.order_status == "Processing")
+                    {
+                        <span class="badge bg-primary">Đang xử lý</span>
+                    }
+                    else if (Model.order_status == "Delivered")
+                    {
+                        <span class="badge bg-success">Đã giao</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">Chưa xác định</span>
+                    }
+                </dd>
+
+                <dt class="col-sm-4">Tổng số tiền:</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.total_amount)</dd>
+
+                <dt class="col-sm-4">Địa chỉ giao hàng:</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.shipping_address)</dd>
+
+                <dt class="col-sm-4">Ngày đặt hàng:</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.order_date)</dd>
+
+                <dt class="col-sm-4">Ngày cập nhật:</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.updated_at)</dd>
+            </dl>
+        </div>
+    </div>
+
+    <!-- Chi tiết sản phẩm trong đơn hàng -->
+    <h4 class="mt-4">Chi tiết sản phẩm trong đơn hàng</h4>
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Product.name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.quantity)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.price)
-                </td>
+                <th>Tên sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Giá</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Order_Details)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Product.name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.quantity)</td>
+                    <td>@Html.DisplayFor(modelItem => item.price)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+    <!-- Link quay lại -->
+    <div class="text-center mt-4">
+        @Html.ActionLink("Quay lại danh sách đơn hàng", "Index", new { @class = "btn btn-primary" })
+    </div>
 </div>

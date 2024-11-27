@@ -38,7 +38,19 @@
                     @Html.DisplayFor(modelItem => item.email)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.role)
+                    <!-- Kiểm tra vai trò và thay thế bằng tên hiển thị tiếng Việt -->
+                    @if (item.role == "customer")
+                    {
+                        <span>Khách hàng</span>
+                    }
+                    else if (item.role == "admin")
+                    {
+                        <span>Nhân viên</span>
+                    }
+                    else
+                    {
+                        <span>@item.role</span> <!-- Nếu có vai trò khác, hiển thị tên vai trò -->
+                    }
                 </td>
                 <td>
                     @(item.created_at?.ToString("dd/MM/yyyy") ?? "N/A")

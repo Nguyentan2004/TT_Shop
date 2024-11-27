@@ -1,76 +1,96 @@
 ﻿@model TT_Shop.Models.Order
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Tạo đơn hàng";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Create</h2>
+<h2 class="text-center mb-4">Tạo đơn hàng mới</h2>
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Order</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.user_id, "user_id", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("user_id", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.user_id, "", new { @class = "text-danger" })
+<div class="container">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Thông tin đơn hàng</h4>
+            </div>
+            <div class="card-body">
+                <!-- Thông tin khách hàng -->
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.user_id, "Khách hàng", htmlAttributes: new { @class = "control-label col-sm-2" })
+                    <div class="col-sm-10">
+                        @Html.DropDownList("user_id", null, "-- Chọn khách hàng --", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.user_id, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <!-- Trạng thái đơn hàng -->
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.order_status, "Trạng thái đơn hàng", htmlAttributes: new { @class = "control-label col-sm-2" })
+                    <div class="col-sm-10">
+                        @Html.DropDownList("order_status", new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Chờ xử lý", Value = "Pending" },
+                            new SelectListItem { Text = "Đã duyệt", Value = "Approved" },
+                            new SelectListItem { Text = "Đang xử lý", Value = "Processing" },
+                            new SelectListItem { Text = "Đã giao hàng", Value = "Shipped" },
+                            new SelectListItem { Text = "Đã hủy", Value = "Cancelled" },
+                            new SelectListItem { Text = "Đã giao", Value = "Delivered" }
+                        }, "-- Chọn trạng thái --", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.order_status, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <!-- Tổng số tiền -->
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.total_amount, "Tổng số tiền", htmlAttributes: new { @class = "control-label col-sm-2" })
+                    <div class="col-sm-10">
+                        @Html.EditorFor(model => model.total_amount, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.total_amount, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <!-- Địa chỉ giao hàng -->
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.shipping_address, "Địa chỉ giao hàng", htmlAttributes: new { @class = "control-label col-sm-2" })
+                    <div class="col-sm-10">
+                        @Html.EditorFor(model => model.shipping_address, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.shipping_address, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <!-- Ngày đặt hàng -->
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.order_date, "Ngày đặt hàng", htmlAttributes: new { @class = "control-label col-sm-2" })
+                    <div class="col-sm-10">
+                        @Html.EditorFor(model => model.order_date, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.order_date, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <!-- Ngày cập nhật -->
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.updated_at, "Ngày cập nhật", htmlAttributes: new { @class = "control-label col-sm-2" })
+                    <div class="col-sm-10">
+                        @Html.EditorFor(model => model.updated_at, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.updated_at, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <!-- Nút gửi -->
+                <div class="form-group row">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <input type="submit" value="Tạo đơn hàng" class="btn btn-primary" />
+                    </div>
+                </div>
             </div>
         </div>
+    }
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.order_status, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.order_status, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.order_status, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.total_amount, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.total_amount, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.total_amount, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.shipping_address, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.shipping_address, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.shipping_address, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.order_date, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.order_date, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.order_date, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.updated_at, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.updated_at, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.updated_at, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
+    <!-- Link quay lại -->
+    <div class="text-center mt-4">
+        @Html.ActionLink("Quay lại danh sách đơn hàng", "Index", new { @class = "btn btn-secondary" })
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
