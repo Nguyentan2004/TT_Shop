@@ -146,15 +146,19 @@ namespace TTshop.Controllers
         [HttpPost]
         public ActionResult ApproveOrder(int id)
         {
-            // Your logic to approve the order
             var order = db.Orders.Find(id);
-            if (order != null)
+            if (order == null)
             {
-                order.order_status = "Approved";
-                db.SaveChanges();
+                return HttpNotFound();
             }
+
+            order.order_status = "Approved";
+            order.updated_at = DateTime.Now;
+            db.Entry(order).State = EntityState.Modified;
+            db.SaveChanges();
 
             return RedirectToAction("Index");
         }
+
     }
 }

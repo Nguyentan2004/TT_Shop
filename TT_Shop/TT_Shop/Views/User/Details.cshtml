@@ -8,31 +8,31 @@
 <main class="container mt-4">
     <div class="row">
         <div class="col-md-12">
-            <h1 class="mb-4">Chi tiết khách hàng</h1>
+            <h1 class="mb-4 text-primary">Chi tiết khách hàng</h1>
             <div class="card mb-4">
-                <div class="card-header">
+                <div class="card-header bg-info text-white">
                     Thông tin cá nhân
                 </div>
                 <div class="card-body">
                     <dl class="row">
-                        <dt class="col-sm-3">
+                        <dt class="col-sm-3 text-dark">
                             Mã khách hàng
                         </dt>
-                        <dd class="col-sm-9">
+                        <dd class="col-sm-9 text-muted">
                             @Html.DisplayFor(model => model.user_id)
                         </dd>
 
-                        <dt class="col-sm-3">
+                        <dt class="col-sm-3 text-dark">
                             Tên đăng nhập
                         </dt>
-                        <dd class="col-sm-9">
+                        <dd class="col-sm-9 text-muted">
                             @Html.DisplayFor(model => model.username)
                         </dd>
 
-                        <dt class="col-sm-3">
+                        <dt class="col-sm-3 text-dark">
                             Email
                         </dt>
-                        <dd class="col-sm-9">
+                        <dd class="col-sm-9 text-muted">
                             @Html.DisplayFor(model => model.email)
                         </dd>
 
@@ -46,12 +46,12 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card mb-4">
-                <div class="card-header">
+                <div class="card-header bg-success text-white">
                     Đơn hàng của khách hàng
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered table-striped">
-                        <thead>
+                        <thead class="thead-dark">
                             <tr>
                                 <th>Mã đơn hàng</th>
                                 <th>Ngày đặt</th>
@@ -70,13 +70,18 @@
                                     <td>
                                         @if (order.order_status == "Pending")
                                         {
-                                            <text>Chờ duyệt</text>
+                                            <span class="badge badge-warning text-dark">Chờ duyệt</span>
+                                        }
+                                        else if (order.order_status == "Approved")
+                                        {
+                                            <span class="badge badge-success" style="color: #28a745;">Đã duyệt</span> <!-- Màu xanh lá cây -->
                                         }
                                         else
                                         {
-                                            <text>@order.order_status</text>
+                                            <span class="badge badge-danger" style="color: #dc3545;">Đã hủy</span> <!-- Màu đỏ -->
                                         }
                                     </td>
+
                                     <td>@order.total_amount</td>
                                     <td>
                                         @Html.ActionLink("Xem chi tiết", "OrderDetails", new { id = order.order_id }, new { @class = "btn btn-sm btn-primary" })
@@ -93,12 +98,12 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card mb-4">
-                <div class="card-header">
+                <div class="card-header bg-warning text-dark">
                     Đánh giá của khách hàng
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered table-striped">
-                        <thead>
+                        <thead class="thead-dark">
                             <tr>
                                 <th>Sản phẩm</th>
                                 <th>Ngày đánh giá</th>
@@ -111,14 +116,28 @@
                             @foreach (var review in Model.Product_Reviews)
                             {
                                 <tr>
-                                    <td>@review.Product</td>
+                                    <td>@review.Product.name</td>
                                     <td>@review.created_at</td> <!-- Hiển thị ngày đánh giá mà không định dạng -->
                                     <td>@review.comment</td>
-                                    <td>@review.rating</td>
+                                    <td>
+                                        @for (int i = 1; i <= (review.rating ?? 0); i++)
+                                        {
+                                            <span class="fa fa-star text-warning"></span>
+                                        }
+                                        @for (int i = (review.rating ?? 0) + 1; i <= 5; i++)
+                                        {
+                                            <span class="fa fa-star"></span>
+                                        }
+                                    </td>
                                 </tr>
                             }
                         </tbody>
                     </table>
                 </div>
             </div>
+        </div>
+    </div>
+</main>
 
+<!-- Thêm liên kết tới các thư viện như FontAwesome cho sao -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">

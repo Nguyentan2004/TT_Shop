@@ -59,7 +59,7 @@
                     <div class="btn-group" role="group">
                         @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.order_id }, new { @class = "btn btn-warning btn-sm me-2" })
                         @Html.ActionLink("Chi tiết", "Details", new { id = item.order_id }, new { @class = "btn btn-info btn-sm me-2" })
-                        @using (Html.BeginForm("ApproveOrder", "OrderManagement", new { id = item.order_id }, FormMethod.Post))
+                        @using (Html.BeginForm("ApproveOrder", "Orders", new { id = item.order_id }, FormMethod.Post))
                         {
                             <button type="submit" class="btn btn-success btn-sm me-2">Duyệt</button>
                         }
