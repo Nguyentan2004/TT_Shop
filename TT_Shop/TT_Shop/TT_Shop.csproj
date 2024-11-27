@@ -243,6 +243,8 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\nntanxd-001-site1 - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\nntanxd-001-site1 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\cart.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />

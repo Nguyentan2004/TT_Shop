@@ -52,7 +52,7 @@
                     @foreach (var product in Model)
                     {
                         <div class="col-md-4 mb-4">
-                            <div class="card">
+                            <div class="card">  
                                 <a href="@Url.Action("Detail", "Home", new { id = product.product_id })" class="custom-link">
                                     <img src="@Url.Content("~/Images/Images/" + product.image_url)" alt="@product.name" class="card-img-top img-fluid fixed-size-img" />
                                 </a>
