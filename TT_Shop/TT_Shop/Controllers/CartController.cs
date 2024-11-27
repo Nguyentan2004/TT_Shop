@@ -132,6 +132,7 @@ namespace TT_Shop.Controllers
             }
             return Json(new { success = false, message = "Item not found" });
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult XoaGioHang(int iMaSach)
@@ -142,10 +143,10 @@ namespace TT_Shop.Controllers
             {
                 cart.Remove(sanpham);
                 Session["Cart"] = cart;
-                TempData["SuccessMessage"] = "Xóa sản phẩm thành công.";
             }
-            return RedirectToAction("Index");
+            return Json(new { success = true, message = "Product added to cart." }, JsonRequestBehavior.AllowGet);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult XoaHetGioHang()
@@ -171,65 +172,75 @@ namespace TT_Shop.Controllers
         public ActionResult Payment()
         {
             var cartItems = GetCartItems();
-            if (cartItems == null || !cartItems.Any())
-            {
-                TempData["ErrorMessage"] = "Your cart is empty.";
-                return RedirectToAction("Index");
-            }
-            Session["Cart"] = cartItems;
-            return View();
+            return View(cartItems);
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Complete()
         {
+            var cart = Session["Cart"] as List<CartItem>;
+            if (cart == null || !cart.Any())
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            // Create a new order
+            var order = new Order
+            {
+                user_id = (int)Session["user_id"], // Get the current user ID
+                order_status = "Pending",
+                total_amount = cart.Sum(item => item.Gia.GetValueOrDefault() * item.SoLuong.GetValueOrDefault()),
+                order_date = DateTime.Now,
+                shipping_address = "Your shipping address", // Get the shipping address
+                updated_at = DateTime.Now
+            };
+
+            db.Orders.Add(order);
+            db.SaveChanges();
+
+            // Create order details for each cart item
+            foreach (var item in cart)
+            {
+                var orderDetail = new Order_Details
+                {
+                    order_id = order.order_id,
+                    product_id = item.IdSanPham,
+                    quantity = item.SoLuong,
+                    price = item.Gia
+                };
+
+                db.Order_Details.Add(orderDetail);
+            }
+
+            db.SaveChanges();
+
+            // Create a payment record
+            var payment = new Payment
+            {
+                order_id = order.order_id,
+                payment_method = "CreditCard", // Ensure this value matches the allowed values in the database
+                payment_status = "Completed",
+                payment_date = DateTime.Now
+            };
+
+
+            db.Payments.Add(payment);
             try
             {
-                var cartItems = Session["Cart"] as List<CartItem>;
-                if (cartItems == null || !cartItems.Any())
-                {
-                    TempData["ErrorMessage"] = "Your cart is empty.";
-                    return RedirectToAction("Index");
-                }
-
-                // Process the payment and create the order
-                var orderId = GenerateOrderId();
-                var order = new Order
-                {
-                    order_id = orderId,
-                    user_id = 1, // Replace with actual user ID
-                    order_status = "Pending",
-                    total_amount = cartItems.Sum(i => i.Gia.GetValueOrDefault() * i.SoLuong.GetValueOrDefault()),
-                    order_date = DateTime.Now
-                };
-                db.Orders.Add(order);
                 db.SaveChanges();
-
-                foreach (var item in cartItems)
-                {
-                    var orderDetail = new Order_Details
-                    {
-                        order_id = orderId,
-                        product_id = item.IdSanPham,
-                        quantity = item.SoLuong,
-                        price = item.Gia
-                    };
-                    db.Order_Details.Add(orderDetail);
-                }
-                db.SaveChanges();
-
-                // Clear the cart
-                Session["Cart"] = null;
-                TempData["SuccessMessage"] = "Payment completed successfully.";
-                return RedirectToAction("Complete");
             }
-            catch (Exception ex)
+            catch (DbUpdateException ex)
             {
-                TempData["ErrorMessage"] = "An error occurred while processing your request: " + ex.Message;
-                return RedirectToAction("Index");
+                // Log the inner exception message
+                var innerException = ex.InnerException?.InnerException?.Message;
+                // Handle the exception as needed
             }
+
+            // Clear the cart
+            Session["Cart"] = null;
+
+            return View();
         }
 
 
@@ -238,7 +249,5 @@ namespace TT_Shop.Controllers
             // Replace with your logic to get cart items from the session or database
             return Session["Cart"] as List<CartItem> ?? new List<CartItem>();
         }
-
-
     }
 }
