@@ -219,11 +219,10 @@ namespace TT_Shop.Controllers
             var payment = new Payment
             {
                 order_id = order.order_id,
-                payment_method = "CreditCard", // Ensure this value matches the allowed values in the database
+                payment_method = "Banking", // Ensure this value matches the allowed values in the database
                 payment_status = "Completed",
                 payment_date = DateTime.Now
             };
-
 
             db.Payments.Add(payment);
             try
@@ -242,7 +241,6 @@ namespace TT_Shop.Controllers
 
             return View();
         }
-
 
         private IEnumerable<CartItem> GetCartItems()
         {
