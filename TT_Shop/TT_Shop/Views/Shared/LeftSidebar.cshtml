@@ -12,8 +12,9 @@
                 if (!string.IsNullOrEmpty(category.name))
                 {
                     <li class="list-group-item border-0 p-2">
-                        <a href="javascript:void(0);" onclick="loadProducts(@category.category_id)" class="text-decoration-none text-dark sidebar-link">
-                            @category.name
+                        <a href="@Url.Action("Category", "Home", new { id = category.category_id })" class="text-dark sidebar-link d-flex align-items-center">
+                            <!-- Biểu tượng FontAwesome cho danh mục -->
+                            <i class="fa fa-tags mr-2"></i> @category.name
                         </a>
                     </li>
                 }
@@ -21,16 +22,31 @@
         }
         else
         {
-            <li class="list-group-item border-0 p-2 text-muted">
-                Không có danh mục nào
+            <li class="list-group-item border-0 p-2 text-muted text-center">
+                <i class="fa fa-exclamation-circle"></i> Không có danh mục nào
             </li>
         }
     </ul>
 </div>
 
-<script>
-       function loadProducts(categoryId) {
-           // Example: Redirect to a URL with the category ID as a query parameter
-           window.location.href = '@Url.Action("Index", "Products")?categoryId=' + categoryId;
-       }
-</script>
+<!-- Thêm CSS để làm đẹp -->
+<style>
+    .sidebar-link {
+        font-size: 16px;
+        text-decoration: none;
+        color: #333;
+        transition: all 0.3s ease;
+    }
+
+        .sidebar-link:hover {
+            color: #007bff; /* Màu khi hover */
+            text-decoration: underline;
+        }
+
+        .sidebar-link i {
+            font-size: 18px; /* Biểu tượng nhỏ hơn một chút */
+        }
+</style>
+
+<!-- Đảm bảo đã thêm FontAwesome vào project -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />

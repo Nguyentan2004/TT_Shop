@@ -4,15 +4,15 @@
     ViewBag.Title = "Chi tiết sản phẩm";
 }
 
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <main class="container mt-5">
     <div class="row">
         <!-- Sidebar bên trái -->
-        <div class="col-md-3">
-            @Html.Partial("LeftSidebar")
-        </div>
-
         <!-- Chi tiết sản phẩm -->
-        <div class="col-md-6">
+        <div class="col-md-9">
             <!-- Thông tin sản phẩm -->
             <div class="row">
                 <div class="col-md-6">
@@ -33,6 +33,7 @@
                         </div>
                         <button type="submit" class="btn btn-success btn-lg mt-3 w-100">Mua ngay</button>
                     </form>
+                    <a href="javascript:void(0);" class="btn btn-primary btn-lg w-100 mt-3 add-to-cart-ajax" data-product-id="@Model.product_id">Thêm vào giỏ hàng</a>
                 </div>
             </div>
 
@@ -55,7 +56,6 @@
                                 </div>
                             }
                         }
-
                         else
                         {
                             <p class="text-muted">Chưa có đánh giá nào cho sản phẩm này.</p>
@@ -116,3 +116,32 @@
         </div>
     </div>
 </main>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('.add-to-cart-ajax').click(function () {
+                var productId = $(this).data('product-id');
+                $.ajax({
+                    url: '@Url.Action("AddToCartAjax", "Cart")',
+                    type: 'GET',
+                    data: {
+                        product_id: productId,
+                        quantity: 1
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            toastr.success(response.message); // Thông báo thành công
+                            $('#cartItemCount').text(response.totalQuantity); // Cập nhật số lượng sản phẩm trong giỏ
+                        } else {
+                            toastr.error(response.message); // Thông báo lỗi
+                        }
+                    },
+                    error: function () {
+                        toastr.error('Đã xảy ra lỗi khi thêm sản phẩm vào giỏ hàng.'); // Thông báo lỗi hệ thống
+                    }
+                });
+            });
+        });
+    </script>
+}

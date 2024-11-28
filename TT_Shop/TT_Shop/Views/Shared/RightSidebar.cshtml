@@ -1,10 +1,30 @@
 ﻿<div class="right-sidebar" style="height: 100vh; border: 1px solid #ccc; background-color: #f8f9fa;">
-    <h3>Right Sidebar</h3>
-    <ul class="list-group">
-        <li class="list-group-item">Item 1</li>
-        <li class="list-group-item">Item 2</li>
-        <li class="list-group-item">Item 3</li>
-    </ul>
+    <h2 class="text-center">
+        <a href="@Url.Action("Detail", "Home", new { id = 3 })">
+            <img src="~/images/QC/QCSS21Ul.jpg" class="img-fluid custom-img" />
+        </a>
+        <a href="@Url.Action("Detail", "Home", new { id = 2 })">
+            <img src="~/images/QC/QCIP14Pro.jpeg" class="img-fluid custom-img" />
+        </a>
+        <a href="@Url.Action("Detail", "Home", new { id = 11 })">
+            <img src="~/images/QC/QCQC45.png" class="img-fluid custom-img" />
+        </a>
+    </h2>
 </div>
 
+<style>
+    .custom-img {
+        width: 100%; /* Điều chỉnh kích thước ảnh theo chiều rộng của phần chứa */
+        height: auto; /* Giữ tỷ lệ ảnh gốc */
+        max-width: 200px; /* Đặt chiều rộng tối đa cho ảnh */
+        margin: 10px 0; /* Thêm khoảng cách giữa các ảnh */
+        border: 2px solid #007bff; /* Viền ảnh với màu xanh */
+        border-radius: 8px; /* Bo tròn góc ảnh */
+    }
 
+    /* Đảm bảo rằng ảnh trong phần này không bị vỡ hoặc bị biến dạng */
+    .right-sidebar img {
+        display: block;
+        margin: 10px auto; /* Thêm khoảng cách giữa các ảnh */
+    }
+</style>

@@ -144,8 +144,9 @@ namespace TT_Shop.Controllers
                 cart.Remove(sanpham);
                 Session["Cart"] = cart;
             }
-            return Json(new { success = true, message = "Product added to cart." }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = true, message = "Product removed from cart." }, JsonRequestBehavior.AllowGet);
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -242,10 +243,44 @@ namespace TT_Shop.Controllers
             return View();
         }
 
+
         private IEnumerable<CartItem> GetCartItems()
         {
             // Replace with your logic to get cart items from the session or database
             return Session["Cart"] as List<CartItem> ?? new List<CartItem>();
         }
+
+        public ActionResult Category(int id, int page = 1)
+        {
+            var category = db.Categories.Find(id);
+            if (category == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Lấy tổng số sản phẩm trong danh mục
+            int pageSize = 9;  // Số sản phẩm hiển thị mỗi trang
+            int totalProducts = db.Products.Count(p => p.category_id == id);
+
+            // Tính tổng số trang
+            int totalPages = (int)Math.Ceiling(totalProducts / (double)pageSize);
+
+            // Lấy danh sách sản phẩm theo trang
+            var products = db.Products
+                             .Where(p => p.category_id == id)
+                             .OrderBy(p => p.product_id)  // Sắp xếp theo ID sản phẩm hoặc theo một thuộc tính khác
+                             .Skip((page - 1) * pageSize)
+                             .Take(pageSize)
+                             .ToList();
+
+            // Truyền dữ liệu sang view
+            ViewBag.CategoryName = category.name;
+            ViewBag.CategoryId = id;
+            ViewBag.CurrentPage = page;
+            ViewBag.TotalPages = totalPages;
+
+            return View(products);
+        }
+
     }
 }

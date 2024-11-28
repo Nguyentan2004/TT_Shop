@@ -219,6 +219,9 @@
     <Content Include="images\images\oneplus9pro.png" />
     <Content Include="images\images\ps5.png" />
     <Content Include="images\images\sonywh1000xm4.png" />
+    <Content Include="images\QC\QCIP14Pro.jpeg" />
+    <Content Include="images\QC\QCQC45.png" />
+    <Content Include="images\QC\QCSS21Ul.jpg" />
     <Content Include="images\QRThanhToan.png" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

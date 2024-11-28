@@ -33,11 +33,11 @@
                 </td>
                 <td>@String.Format("{0:N0}", item.Gia * item.SoLuong)</td>
                 <td>
-                    @using (Html.BeginForm("XoaGioHang", "Cart", FormMethod.Post))
+                    @using (Html.BeginForm("XoaGioHang", "Cart", FormMethod.Post, new { id = "deleteForm-" + @item.IdSanPham }))
                     {
                         @Html.AntiForgeryToken()
                         <input type="hidden" name="iMaSach" value="@item.IdSanPham" />
-                        <button type="submit">Xóa</button>
+                        <button type="submit" onclick="deleteCartItem(@item.IdSanPham); return false;">Xóa</button>
                     }
                 </td>
             </tr>
@@ -106,4 +106,59 @@
     }
 </style>
 
+@section Scripts {
+    <script>
+        function deleteCartItem(productId) {
+            var form = $('#deleteForm-' + productId);
+            $.ajax({
+                url: form.attr('action'),
+                type: 'POST',
+                data: form.serialize(),
+                success: function (response) {
+                    if (response.success) {
+                        // Thông báo thành công
+                        showNotification('Sản phẩm đã được xóa khỏi giỏ hàng thành công.');
+                        // Tùy chọn: xóa sản phẩm khỏi DOM hoặc làm mới giỏ hàng
+                        form.closest('tr').remove();
+                    } else {
+                        // Thông báo lỗi
+                        showNotification('Không thể xóa sản phẩm khỏi giỏ hàng.');
+                    }
+                },
+                error: function () {
+                    // Thông báo lỗi hệ thống
+                    showNotification('Đã xảy ra lỗi khi xóa sản phẩm.');
+                }
+            });
+        }
+
+        function showNotification(message) {
+            var notification = $('<div class="notification"></div>').text(message);
+            $('body').append(notification);
+            notification.fadeIn().delay(2000).fadeOut(function () {
+                $(this).remove();
+            });
+        }
+
+        // Thêm một số kiểu dáng cơ bản cho thông báo
+        $('<style>')
+            .prop('type', 'text/css')
+            .html(`
+                    .notification {
+                        position: fixed;
+                        top: 20px;
+                        right: 20px;
+                        background-color: #4caf50;
+                        color: white;
+                        padding: 10px;
+                        border-radius: 5px;
+                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                        display: none;
+                        z-index: 1000;
+                    }
+                `)
+            .appendTo('head');
+    </script>
+
+}
 

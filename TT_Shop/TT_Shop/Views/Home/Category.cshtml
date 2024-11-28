@@ -1,6 +1,146 @@
-﻿@model IEnumerable<TT_Shop.Models.Category>
+﻿@model IEnumerable<TT_Shop.Models.Product>
 
-@foreach (var item in Model)
-{
-    @item.name
+@{
+    ViewBag.Title = "Category";
+    int productCount = 0;
 }
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<style>
+    .custom-link {
+        color: black;
+        text-decoration: none;
+    }
+
+        .custom-link:hover {
+            color: black;
+            text-decoration: none;
+        }
+
+    .card:hover img {
+        transform: scale(1.05);
+        transition: transform 0.3s ease;
+    }
+
+    .toast-top-right {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+    }
+
+    /* Đảm bảo nút có thể nhấn dễ dàng */
+    .card-footer a.btn {
+        z-index: 10;
+        position: relative;
+    }
+
+    /* Đảm bảo các liên kết chữ không cản trở các nút */
+    .custom-link {
+        z-index: 5; /* Liên kết chữ có chỉ số z thấp hơn nút */
+    }
+</style>
+
+<div class="container-fluid p-0">
+    <div class="row no-gutters">
+
+        <div class="col-md-9">
+            <div id="notification-overlay" class="notification-overlay">
+                <div id="notification-message" class="notification-message"></div>
+            </div>
+
+            <div id="product-container">
+                <h2 class="highlight-heading text-center">Sản phẩm theo danh mục: @ViewBag.CategoryName</h2>
+                <div class="row">
+                    @foreach (var product in Model)
+                    {
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <a href="@Url.Action("Detail", "Home", new { id = product.product_id })" class="custom-link">
+                                    <img src="@Url.Content("~/Images/Images/" + product.image_url)" alt="@product.name" class="card-img-top img-fluid fixed-size-img" />
+                                </a>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">
+                                        <a href="@Url.Action("Detail", "Home", new { id = product.product_id })" class="custom-link">@product.name</a>
+                                    </h5>
+                                    <p class="card-text">Giá: @String.Format("{0:0,0}đ", product.price)</p>
+                                </div>
+                                <div class="card-footer text-center">
+                                    <p class="card-text">@product.description</p>
+                                    <a href="@Url.Action("AddToCart", "Cart", new { product_id = product.product_id })" class="btn btn-success">Mua ngay</a>
+                                    <p></p>
+                                    <a href="javascript:void(0);" class="btn btn-primary add-to-cart-ajax" data-product-id="@product.product_id">Thêm vào giỏ hàng</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        productCount++;
+                        if (productCount % 3 == 0 && productCount != 0)
+                        {
+                        @:</div><div class="row">
+                        }
+                    }
+                </div>
+
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+                        @if (ViewBag.CurrentPage > 1)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="@Url.Action("Category", new { id = ViewBag.CategoryId, page = ViewBag.CurrentPage - 1 })" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        }
+
+                        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                        {
+                            <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                                <a class="page-link" href="@Url.Action("Category", new { id = ViewBag.CategoryId, page = i })">@i</a>
+                            </li>
+                        }
+
+                        @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="@Url.Action("Category", new { id = ViewBag.CategoryId, page = ViewBag.CurrentPage + 1 })" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            @Html.Partial("RightSidebar")
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('.add-to-cart-ajax').click(function() {
+            var productId = $(this).data('product-id');
+            $.ajax({
+                url: '@Url.Action("AddToCartAjax", "Cart")',
+                type: 'GET',
+                data: { product_id: productId },
+                success: function(response) {
+                    if (response.success) {
+                        toastr.success(response.message);
+                        $('#cartItemCount').text(response.totalQuantity);
+                    } else {
+                        toastr.error(response.message);
+                    }
+                },
+                error: function() {
+                    toastr.error('Đã xảy ra lỗi khi thêm sản phẩm vào giỏ hàng.');
+                }
+            });
+        });
+    });
+</script>

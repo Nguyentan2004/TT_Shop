@@ -7,11 +7,18 @@
 
 <h4 style="color:red; text-align:center;">@ViewBag.Thongbao</h4>
 
+<h3 style="text-align:center">ĐĂNG KÝ</h3>
 <table align="center">
-    <h3 style="text-align:center">ĐĂNG KÝ</h3>
     @using (Html.BeginForm("Register", "User", FormMethod.Post))
     {
         @Html.ValidationSummary(true)
+        <tr style="height:40px">
+            <td align="right">Họ và Tên:</td>
+            <td>
+                @Html.TextBoxFor(model => model.fullname)
+                <span style="color:red">@ViewData["LoiName"]</span>
+            </td>
+        </tr>
         <tr style="height:40px">
             <td align="right">Tên đăng nhập:</td>
             <td>
@@ -57,3 +64,18 @@
     }
 </table>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            @if (ViewBag.Thongbao != null)
+            {
+                <text>
+                    toastr.success("@ViewBag.Thongbao");
+                </text>
+            }
+        });
+    </script>
+}

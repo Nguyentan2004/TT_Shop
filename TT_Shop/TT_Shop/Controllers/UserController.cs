@@ -74,17 +74,18 @@ namespace TT_Shop.Controllers
         {
             return View();
         }
-
-        // POST: Nguoidung/Register
         [HttpPost]
-        public ActionResult Register(string username, string password, string confirmPassword, string email)
+        public ActionResult Register(User user, string confirmPassword)
         {
-            // Kiểm tra các trường username, password, email có bị bỏ trống không
-            if (string.IsNullOrEmpty(username))
+            if (string.IsNullOrEmpty(user.fullname))
+            {
+                ViewData["LoiName"] = "Họ và Tên không được để trống";
+            }
+            if (string.IsNullOrEmpty(user.username))
             {
                 ViewData["Loi1"] = "Tên đăng nhập không được để trống";
             }
-            if (string.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(user.password))
             {
                 ViewData["Loi2"] = "Mật khẩu không được để trống";
             }
@@ -92,51 +93,40 @@ namespace TT_Shop.Controllers
             {
                 ViewData["Loi3"] = "Vui lòng nhập lại mật khẩu";
             }
-            if (string.IsNullOrEmpty(email))
+            if (string.IsNullOrEmpty(user.email))
             {
                 ViewData["Loi4"] = "Email không được để trống";
             }
 
-            // Kiểm tra xem mật khẩu và mật khẩu xác nhận có khớp nhau không
-            if (password != confirmPassword)
+            if (user.password != confirmPassword)
             {
                 ViewData["Loi3"] = "Mật khẩu và mật khẩu xác nhận không khớp";
             }
 
-            // Kiểm tra nếu không có lỗi
-            if (string.IsNullOrEmpty(ViewData["Loi1"] as string) &&
+            if (string.IsNullOrEmpty(ViewData["LoiName"] as string) &&
+                string.IsNullOrEmpty(ViewData["Loi1"] as string) &&
                 string.IsNullOrEmpty(ViewData["Loi2"] as string) &&
                 string.IsNullOrEmpty(ViewData["Loi3"] as string) &&
                 string.IsNullOrEmpty(ViewData["Loi4"] as string))
             {
-                // Kiểm tra tên đăng nhập và email đã tồn tại chưa
-                var existingUser = db.Users.FirstOrDefault(u => u.username == username || u.email == email);
+                var existingUser = db.Users.FirstOrDefault(u => u.username == user.username || u.email == user.email);
                 if (existingUser != null)
                 {
                     ViewBag.Thongbao = "Tên đăng nhập hoặc email đã tồn tại!";
                     return View();
                 }
 
-                // Tạo người dùng mới
-                var newUser = new User
-                {
-                    username = username,
-                    password = password,
-                    email = email
-                };
+                // Set default role to "customer"
+                user.role = "customer";
 
                 try
                 {
-                    // Lưu người dùng mới vào cơ sở dữ liệu
-                    db.Users.Add(newUser);
+                    db.Users.Add(user);
                     db.SaveChanges();
-
-                    // Chuyển hướng tới trang đăng nhập sau khi đăng ký thành công
                     return RedirectToAction("Login");
                 }
                 catch (System.Data.Entity.Validation.DbEntityValidationException ex)
                 {
-                    // Bắt lỗi xác thực và hiển thị chi tiết lỗi
                     foreach (var validationErrors in ex.EntityValidationErrors)
                     {
                         foreach (var validationError in validationErrors.ValidationErrors)

@@ -50,19 +50,16 @@ namespace TT_Shop.Controllers
                 return HttpNotFound();
             }
 
-            // Lấy đánh giá
-            var reviews = db.Product_Reviews.Where(r => r.product_id == id).ToList();
-            ViewBag.Reviews = reviews;
+            // Populate ViewBag.Categories
+            ViewBag.Categories = db.Categories.ToList();
 
-            // Lấy sản phẩm liên quan
-            var relatedProducts = db.Products
-                .Where(p => p.category_id == product.category_id && p.category_id != id)
-                .Take(4) // Lấy 4 sản phẩm liên quan
-                .ToList();
-            ViewBag.RelatedProducts = relatedProducts;
+            // Optionally, populate other ViewBag properties like ViewBag.Reviews, ViewBag.RelatedProducts, etc.
+            ViewBag.Reviews = db.Product_Reviews.Where(r => r.product_id == id).ToList();
+            ViewBag.RelatedProducts = db.Products.Where(p => p.category_id == product.category_id && p.product_id != id).ToList();
 
             return View(product);
         }
+
 
         [HttpPost]
         public ActionResult AddReview(int productId, int rating, string comment)
@@ -81,10 +78,35 @@ namespace TT_Shop.Controllers
             return RedirectToAction("Detail", new { id = productId });
         }
 
-        public ActionResult Category(int id)
+        public ActionResult Category(int id, int page = 1)
         {
-            LoadCategories(); // Gọi phương thức LoadCategories để lấy danh sách Categories
-            var products = db.Products.Where(p => p.category_id == id).ToList();
+            var category = db.Categories.Find(id);
+            if (category == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Lấy tổng số sản phẩm trong danh mục
+            int pageSize = 9;  // Số sản phẩm hiển thị mỗi trang
+            int totalProducts = db.Products.Count(p => p.category_id == id);
+
+            // Tính tổng số trang
+            int totalPages = (int)Math.Ceiling(totalProducts / (double)pageSize);
+
+            // Lấy danh sách sản phẩm theo trang
+            var products = db.Products
+                             .Where(p => p.category_id == id)
+                             .OrderBy(p => p.product_id)  // Sắp xếp theo ID sản phẩm hoặc theo một thuộc tính khác
+                             .Skip((page - 1) * pageSize)
+                             .Take(pageSize)
+                             .ToList();
+
+            // Truyền dữ liệu sang view
+            ViewBag.CategoryName = category.name;
+            ViewBag.CategoryId = id;
+            ViewBag.CurrentPage = page;
+            ViewBag.TotalPages = totalPages;
+
             return View(products);
         }
 
