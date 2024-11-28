@@ -223,6 +223,7 @@
     <Content Include="images\QC\QCQC45.png" />
     <Content Include="images\QC\QCSS21Ul.jpg" />
     <Content Include="images\QRThanhToan.png" />
+    <Content Include="images\z6070122817451_87cdede07bf9194d02212570930d82e0.jpg" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

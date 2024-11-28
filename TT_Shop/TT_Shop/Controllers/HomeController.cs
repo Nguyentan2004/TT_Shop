@@ -50,16 +50,20 @@ namespace TT_Shop.Controllers
                 return HttpNotFound();
             }
 
-            // Populate ViewBag.Categories
-            ViewBag.Categories = db.Categories.ToList();
+            // Fetch related products based on category or other criteria
+            var relatedProducts = db.Products
+                .Where(p => p.category_id == product.category_id && p.product_id != id)
+                .Take(4) // Limit the number of related products
+                .ToList();
 
-            // Optionally, populate other ViewBag properties like ViewBag.Reviews, ViewBag.RelatedProducts, etc.
-            ViewBag.Reviews = db.Product_Reviews.Where(r => r.product_id == id).ToList();
-            ViewBag.RelatedProducts = db.Products.Where(p => p.category_id == product.category_id && p.product_id != id).ToList();
+            ViewBag.RelatedProducts = relatedProducts;
+
+            // Fetch reviews for the product
+            var reviews = db.Product_Reviews.Where(r => r.product_id == id).ToList();
+            ViewBag.Reviews = reviews;
 
             return View(product);
         }
-
 
         [HttpPost]
         public ActionResult AddReview(int productId, int rating, string comment)
@@ -87,7 +91,7 @@ namespace TT_Shop.Controllers
             }
 
             // Lấy tổng số sản phẩm trong danh mục
-            int pageSize = 9;  // Số sản phẩm hiển thị mỗi trang
+            int pageSize = 6;  // Số sản phẩm hiển thị mỗi trang
             int totalProducts = db.Products.Count(p => p.category_id == id);
 
             // Tính tổng số trang

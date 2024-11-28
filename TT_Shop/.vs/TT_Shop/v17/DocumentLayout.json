@@ -3,6 +3,38 @@
   "WorkspaceRootPath": "D:\\TTShop\\TT_Shop\\TT_Shop\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|D:\\TTShop\\TT_Shop\\TT_Shop\\tt_shop\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|solutionrelative:tt_shop\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|D:\\TTShop\\TT_Shop\\TT_Shop\\tt_shop\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|solutionrelative:tt_shop\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|D:\\TTShop\\TT_Shop\\TT_Shop\\tt_shop\\views\\home\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|solutionrelative:tt_shop\\views\\home\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|D:\\TTShop\\TT_Shop\\TT_Shop\\tt_shop\\views\\productmanagements\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|solutionrelative:tt_shop\\views\\productmanagements\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|D:\\TTShop\\TT_Shop\\TT_Shop\\tt_shop\\views\\products\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|solutionrelative:tt_shop\\views\\products\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|D:\\TTShop\\TT_Shop\\TT_Shop\\tt_shop\\views\\products\\search.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|solutionrelative:tt_shop\\views\\products\\search.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|d:\\ttshop\\tt_shop\\tt_shop\\tt_shop\\views\\shared\\_layoutadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|solutionrelative:tt_shop\\views\\shared\\_layoutadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|D:\\TTShop\\TT_Shop\\TT_Shop\\tt_shop\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|solutionrelative:tt_shop\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|D:\\TTShop\\TT_Shop\\TT_Shop\\tt_shop\\views\\home\\category.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|solutionrelative:tt_shop\\views\\home\\category.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -11,14 +43,14 @@
       "RelativeMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|solutionrelative:tt_shop\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|d:\\ttshop\\tt_shop\\tt_shop\\tt_shop\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|D:\\TTShop\\TT_Shop\\TT_Shop\\tt_shop\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|solutionrelative:tt_shop\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\nhatt\\Downloads\\adminchuabootstrap\\Controllers\\UsersController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|d:\\ttshop\\tt_shop\\tt_shop\\tt_shop\\views\\user\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|D:\\TTShop\\TT_Shop\\TT_Shop\\tt_shop\\views\\user\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|solutionrelative:tt_shop\\views\\user\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
@@ -54,20 +86,8 @@
       "RelativeMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|solutionrelative:tt_shop\\views\\admin\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|D:\\TTShop\\TT_Shop\\TT_Shop\\tt_shop\\views\\home\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|solutionrelative:tt_shop\\views\\home\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|D:\\TTShop\\TT_Shop\\TT_Shop\\tt_shop\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|solutionrelative:tt_shop\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|D:\\TTShop\\TT_Shop\\TT_Shop\\tt_shop\\views\\shared\\rightsidebar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|solutionrelative:tt_shop\\views\\shared\\rightsidebar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|D:\\TTShop\\TT_Shop\\TT_Shop\\tt_shop\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|solutionrelative:tt_shop\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|D:\\TTShop\\TT_Shop\\TT_Shop\\tt_shop\\views\\shared\\leftsidebar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -76,14 +96,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|D:\\TTShop\\TT_Shop\\TT_Shop\\tt_shop\\views\\orders\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|solutionrelative:tt_shop\\views\\orders\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|d:\\ttshop\\tt_shop\\tt_shop\\tt_shop\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|solutionrelative:tt_shop\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|D:\\TTShop\\TT_Shop\\TT_Shop\\tt_shop\\views\\products\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|solutionrelative:tt_shop\\views\\products\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|D:\\TTShop\\TT_Shop\\TT_Shop\\tt_shop\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -102,7 +114,7 @@
       "RelativeMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|solutionrelative:tt_shop\\views\\cart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|d:\\ttshop\\tt_shop\\tt_shop\\tt_shop\\controllers\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|D:\\TTShop\\TT_Shop\\TT_Shop\\tt_shop\\controllers\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|solutionrelative:tt_shop\\controllers\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -149,16 +161,8 @@
       "RelativeMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|solutionrelative:tt_shop\\views\\orders\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|D:\\TTShop\\TT_Shop\\TT_Shop\\tt_shop\\views\\shared\\_layoutadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|solutionrelative:tt_shop\\views\\shared\\_layoutadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|D:\\TTShop\\TT_Shop\\TT_Shop\\tt_shop\\content\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|solutionrelative:tt_shop\\content\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|D:\\TTShop\\TT_Shop\\TT_Shop\\tt_shop\\views\\productmanagements\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|solutionrelative:tt_shop\\views\\productmanagements\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|D:\\TTShop\\TT_Shop\\TT_Shop\\tt_shop\\views\\productmanagements\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -183,10 +187,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|D:\\TTShop\\TT_Shop\\TT_Shop\\tt_shop\\views\\home\\getproductsbycategory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|solutionrelative:tt_shop\\views\\home\\getproductsbycategory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|D:\\TTShop\\TT_Shop\\TT_Shop\\tt_shop\\views\\products\\search.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|solutionrelative:tt_shop\\views\\products\\search.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4BD341A2-FFD6-43BD-B849-8CD3FC8CA875}|TT_Shop\\TT_Shop.csproj|D:\\TTShop\\TT_Shop\\TT_Shop\\tt_shop\\models\\order_details.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -242,17 +242,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 27,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 0,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "TT_Shop\\Views\\Home\\Index.cshtml",
               "ToolTip": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\Home\\Index.cshtml",
               "RelativeToolTip": "TT_Shop\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAAAEQAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEkAAABHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-11-22T15:24:04.112Z",
               "IsPinned": true,
@@ -260,7 +260,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 22,
               "Title": "LeftSidebar.cshtml",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\Shared\\LeftSidebar.cshtml",
               "RelativeDocumentMoniker": "TT_Shop\\Views\\Shared\\LeftSidebar.cshtml",
@@ -269,18 +269,17 @@
               "ViewState": "AgIAAAkAAAAAAAAAAAAAABcAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-11-22T16:38:13.309Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 1,
               "Title": "HomeController.cs",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "TT_Shop\\Controllers\\HomeController.cs",
               "ToolTip": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Controllers\\HomeController.cs",
               "RelativeToolTip": "TT_Shop\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAA1wD8AAAASAAAAAAAAAA==",
+              "ViewState": "AgIAACkAAAAAAAAAAAAgwDsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-22T16:46:01.617Z",
               "IsPinned": true,
@@ -316,45 +315,6 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "User.cs",
-              "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Models\\User.cs",
-              "RelativeDocumentMoniker": "TT_Shop\\Models\\User.cs",
-              "ToolTip": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Models\\User.cs",
-              "RelativeToolTip": "TT_Shop\\Models\\User.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAAwA4AAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-28T09:33:51.333Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Register.cshtml",
-              "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\User\\Register.cshtml",
-              "RelativeDocumentMoniker": "TT_Shop\\Views\\User\\Register.cshtml",
-              "ToolTip": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\User\\Register.cshtml",
-              "RelativeToolTip": "TT_Shop\\Views\\User\\Register.cshtml",
-              "ViewState": "AgIAADMAAAAAAAAAAAAqwDIAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-28T09:27:27.954Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Controllers\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "TT_Shop\\Controllers\\ApplicationDbContext.cs",
-              "ToolTip": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Controllers\\ApplicationDbContext.cs",
-              "RelativeToolTip": "TT_Shop\\Controllers\\ApplicationDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-28T08:05:21.153Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 51,
               "Title": "PerfCounters.cs",
               "DocumentMoniker": "C:\\Users\\nhatt\\AppData\\Local\\Temp\\.vsdbgsrc\\6eca1a405f325a1d6d8b96ec9aad3bdbd67aa19a1d3c926419f117fcd63e17bc\\PerfCounters.cs",
@@ -376,18 +336,66 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 11,
               "Title": "UsersController.cs",
               "DocumentMoniker": "C:\\Users\\nhatt\\Downloads\\adminchuabootstrap\\Controllers\\UsersController.cs",
               "ToolTip": "C:\\Users\\nhatt\\Downloads\\adminchuabootstrap\\Controllers\\UsersController.cs",
               "ViewState": "AgIAACEAAAAAAAAAAAAAADQAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-23T15:20:21.969Z",
+              "WhenOpened": "2024-11-23T15:20:21.969Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "_LayoutAdmin.cshtml",
+              "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\Shared\\_LayoutAdmin.cshtml",
+              "RelativeDocumentMoniker": "TT_Shop\\Views\\Shared\\_LayoutAdmin.cshtml",
+              "ToolTip": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\Shared\\_LayoutAdmin.cshtml",
+              "RelativeToolTip": "TT_Shop\\Views\\Shared\\_LayoutAdmin.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-26T00:19:01.851Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 10,
+              "Title": "User.cs",
+              "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Models\\User.cs",
+              "RelativeDocumentMoniker": "TT_Shop\\Models\\User.cs",
+              "ToolTip": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Models\\User.cs",
+              "RelativeToolTip": "TT_Shop\\Models\\User.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAAwA4AAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T09:33:51.333Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\User\\Register.cshtml",
+              "RelativeDocumentMoniker": "TT_Shop\\Views\\User\\Register.cshtml",
+              "ToolTip": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\User\\Register.cshtml",
+              "RelativeToolTip": "TT_Shop\\Views\\User\\Register.cshtml",
+              "ViewState": "AgIAADMAAAAAAAAAAAAqwDIAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-28T09:27:27.954Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Controllers\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "TT_Shop\\Controllers\\ApplicationDbContext.cs",
+              "ToolTip": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Controllers\\ApplicationDbContext.cs",
+              "RelativeToolTip": "TT_Shop\\Controllers\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T08:05:21.153Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
               "Title": "RouteConfig.cs",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\App_Start\\RouteConfig.cs",
               "RelativeDocumentMoniker": "TT_Shop\\App_Start\\RouteConfig.cs",
@@ -399,7 +407,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 31,
               "Title": "FilterConfig.cs",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\App_Start\\FilterConfig.cs",
               "RelativeDocumentMoniker": "TT_Shop\\App_Start\\FilterConfig.cs",
@@ -411,7 +419,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 33,
               "Title": "TT_Shop",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\TT_Shop.csproj",
               "RelativeDocumentMoniker": "TT_Shop\\TT_Shop.csproj",
@@ -422,7 +430,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 24,
               "Title": "CartController.cs",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Controllers\\CartController.cs",
               "RelativeDocumentMoniker": "TT_Shop\\Controllers\\CartController.cs",
@@ -430,12 +438,11 @@
               "RelativeToolTip": "TT_Shop\\Controllers\\CartController.cs",
               "ViewState": "AgIAAOkAAAAAAAAAAAAQwBsBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T15:23:40.414Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-22T15:23:40.414Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 35,
               "Title": "Payment.cshtml",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\Cart\\Payment.cshtml",
               "RelativeDocumentMoniker": "TT_Shop\\Views\\Cart\\Payment.cshtml",
@@ -447,7 +454,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 39,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\Orders\\Edit.cshtml",
               "RelativeDocumentMoniker": "TT_Shop\\Views\\Orders\\Edit.cshtml",
@@ -459,7 +466,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 21,
               "Title": "RightSidebar.cshtml",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\Shared\\RightSidebar.cshtml",
               "RelativeDocumentMoniker": "TT_Shop\\Views\\Shared\\RightSidebar.cshtml",
@@ -467,8 +474,7 @@
               "RelativeToolTip": "TT_Shop\\Views\\Shared\\RightSidebar.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-26T17:05:39.4Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-26T17:05:39.4Z"
             },
             {
               "$type": "Document",
@@ -484,7 +490,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 13,
               "Title": "OrderDetails.cshtml",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\User\\OrderDetails.cshtml",
               "RelativeDocumentMoniker": "TT_Shop\\Views\\User\\OrderDetails.cshtml",
@@ -492,25 +498,24 @@
               "RelativeToolTip": "TT_Shop\\Views\\User\\OrderDetails.cshtml",
               "ViewState": "AgIAAEYAAAAAAAAAAAAQwGMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-26T16:38:32.875Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-26T16:38:32.875Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 2,
               "Title": "Detail.cshtml",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\Home\\Detail.cshtml",
               "RelativeDocumentMoniker": "TT_Shop\\Views\\Home\\Detail.cshtml",
               "ToolTip": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\Home\\Detail.cshtml",
               "RelativeToolTip": "TT_Shop\\Views\\Home\\Detail.cshtml",
-              "ViewState": "AgIAAHIAAAAAAAAAAAAqwJMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAowGgAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-11-26T15:54:21.9Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 26,
               "Title": "Contact.cshtml",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\Home\\Contact.cshtml",
               "RelativeDocumentMoniker": "TT_Shop\\Views\\Home\\Contact.cshtml",
@@ -518,12 +523,11 @@
               "RelativeToolTip": "TT_Shop\\Views\\Home\\Contact.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-26T15:54:20.95Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-26T15:54:20.95Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 8,
               "Title": "Category.cshtml",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\Home\\Category.cshtml",
               "RelativeDocumentMoniker": "TT_Shop\\Views\\Home\\Category.cshtml",
@@ -531,8 +535,7 @@
               "RelativeToolTip": "TT_Shop\\Views\\Home\\Category.cshtml",
               "ViewState": "AgIAAGQAAAAAAAAAAAAkwHIAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-26T15:54:19.311Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-26T15:54:19.311Z"
             },
             {
               "$type": "Document",
@@ -560,7 +563,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 14,
               "Title": "Details.cshtml",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\User\\Details.cshtml",
               "RelativeDocumentMoniker": "TT_Shop\\Views\\User\\Details.cshtml",
@@ -568,12 +571,11 @@
               "RelativeToolTip": "TT_Shop\\Views\\User\\Details.cshtml",
               "ViewState": "AgIAAD8AAAAAAAAAAAAAAFEAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-26T00:59:14.881Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-26T00:59:14.881Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 9,
               "Title": "UserController.cs",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "TT_Shop\\Controllers\\UserController.cs",
@@ -581,12 +583,11 @@
               "RelativeToolTip": "TT_Shop\\Controllers\\UserController.cs",
               "ViewState": "AgIAAFoAAAAAAAAAAAAgwJEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-26T00:57:52.848Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-26T00:57:52.848Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 32,
               "Title": "BundleConfig.cs",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\App_Start\\BundleConfig.cs",
               "RelativeDocumentMoniker": "TT_Shop\\App_Start\\BundleConfig.cs",
@@ -610,19 +611,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
-              "Title": "_LayoutAdmin.cshtml",
-              "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\Shared\\_LayoutAdmin.cshtml",
-              "RelativeDocumentMoniker": "TT_Shop\\Views\\Shared\\_LayoutAdmin.cshtml",
-              "ToolTip": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\Shared\\_LayoutAdmin.cshtml",
-              "RelativeToolTip": "TT_Shop\\Views\\Shared\\_LayoutAdmin.cshtml",
-              "ViewState": "AgIAADYAAAAAAAAAAAAswEsAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-26T00:19:01.851Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 20,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\Admin\\Index.cshtml",
               "RelativeDocumentMoniker": "TT_Shop\\Views\\Admin\\Index.cshtml",
@@ -630,12 +619,11 @@
               "RelativeToolTip": "TT_Shop\\Views\\Admin\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-23T15:33:45.666Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-23T15:33:45.666Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 36,
               "Title": "Delete.cshtml",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\AccoutManagement\\Delete.cshtml",
               "RelativeDocumentMoniker": "TT_Shop\\Views\\AccoutManagement\\Delete.cshtml",
@@ -659,7 +647,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 29,
               "Title": "ProductManagementsController.cs",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Controllers\\ProductManagementsController.cs",
               "RelativeDocumentMoniker": "TT_Shop\\Controllers\\ProductManagementsController.cs",
@@ -671,7 +659,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 25,
               "Title": "OrdersController.cs",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Controllers\\OrdersController.cs",
               "RelativeDocumentMoniker": "TT_Shop\\Controllers\\OrdersController.cs",
@@ -679,12 +667,11 @@
               "RelativeToolTip": "TT_Shop\\Controllers\\OrdersController.cs",
               "ViewState": "AgIAADoAAAAAAAAAAAAmwEIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-23T15:34:28.163Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-23T15:34:28.163Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 44,
               "Title": "AccoutManagementController.cs",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Controllers\\AccoutManagementController.cs",
               "RelativeDocumentMoniker": "TT_Shop\\Controllers\\AccoutManagementController.cs",
@@ -696,7 +683,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 5,
               "Title": "Search.cshtml",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\Products\\Search.cshtml",
               "RelativeDocumentMoniker": "TT_Shop\\Views\\Products\\Search.cshtml",
@@ -704,17 +691,18 @@
               "RelativeToolTip": "TT_Shop\\Views\\Products\\Search.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-23T15:32:56.076Z"
+              "WhenOpened": "2024-11-23T15:32:56.076Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 4,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\Products\\Index.cshtml",
               "RelativeDocumentMoniker": "TT_Shop\\Views\\Products\\Index.cshtml",
               "ToolTip": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\Products\\Index.cshtml",
               "RelativeToolTip": "TT_Shop\\Views\\Products\\Index.cshtml",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-11-23T15:32:53.028Z",
               "EditorCaption": ""
@@ -733,7 +721,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 19,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\AccoutManagement\\Index.cshtml",
               "RelativeDocumentMoniker": "TT_Shop\\Views\\AccoutManagement\\Index.cshtml",
@@ -741,12 +729,11 @@
               "RelativeToolTip": "TT_Shop\\Views\\AccoutManagement\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-23T15:32:11.216Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-23T15:32:11.216Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 45,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\AccoutManagement\\Edit.cshtml",
               "RelativeDocumentMoniker": "TT_Shop\\Views\\AccoutManagement\\Edit.cshtml",
@@ -770,7 +757,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 43,
               "Title": "Create.cshtml",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\AccoutManagement\\Create.cshtml",
               "RelativeDocumentMoniker": "TT_Shop\\Views\\AccoutManagement\\Create.cshtml",
@@ -782,7 +769,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 18,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\Orders\\Index.cshtml",
               "RelativeDocumentMoniker": "TT_Shop\\Views\\Orders\\Index.cshtml",
@@ -790,12 +777,11 @@
               "RelativeToolTip": "TT_Shop\\Views\\Orders\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-23T15:31:42.692Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-23T15:31:42.692Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 23,
               "Title": "Details.cshtml",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\Orders\\Details.cshtml",
               "RelativeDocumentMoniker": "TT_Shop\\Views\\Orders\\Details.cshtml",
@@ -803,8 +789,7 @@
               "RelativeToolTip": "TT_Shop\\Views\\Orders\\Details.cshtml",
               "ViewState": "AgIAAEQAAAAAAAAAAAAswFwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-23T15:31:24.262Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-23T15:31:24.262Z"
             },
             {
               "$type": "Document",
@@ -820,7 +805,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 38,
               "Title": "Create.cshtml",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\Orders\\Create.cshtml",
               "RelativeDocumentMoniker": "TT_Shop\\Views\\Orders\\Create.cshtml",
@@ -832,7 +817,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 17,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\ProductManagements\\Index.cshtml",
               "RelativeDocumentMoniker": "TT_Shop\\Views\\ProductManagements\\Index.cshtml",
@@ -840,12 +825,11 @@
               "RelativeToolTip": "TT_Shop\\Views\\ProductManagements\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-23T15:30:30.255Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-23T15:30:30.255Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 41,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\ProductManagements\\Edit.cshtml",
               "RelativeDocumentMoniker": "TT_Shop\\Views\\ProductManagements\\Edit.cshtml",
@@ -857,7 +841,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 3,
               "Title": "Details.cshtml",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\ProductManagements\\Details.cshtml",
               "RelativeDocumentMoniker": "TT_Shop\\Views\\ProductManagements\\Details.cshtml",
@@ -865,11 +849,12 @@
               "RelativeToolTip": "TT_Shop\\Views\\ProductManagements\\Details.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-23T15:30:06.146Z"
+              "WhenOpened": "2024-11-23T15:30:06.146Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 37,
               "Title": "Delete.cshtml",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\ProductManagements\\Delete.cshtml",
               "RelativeDocumentMoniker": "TT_Shop\\Views\\ProductManagements\\Delete.cshtml",
@@ -881,7 +866,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 42,
               "Title": "Create.cshtml",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\ProductManagements\\Create.cshtml",
               "RelativeDocumentMoniker": "TT_Shop\\Views\\ProductManagements\\Create.cshtml",
@@ -905,7 +890,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 34,
               "Title": "Complete.cshtml",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\Cart\\Complete.cshtml",
               "RelativeDocumentMoniker": "TT_Shop\\Views\\Cart\\Complete.cshtml",
@@ -917,7 +902,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 15,
               "Title": "ReportsView.cshtml",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\Report\\ReportsView.cshtml",
               "RelativeDocumentMoniker": "TT_Shop\\Views\\Report\\ReportsView.cshtml",
@@ -925,12 +910,11 @@
               "RelativeToolTip": "TT_Shop\\Views\\Report\\ReportsView.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-23T15:25:34.976Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-23T15:25:34.976Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 16,
               "Title": "_SalesDetails.cshtml",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\Report\\_SalesDetails.cshtml",
               "RelativeDocumentMoniker": "TT_Shop\\Views\\Report\\_SalesDetails.cshtml",
@@ -938,21 +922,19 @@
               "RelativeToolTip": "TT_Shop\\Views\\Report\\_SalesDetails.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-23T15:25:18.204Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-23T15:25:18.204Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 7,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "TT_Shop\\Views\\Shared\\_Layout.cshtml",
               "ToolTip": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "TT_Shop\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAD8AAAAAAAAAAAAAAFMAAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-22T15:30:36.025Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-22T15:30:36.025Z"
             },
             {
               "$type": "Document",
@@ -968,7 +950,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 40,
               "Title": "Site.css",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Content\\Site.css",
               "RelativeDocumentMoniker": "TT_Shop\\Content\\Site.css",
@@ -980,7 +962,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 46,
               "Title": "GetProductsByCategory.cshtml",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\Home\\GetProductsByCategory.cshtml",
               "RelativeDocumentMoniker": "TT_Shop\\Views\\Home\\GetProductsByCategory.cshtml",
@@ -992,7 +974,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 27,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\TTShop\\TT_Shop\\TT_Shop\\TT_Shop\\Views\\Cart\\Index.cshtml",
               "RelativeDocumentMoniker": "TT_Shop\\Views\\Cart\\Index.cshtml",
@@ -1000,8 +982,7 @@
               "RelativeToolTip": "TT_Shop\\Views\\Cart\\Index.cshtml",
               "ViewState": "AgIAAA4AAAAAAAAAAAAswKEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-22T15:23:54.953Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-22T15:23:54.953Z"
             }
           ]
         }
