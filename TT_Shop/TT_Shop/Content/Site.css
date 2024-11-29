@@ -203,3 +203,15 @@ footer {
     background-color: #f8f9fa; /* Thêm màu nền nhẹ */
     color: #6c757d; /* Thêm màu chữ nhạt hơn */
 }
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto;
+}

@@ -50,7 +50,7 @@ namespace TTshop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "product_id,name,description,price,stock,category_id")] Product product, HttpPostedFileBase image)
+        public async Task<ActionResult> Create([Bind(Include = "product_id,name,description,price,stock,category_id,created_at")] Product product, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {

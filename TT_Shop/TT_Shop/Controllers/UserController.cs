@@ -89,6 +89,10 @@ namespace TT_Shop.Controllers
             {
                 ViewData["Loi2"] = "Mật khẩu không được để trống";
             }
+            else if (user.password.Length <= 6)
+            {
+                ViewData["Loi2"] = "Mật khẩu phải có ít nhất 7 ký tự";
+            }
             if (string.IsNullOrEmpty(confirmPassword))
             {
                 ViewData["Loi3"] = "Vui lòng nhập lại mật khẩu";

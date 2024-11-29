@@ -21,12 +21,17 @@ namespace TT_Shop.Controllers
         public ActionResult Index(int page = 1, int pageSize = 6)
         {
             LoadCategories(); // Call LoadCategories to populate ViewBag.Categories
-            var products = db.Products.OrderBy(p => p.product_id).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            var products = db.Products
+                .OrderByDescending(p => p.created_at) // Order by created_at in descending order
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
             int totalProducts = db.Products.Count();
             ViewBag.TotalPages = (int)Math.Ceiling((double)totalProducts / pageSize);
             ViewBag.CurrentPage = page;
             return View(products);
         }
+
 
         public ActionResult About()
         {
