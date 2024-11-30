@@ -48,8 +48,8 @@
                         {
                             foreach (var review in ViewBag.Reviews)
                             {
-                                var userName = review?.GetType().GetProperty("UserName") != null ? review.UserName : "Anonymous";
-                                var comment = review?.GetType().GetProperty("Comment") != null ? review.Comment : "No comment available";
+                                var userName = review?.GetType().GetProperty("UserName") != null ? review.UserName : "Ẩn danh";
+                                var comment = review?.GetType().GetProperty("Comment") != null ? review.Comment : "Không có bình luận";
                                 <div class="review-item mb-3">
                                     <h5>@userName</h5>
                                     <p>@comment</p>

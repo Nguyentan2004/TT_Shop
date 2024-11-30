@@ -36,26 +36,29 @@
 
                 <ul class="navbar-nav ml-auto">
                     <p></p>
-                    <li class="nav-item">
-                        <a href="@Url.Action("Index", "Cart")">Giỏ hàng (<span id="cartItemCount">@((Session["Cart"] as List<TT_Shop.Models.CartItem>)?.Count ?? 0)</span>)</a>
-                    </li>
 
-                    <li class="nav-item">
+
+                    <li class="nav-item w-50">
                         <form class="d-flex" method="get" action="@Url.Action("Search", "Products")">
                             <input class="form-control me-2" type="search" name="query" placeholder="Nhập sản phẩm" aria-label="Search" />
                             <button class="btn btn-outline-success" type="submit">Tìm kiếm</button>
                         </form>
                     </li>
+                    <li></li>
+
+                    <li class="nav-item w-25">
+                        <a href="@Url.Action("Index", "Cart")">Giỏ hàng (<span id="cartItemCount">@((Session["Cart"] as List<TT_Shop.Models.CartItem>)?.Count ?? 0)</span>)</a>
+                    </li>
 
                     @if (Session["User"] != null)
                     {
                         TT_Shop.Models.User user = Session["User"] as TT_Shop.Models.User;
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown w-50">
                             <a class="nav-link dropdown-toggle text-white" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Xin chào, @user.username
+                                Xin chào, @user.username <!-- Assuming user has a Name property -->
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                <li><a class="dropdown-item" href="@Url.Action("Details", "User", new { id = user.user_id })">Thông tin tài khoản</a></li>
+                            <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="@Url.Action("Details", "User")">Thông tin cá nhân</a></li>
                                 <li><a class="dropdown-item" href="@Url.Action("Logout", "User")">Đăng xuất</a></li>
                                 @if (user.role == "admin")
                                 {
@@ -64,12 +67,13 @@
                             </ul>
                         </li>
                     }
+
                     else
                     {
-                        <li class="nav-item">
+                        <li class="nav-item w-25">
                             @Html.ActionLink("Đăng nhập", "Login", "User", null, new { @class = "nav-link text-white" })
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item w-25">
                             @Html.ActionLink("Đăng ký", "Register", "User", null, new { @class = "nav-link text-white" })
                         </li>
                     }

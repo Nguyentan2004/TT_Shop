@@ -14,17 +14,20 @@
 
 <style>
     .custom-img {
-        width: 100%; /* Điều chỉnh kích thước ảnh theo chiều rộng của phần chứa */
-        height: auto; /* Giữ tỷ lệ ảnh gốc */
-        max-width: 200px; /* Đặt chiều rộng tối đa cho ảnh */
-        margin: 10px 0; /* Thêm khoảng cách giữa các ảnh */
-        border: 2px solid #007bff; /* Viền ảnh với màu xanh */
+        width: 100%; /* Chiều rộng linh hoạt theo phần chứa */
+        height: auto; /* Giữ tỷ lệ ảnh */
+        max-width: 100%; /* Đảm bảo ảnh không vượt quá chiều rộng của phần chứa */
+        margin: 10px 0; /* Khoảng cách giữa các ảnh */
+        border: 2px solid #007bff; /* Viền ảnh */
         border-radius: 8px; /* Bo tròn góc ảnh */
+        object-fit: contain; /* Giữ tỷ lệ ảnh mà không bị cắt bớt */
     }
 
     /* Đảm bảo rằng ảnh trong phần này không bị vỡ hoặc bị biến dạng */
     .right-sidebar img {
         display: block;
         margin: 10px auto; /* Thêm khoảng cách giữa các ảnh */
+        width: 100%; /* Làm cho ảnh co giãn theo chiều rộng của phần chứa */
+        max-width: 100%; /* Đảm bảo ảnh không vượt quá chiều rộng của phần chứa */
     }
 </style>
