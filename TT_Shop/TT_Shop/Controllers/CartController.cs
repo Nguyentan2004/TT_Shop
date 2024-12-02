@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
@@ -207,9 +208,22 @@ namespace TT_Shop.Controllers
             db.Orders.Add(order);
             db.SaveChanges();
 
-            // Create order details for each cart item
             foreach (var item in cart)
             {
+                var product = db.Products.Find(item.IdSanPham);
+                if (product == null)
+                {
+                    return HttpNotFound("Không tìm thấy sản phẩm.");
+                }
+
+                if (product.stock < item.SoLuong)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest, $"Không đủ số lượng sản phẩm {product.name}.");
+                }
+
+                product.stock -= item.SoLuong;
+                db.Entry(product).State = EntityState.Modified;
+
                 var orderDetail = new Order_Details
                 {
                     order_id = order.order_id,
