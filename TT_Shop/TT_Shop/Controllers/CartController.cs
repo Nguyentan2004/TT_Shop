@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 using TT_Shop.Models;
 
@@ -45,8 +46,14 @@ namespace TT_Shop.Controllers
             var product = db.Products.Find(product_id);
             if (product == null)
             {
-                return HttpNotFound("Product not found.");
+                return HttpNotFound("Không tìm thấy sản phẩm.");
             }
+
+            if (product.stock <= 0)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Sản phẩm đã hết hàng.");
+            }
+
 
             List<CartItem> cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>();
             var cartItem = cart.FirstOrDefault(c => c.IdSanPham == product_id);
@@ -186,14 +193,14 @@ namespace TT_Shop.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            // Create a new order
+            // Tạo đơn hàng mới
             var order = new Order
             {
                 user_id = (int)Session["user_id"], // Get the current user ID
                 order_status = "Pending",
                 total_amount = cart.Sum(item => item.Gia.GetValueOrDefault() * item.SoLuong.GetValueOrDefault()),
                 order_date = DateTime.Now,
-                shipping_address = "Your shipping address", // Get the shipping address
+                shipping_address = "Địa chỉ giao hàng của bạn", // Lấy địa chỉ giao hàng
                 updated_at = DateTime.Now
             };
 

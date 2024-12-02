@@ -15,14 +15,23 @@ namespace TTshop.Controllers
     {
         private QLTTShopEntities db = new QLTTShopEntities();
 
-     
-        public async Task<ActionResult> Index()
+
+        public async Task<ActionResult> Index(int page = 1, int pageSize = 10)
         {
-            var users = db.Users.Include(u => u.CartItem);
+            var users = db.Users
+                .Include(u => u.CartItem)
+                .OrderBy(u => u.user_id)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize);
+
+            int totalUsers = await db.Users.CountAsync();
+            ViewBag.TotalPages = (int)Math.Ceiling((double)totalUsers / pageSize);
+            ViewBag.CurrentPage = page;
+
             return View(await users.ToListAsync());
         }
 
-     
+
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)

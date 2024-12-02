@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using TT_Shop.Models;
+using static TT_Shop.Models.OrdersReportViewModel;
 
 namespace TTshop.Controllers
 {
@@ -99,6 +101,28 @@ namespace TTshop.Controllers
             };
 
             return PartialView("_SalesDetails", viewModel);
+        }
+        [HttpPost]
+        public ActionResult _SalesDetails(string month)
+        {
+            var model = new OrdersReportViewModel();
+            // Populate the model with sales details for the specified month
+            // Example:
+            model.SalesDetails = GetSalesDetailsForMonth(month);
+
+            return PartialView("_SalesDetails", model);
+        }
+
+
+        private List<SalesDetail> GetSalesDetailsForMonth(string month)
+        {
+            // Implement logic to retrieve sales details for the specified month
+            // This is just an example
+            return new List<SalesDetail>
+        {
+            new SalesDetail { ProductName = "Product 1", QuantitySold = 10 },
+            new SalesDetail { ProductName = "Product 2", QuantitySold = 5 }
+        };
         }
     }
 }

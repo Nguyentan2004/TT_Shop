@@ -16,11 +16,27 @@ namespace TTshop.Controllers
         private QLTTShopEntities db = new QLTTShopEntities();
 
         // GET: Orders
-        public async Task<ActionResult> Index()
+        //public async Task<ActionResult> Index()
+        //{
+        //    var orders = db.Orders.Include(o => o.User);
+        //    return View(await orders.ToListAsync());
+        //}
+        public async Task<ActionResult> Index(int page = 1, int pageSize = 15)
         {
-            var orders = db.Orders.Include(o => o.User);
+            var orders = db.Orders
+                .Include(o => o.User)
+                .OrderByDescending(o => o.order_date)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize);
+
+            int totalOrders = await db.Orders.CountAsync();
+            ViewBag.TotalPages = (int)Math.Ceiling((double)totalOrders / pageSize);
+            ViewBag.CurrentPage = page;
+
             return View(await orders.ToListAsync());
         }
+
+
 
         // GET: Orders/Details/5
         public async Task<ActionResult> Details(int? id)

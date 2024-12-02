@@ -17,11 +17,21 @@ namespace TTshop.Controllers
         private QLTTShopEntities db = new QLTTShopEntities();
 
         // GET: ProductManagements
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int page = 1, int pageSize = 10)
         {
-            var products = db.Products.Include(p => p.Category);
+            var products = db.Products
+                .Include(p => p.Category)
+                .OrderByDescending(p => p.created_at)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize);
+
+            int totalProducts = await db.Products.CountAsync();
+            ViewBag.TotalPages = (int)Math.Ceiling((double)totalProducts / pageSize);
+            ViewBag.CurrentPage = page;
+
             return View(await products.ToListAsync());
         }
+
 
         // GET: ProductManagements/Details/5
         public async Task<ActionResult> Details(int? id)
@@ -56,6 +66,8 @@ namespace TTshop.Controllers
             {
                 if (image != null && image.ContentLength > 0)
                 {
+                    product.created_at = DateTime.Now; // Set the created_at property to the current date and time
+
                     var fileName = Path.GetFileName(image.FileName);
                     var path = Path.Combine(Server.MapPath("~/Images/Images"), fileName);
                     image.SaveAs(path);

@@ -68,7 +68,6 @@
                                     <p class="card-text">Giá: @String.Format("{0:0,0}đ", product.price)</p>
                                 </div>
                                 <div class="card-footer text-center">
-                                    <p class="card-text">@product.description</p>
                                     <a href="@Url.Action("AddToCart", "Cart", new { product_id = product.product_id })" class="btn btn-success">Mua ngay</a>
                                     <p></p>
                                     <a href="javascript:void(0);" class="btn btn-primary add-to-cart-ajax" data-product-id="@product.product_id">Thêm vào giỏ hàng</a>

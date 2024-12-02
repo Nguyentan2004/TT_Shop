@@ -1,4 +1,6 @@
 ﻿@model TT_Shop.Models.OrdersReportViewModel
+@using System.Globalization
+
 
 @{
     ViewBag.Title = "Báo cáo doanh thu";
@@ -28,7 +30,7 @@
                         {
                             <tr>
                                 <td>@item.Key</td>
-                                <td>@item.Value.ToString("C")</td>
+                                <td>@item.Value.ToString("C", new CultureInfo("vi-VN"))</td>
                                 <td>@Model.TotalProductsSold</td>
                                 <td>
                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#salesDetailsModal" data-month="@item.Key">
@@ -45,6 +47,7 @@
                         </tr>
                     }
                 </tbody>
+
             </table>
         </div>
     </div>
@@ -67,7 +70,7 @@
             <div class="col-md-12">
                 <h3>Báo cáo ngày: @Model.SelectedDate.ToString("yyyy-MM-dd")</h3>
                 <p>Tổng đơn hàng: <span class="font-weight-bold">@Model.TotalOrders</span></p>
-                <p>Doanh thu trong ngày: <span class="text-success font-weight-bold">@Model.DailyIncome.ToString("C")</span></p>
+                <p>Doanh thu trong ngày: <span class="text-success font-weight-bold">@Model.DailyIncome.ToString("C", new CultureInfo("vi-VN"))</span></p>
             </div>
         </div>
     }
@@ -103,10 +106,12 @@
                     data: { month: month },
                     success: function (data) {
                         modal.find('.modal-body').html(data);
+                    },
+                    error: function () {
+                        modal.find('.modal-body').html('<p class="text-center text-muted">Không thể tải chi tiết bán hàng.</p>');
                     }
                 });
             });
         });
     </script>
 }
-    
