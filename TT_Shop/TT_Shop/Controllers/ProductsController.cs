@@ -56,6 +56,5 @@ namespace TT_Shop.Controllers
             return RedirectToAction("Detail", "Home", new { id = productId });
         }
 
-
     }
 }

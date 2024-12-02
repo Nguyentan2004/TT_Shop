@@ -36,14 +36,14 @@ namespace TT_Shop.Controllers
         public ActionResult About()
         {
             LoadCategories(); // Gọi phương thức LoadCategories để lấy danh sách Categories
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Trang mô tả.";
             return View();
         }
 
         public ActionResult Contact()
         {
             LoadCategories(); // Gọi phương thức LoadCategories để lấy danh sách Categories
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Trang liên hệ.";
             return View();
         }
 
@@ -63,28 +63,68 @@ namespace TT_Shop.Controllers
 
             ViewBag.RelatedProducts = relatedProducts;
 
-            // Fetch reviews for the product
-            var reviews = db.Product_Reviews.Where(r => r.product_id == id).ToList();
+            // Fetch reviews for the product including user information
+            var reviews = db.Product_Reviews
+                            .Include("User")
+                            .Where(r => r.product_id == id)
+                            .ToList();
             ViewBag.Reviews = reviews;
 
             return View(product);
         }
-
         [HttpPost]
         public ActionResult AddReview(int productId, int rating, string comment)
         {
-            var review = new Product_Reviews
+            try
             {
-                product_id = productId,
-                rating = rating,
-                comment = comment,
-                created_at = DateTime.Now
-            };
+                // Get the logged-in user from the session
+                var user = Session["User"] as User;
 
-            db.Product_Reviews.Add(review);
-            db.SaveChanges();
+                if (user == null)
+                {
+                    System.Diagnostics.Debug.WriteLine("User not found in session.");
+                    ViewBag.ErrorMessage = "Không tìm thấy người dùng.";
+                    return View("Error");
+                }
 
-            return RedirectToAction("Detail", new { id = productId });
+                System.Diagnostics.Debug.WriteLine("User found: " + user.user_id);
+
+                // Create a new review
+                var review = new Product_Reviews
+                {
+                    product_id = productId,
+                    rating = rating,
+                    comment = comment,
+                    user_id = user.user_id, // Associate the review with the logged-in user
+                    created_at = DateTime.Now
+                };
+
+                // Save the review to the database
+                db.Product_Reviews.Add(review);
+                db.SaveChanges();
+
+                // Log success
+                System.Diagnostics.Debug.WriteLine("Review saved successfully.");
+
+                // Prepare the data to be displayed
+                var reviewData = new
+                {
+                    userName = user.fullname,
+                    rating = review.rating,
+                    comment = review.comment,
+                    createdAt = review.created_at
+                };
+
+                // Return a partial view with the review data
+                return PartialView("Detail", reviewData);
+            }
+            catch (Exception ex)
+            {
+                // Log error
+                System.Diagnostics.Debug.WriteLine("Error saving review: " + ex.Message);
+                ViewBag.ErrorMessage = "Xảy ra lỗi: " + ex.Message;
+                return View("Error");
+            }
         }
 
         public ActionResult Category(int id, int page = 1)
