@@ -57,14 +57,24 @@
                 </td>
                 <td>
                     <div class="btn-group" role="group">
-                        @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.order_id }, new { @class = "btn btn-warning btn-sm me-2" })
-                        @Html.ActionLink("Chi tiết", "Details", new { id = item.order_id }, new { @class = "btn btn-info btn-sm me-2" })
+                        @using (Html.BeginForm("Edit", "Orders", new { id = item.order_id }, FormMethod.Get))
+                        {
+                            <button type="submit" class="btn btn-warning btn-sm me-2">Chỉnh sửa</button>
+                        }
+                        @using (Html.BeginForm("Details", "Orders", new { id = item.order_id }, FormMethod.Get))
+                        {
+                            <button type="submit" class="btn btn-info btn-sm me-2">Chi tiết</button>
+                        }
                         @using (Html.BeginForm("ApproveOrder", "Orders", new { id = item.order_id }, FormMethod.Post))
                         {
                             <button type="submit" class="btn btn-success btn-sm me-2">Duyệt</button>
                         }
-                        @Html.ActionLink("Xóa", "Delete", new { id = item.order_id }, new { @class = "btn btn-danger btn-sm" })
+                        @using (Html.BeginForm("Delete", "Orders", new { id = item.order_id }, FormMethod.Post))
+                        {
+                            <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
+                        }
                     </div>
+
                 </td>
             </tr>
         }

@@ -46,13 +46,14 @@
                 <div id="notification-message" class="notification-message"></div>
             </div>
 
+
             <div id="product-container">
                 <h2 class="highlight-heading text-center">Sản phẩm mới</h2>
                 <div class="row">
                     @foreach (var product in Model)
                     {
                         <div class="col-md-4 mb-4">
-                            <div class="card">  
+                            <div class="card">
                                 <a href="@Url.Action("Detail", "Home", new { id = product.product_id })" class="custom-link">
                                     <img src="@Url.Content("~/Images/Images/" + product.image_url)" alt="@product.name" class="card-img-top img-fluid fixed-size-img" />
                                 </a>

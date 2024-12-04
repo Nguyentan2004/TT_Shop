@@ -75,7 +75,7 @@ namespace TT_Shop.Controllers
                             .ToList();
 
             ViewBag.Reviews = reviews;
-            ViewBag.TotalPages = Math.Ceiling((double)db.Reviews.Count(r => r.ProductId == id) / pageSize);
+            ViewBag.TotalPages = Math.Ceiling((double)db.Product_Reviews.Count(r => r.product_id == id) / pageSize);
             ViewBag.CurrentPage = page;
 
             return View(product);

@@ -196,13 +196,7 @@ h1, h3 {
     margin-top: 20px;
     margin-bottom: 10px; /* Tạo khoảng cách phía dưới để không bị dính vào phần tử tiếp theo */
 }
-footer {
-    text-align: center;
-    margin-top: 50px;
-    padding: 20px 0; /* Tăng khoảng cách trên và dưới */
-    background-color: #f8f9fa; /* Thêm màu nền nhẹ */
-    color: #6c757d; /* Thêm màu chữ nhạt hơn */
-}
+
 html, body {
     height: 100%;
 }
@@ -213,11 +207,14 @@ body {
 }
 
 footer {
+    position: absolute;
     background-color: #007bff;
     color: white;
     text-align: center;
     padding: 10px 0;
+    width: 100%;
 }
+    
 .review-item {
     padding: 15px;
     margin-bottom: 20px;
@@ -226,6 +223,21 @@ footer {
     border-radius: 5px;
 }
 
-    .review-item h5 {
-        font-size:
+    .review-item .d-flex {
+        align-items: center;
+    }
 
+    .review-item .badge {
+        font-size: 14px;
+        padding: 5px 10px;
+    }
+
+    .review-item small {
+        font-size: 12px;
+        color: #888;
+    }
+
+form button {
+    margin-top: 15px;
+    padding: 10px 20px;
+}

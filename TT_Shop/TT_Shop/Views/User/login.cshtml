@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "login";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutNoFooter.cshtml";
 }
 <h4 style="color:red; text-align:center;">@ViewBag.Thongbao</h4>
 
@@ -34,10 +34,13 @@
         </tr>
 
         <!-- Đoạn liên kết Đăng ký nằm ngay dưới nút Đăng nhập -->
+ 
         <tr style="height:40px">
             <td colspan="2" align="center">
                 <p>Chưa có tài khoản? <a href="/User/Register">Đăng ký</a></p>
+                <p>Quên mật khẩu? <a href="/User/ForgotPassword">Nhấn vào đây</a></p>
             </td>
         </tr>
+
     }
 </table>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -57,19 +58,35 @@ namespace TT_Shop.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult Details()
+        public ActionResult Details(int page = 1, int PageSize =10)
         {
-
             if (Session["User"] == null)
             {
                 return RedirectToAction("login", "User");
             }
+
             var khachHang = Session["User"] as User;
+
+            // Get the orders for the current user
+            var orders = db.Orders.Where(o => o.user_id == khachHang.user_id)
+            .OrderBy(o => o.order_id)
+                                  .Skip((page - 1) * PageSize)
+                                  .Take(PageSize)
+                                  .ToList();
+
+            // Calculate total pages
+            int totalOrders = db.Orders.Count(o => o.user_id == khachHang.user_id);
+            int totalPages = (int)Math.Ceiling((double)totalOrders / PageSize);
+
+            // Set ViewBag properties for pagination
+            ViewBag.TotalPages = totalPages;
+            ViewBag.CurrentPage = page;
+
+            // Set the orders to the user model
+            khachHang.Orders = orders;
+
             return View(khachHang);
-
         }
-
-
         public ActionResult Register()
         {
             return View();
@@ -157,5 +174,34 @@ namespace TT_Shop.Controllers
             }
             return View(order);
         }
+        public ActionResult ForgotPassword()
+        {
+
+            return View();
+
+        }
+        [HttpPost]
+        public ActionResult ForgotPassword(string identifier)
+        {
+
+            var user = (from u in db.Users
+                        where identifier == u.email || identifier == u.username
+                        select u).FirstOrDefault();
+
+            if (user != null)
+            {
+                ViewBag.Username = user.username;
+                ViewBag.Fullname = user.fullname;
+                ViewBag.Password = user.password;
+            }
+            else
+            {
+                ViewBag.ErrorMessage = "Không tìm thấy tài khoản với thông tin đã cung cấp.";
+            }
+
+            return View();
+
+        }
+
     }
 }
