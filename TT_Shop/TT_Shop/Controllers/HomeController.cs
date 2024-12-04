@@ -72,8 +72,9 @@ namespace TT_Shop.Controllers
 
             return View(product);
         }
+        
         [HttpPost]
-        public ActionResult AddReview(int productId, int rating, string comment)
+        public ActionResult AddReview(int productId, int rating, string comment, string userName)
         {
             try
             {
@@ -116,7 +117,7 @@ namespace TT_Shop.Controllers
                 };
 
                 // Return a partial view with the review data
-                return PartialView("Detail", reviewData);
+                return PartialView("ReviewPartial", reviewData);
             }
             catch (Exception ex)
             {
@@ -126,6 +127,7 @@ namespace TT_Shop.Controllers
                 return View("Error");
             }
         }
+
 
         public ActionResult Category(int id, int page = 1)
         {
