@@ -86,14 +86,14 @@ namespace TT_Shop.Controllers
         {
             if (Session["user_id"] == null)
             {
-                return Json(new { success = false, message = "Please log in to add products to cart." }, JsonRequestBehavior.AllowGet);
+                return Json(new { success = false, message = "Đăng nhập để thêm vào giỏ hàng." }, JsonRequestBehavior.AllowGet);
             }
 
             int userId = (int)Session["user_id"];
             var product = db.Products.Find(product_id);
             if (product == null)
             {
-                return Json(new { success = false, message = "Product not found." }, JsonRequestBehavior.AllowGet);
+                return Json(new { success = false, message = "Không tìm thấy sản phẩm." }, JsonRequestBehavior.AllowGet);
             }
 
             List<CartItem> cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>();
@@ -138,7 +138,7 @@ namespace TT_Shop.Controllers
 
                 return Json(new { success = true, totalPrice = totalPrice.ToString("N0") });
             }
-            return Json(new { success = false, message = "Item not found" });
+            return Json(new { success = false, message = "Không tìm thấy sản phẩm" });
         }
 
         [HttpPost]
@@ -152,7 +152,7 @@ namespace TT_Shop.Controllers
                 cart.Remove(sanpham);
                 Session["Cart"] = cart;
             }
-            return Json(new { success = true, message = "Product removed from cart." }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = true, message = "Xóa sản phẩm khỏi giỏ hàng." }, JsonRequestBehavior.AllowGet);
         }
 
 
