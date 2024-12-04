@@ -1,0 +1,8 @@
+﻿@model TT_Shop.Models.ReviewViewModel
+
+<div class="review">
+    <h4>@Model.userName</h4>
+    <p>Rating: @Model.rating</p>
+    <p>Comment: @Model.comment</p>
+    <p>Date: @Model.createdAt.ToString("MM/dd/yyyy")</p>
+</div>

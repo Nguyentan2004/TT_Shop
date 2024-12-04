@@ -1,10 +1,36 @@
 ﻿@model TT_Shop.Models.Product
 
+@helper RenderStars(int? rating)
+{
+    if (rating.HasValue)
+    {
+        for (int i = 1; i <= 5; i++)
+        {
+            if (i <= rating.Value)
+            {
+                <span class="fa fa-star checked"></span>
+            }
+            else
+            {
+                <span class="fa fa-star"></span>
+            }
+        }
+    }
+    else
+    {
+        for (int i = 1; i <= 5; i++)
+        {
+            <span class="fa fa-star"></span>
+        }
+    }
+}
+
 @{
     ViewBag.Title = "Chi tiết sản phẩm";
 }
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -38,7 +64,6 @@
             </div>
 
             <hr />
-
             <!-- Đánh giá sản phẩm -->
             <div class="row mt-4">
                 <div class="col-md-12">
@@ -46,29 +71,24 @@
                     <div class="review-section p-3 bg-light rounded shadow-sm">
                         @if (ViewBag.Reviews != null && ViewBag.Reviews.Count > 0)
                         {
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Tên người dùng</th>
-                                        <th>Đánh giá</th>
-                                        <th>Bình luận</th>
-                                        <th>Ngày</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var review in ViewBag.Reviews)
-                                    {
-                                        var userName = review.User?.fullname ?? "Ẩn danh";
-                                        var comment = string.IsNullOrEmpty(review.comment) ? "Không có bình luận" : review.comment;
-                                        <tr>
-                                            <td>@userName</td>
-                                            <td>@review.rating</td>
-                                            <td>@comment</td>
-                                            <td>@review.created_at?.ToString("MM/dd/yyyy")</td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
+                            <div class="review-list">
+                                @foreach (var review in ViewBag.Reviews)
+                                {
+                                    var userName = review.User?.fullname ?? "Ẩn danh";
+                                    var comment = string.IsNullOrEmpty(review.comment) ? "Không có bình luận" : review.comment;
+                                    <div class="review-item mb-3 p-3 bg-white rounded shadow-sm">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <strong>@userName</strong> <small class="text-muted">@review.created_at</small>
+                                            </div>
+                                            <div>
+                                                @RenderStars(review.rating) <!-- Show rating as stars -->
+                                            </div>
+                                        </div>
+                                        <p class="mt-2">@comment</p>
+                                    </div>
+                                }
+                            </div>
                         }
                         else
                         {
@@ -82,8 +102,15 @@
                             <!-- Đánh giá -->
                             <div class="form-group">
                                 <label for="rating">Đánh giá (1-5):</label>
-                                <input type="number" id="rating" name="rating" class="form-control" min="1" max="5" required />
+                                <div id="star-rating" class="star-rating">
+                                    @for (int i = 1; i <= 5; i++)
+                                    {
+                                        <span class="fa fa-star" data-value="@i"></span>
+                                    }
+                                </div>
+                                <input type="hidden" id="rating" name="rating" required />
                             </div>
+
 
                             <!-- Bình luận -->
                             <div class="form-group">
@@ -180,22 +207,69 @@
                     },
                     success: function (response) {
                         toastr.success('Đánh giá và bình luận đã được thêm thành công.');
-
-                        // Chèn bài đánh giá mới vào bảng
-                        var newRow = `<tr>
-                                        <td>${response.userName}</td>
-                                        <td>${response.rating}</td>
-                                        <td>${response.comment}</td>
-                                        <td>${response.createdAt}</td>
-                                      </tr>`;
-
-                        $('table tbody').prepend(newRow);  // Thêm bài đánh giá mới vào đầu bảng
+                        location.reload(); // Reload the page after successful submission
                     },
                     error: function () {
                         toastr.error('Đã xảy ra lỗi khi gửi bình luận.');
                     }
                 });
             });
+
+            // Xử lý sự kiện khi người dùng chọn số sao
+            $('#star-rating .fa-star').click(function () {
+                var rating = $(this).data('value');
+                $('#rating').val(rating);
+                $('#star-rating .fa-star').removeClass('checked');
+                $(this).prevAll().addBack().addClass('checked');
+            });
         });
     </script>
 }
+
+<style>
+    .fa-star {
+        color: #ddd;
+    }
+
+        .fa-star.checked {
+            color: #f39c12;
+        }
+
+    /* Additional Styles for Review Section */
+    .review-section {
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .review-list {
+        padding: 0;
+    }
+
+    .review-item {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+        .review-item .d-flex {
+            align-items: center;
+        }
+
+        .review-item .badge {
+            font-size: 14px;
+            padding: 5px 10px;
+        }
+
+        .review-item small {
+            font-size: 12px;
+            color: #888;
+        }
+
+    form button {
+        margin-top: 15px;
+        padding: 10px 20px;
+    }
+</style>

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 using TT_Shop.Models;
 
 namespace TT_Shop.Controllers
@@ -47,8 +49,9 @@ namespace TT_Shop.Controllers
             return View();
         }
 
-        public ActionResult Detail(int id)
+        public ActionResult Detail(int id, int page = 1)
         {
+            int pageSize = 5;
             var product = db.Products.Find(id);
             if (product == null)
             {
@@ -65,66 +68,49 @@ namespace TT_Shop.Controllers
 
             // Fetch reviews for the product including user information
             var reviews = db.Product_Reviews
-                            .Include("User")
                             .Where(r => r.product_id == id)
+                            .OrderByDescending(r => r.created_at) // Ensure correct ordering by created_at in descending order
+                            .Skip((page - 1) * pageSize)
+                            .Take(pageSize)
                             .ToList();
+
             ViewBag.Reviews = reviews;
+            ViewBag.TotalPages = Math.Ceiling((double)db.Reviews.Count(r => r.ProductId == id) / pageSize);
+            ViewBag.CurrentPage = page;
 
             return View(product);
         }
-        
+
+
         [HttpPost]
-        public ActionResult AddReview(int productId, int rating, string comment, string userName)
+        public JsonResult AddReview(int productId, int rating, string comment)
         {
             try
             {
-                // Get the logged-in user from the session
                 var user = Session["User"] as User;
 
                 if (user == null)
                 {
-                    System.Diagnostics.Debug.WriteLine("User not found in session.");
-                    ViewBag.ErrorMessage = "Không tìm thấy người dùng.";
-                    return View("Error");
+                    return Json(new { success = false, message = "Không tìm thấy người dùng." });
                 }
 
-                System.Diagnostics.Debug.WriteLine("User found: " + user.user_id);
-
-                // Create a new review
                 var review = new Product_Reviews
                 {
                     product_id = productId,
                     rating = rating,
                     comment = comment,
-                    user_id = user.user_id, // Associate the review with the logged-in user
+                    user_id = user.user_id,
                     created_at = DateTime.Now
                 };
 
-                // Save the review to the database
                 db.Product_Reviews.Add(review);
                 db.SaveChanges();
 
-                // Log success
-                System.Diagnostics.Debug.WriteLine("Review saved successfully.");
-
-                // Prepare the data to be displayed
-                var reviewData = new
-                {
-                    userName = user.fullname,
-                    rating = review.rating,
-                    comment = review.comment,
-                    createdAt = review.created_at
-                };
-
-                // Return a partial view with the review data
-                return PartialView("ReviewPartial", reviewData);
+                return Json(new { success = true, message = "Gửi đánh giá thành công." });
             }
             catch (Exception ex)
             {
-                // Log error
-                System.Diagnostics.Debug.WriteLine("Error saving review: " + ex.Message);
-                ViewBag.ErrorMessage = "Xảy ra lỗi: " + ex.Message;
-                return View("Error");
+                return Json(new { success = false, message = "Xảy ra lỗi: " + ex.Message });
             }
         }
 
