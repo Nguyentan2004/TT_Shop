@@ -1,46 +1,112 @@
 ﻿@model TT_Shop.Models.User
 
 @{
-    ViewBag.Title = "login";
+    ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_LayoutNoFooter.cshtml";
 }
-<h4 style="color:red; text-align:center;">@ViewBag.Thongbao</h4>
 
-<table align="center">
-    <h3 style="text-align:center">ĐĂNG NHẬP</h3>
-    @using (Html.BeginForm())
-    {
-        @Html.ValidationSummary(true)
-        <tr style="height:40px">
-            <td align="right">Tên đăng nhập:</td>
-            <td>
-                @Html.TextBox("TenDN")
-                <span style="color:red">@ViewData["Loi1"]</span>
-            </td>
-        </tr>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg mt-5">
+                <div class="card-body p-4">
+                    <div class="text-center">
+                        <!-- Profile Image -->
+                        <img src="~/images/z6070122817451_87cdede07bf9194d02212570930d82e0.jpg"
+                             class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3" width="100px" alt="Profile Picture">
+                    </div>
+                    <h4 class="text-center text-dark" style="font-size: 1.2rem;">ĐĂNG NHẬP</h4>
+                    <p class="text-center text-dark" style="font-size: 0.9rem;">Đăng nhập vào tài khoản của bạn để tiếp tục</p>
 
-        <tr style="height:40px">
-            <td align="right">Mật khẩu:</td>
-            <td>
-                @Html.Password("Matkhau")
-                <span style="color:red">@ViewData["Loi2"]</span>
-            </td>
-        </tr>
-        <tr style="height:40px">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.ValidationSummary(true)
 
-            <td colspan="2" align="center">
-                <input type="Submit" value="Đăng nhập" />
-            </td>
-        </tr>
+                        <!-- Username Field -->
+                        <div class="mb-3">
+                            @Html.Label("TenDN", "Tên đăng nhập", new { @class = "form-label" })
+                            @Html.TextBox("TenDN", null, new { @class = "form-control", placeholder = "Tên đăng nhập", id = "TenDN" })
+                            <span style="color:red">@ViewData["Loi1"]</span>
+                        </div>
 
-        <!-- Đoạn liên kết Đăng ký nằm ngay dưới nút Đăng nhập -->
- 
-        <tr style="height:40px">
-            <td colspan="2" align="center">
-                <p>Chưa có tài khoản? <a href="/User/Register">Đăng ký</a></p>
-                <p>Quên mật khẩu? <a href="/User/ForgotPassword">Nhấn vào đây</a></p>
-            </td>
-        </tr>
+                        <!-- Password Field -->
+                        <div class="mb-3">
+                            @Html.Label("Matkhau", "Mật khẩu", new { @class = "form-label" })
+                            @Html.Password("Matkhau", null, new { @class = "form-control", placeholder = "Mật khẩu", id = "Matkhau" })
+                            <span style="color:red">@ViewData["Loi2"]</span>
+                        </div>
 
+                        <!-- Submit Button -->
+                        <div class="text-center">
+                            <input type="submit" value="Đăng nhập" class="btn btn-primary w-100 mb-3" />
+                        </div>
+
+                        <!-- Registration and Forgot Password Links -->
+                        <div class="text-center">
+                            <p class="mb-0" style="font-size: 0.85rem;">Chưa có tài khoản? <a href="/User/Register" class="text-dark fw-bold">Đăng ký</a></p>
+                            <p class="mb-0" style="font-size: 0.85rem;">Quên mật khẩu? <a href="/User/ForgotPassword" class="text-dark fw-bold">Nhấn vào đây</a></p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
-</table>
+
+    .card-body {
+        padding: 1.5rem;
+    }
+
+    .profile-image-pic {
+        border: 4px solid #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+
+    .form-control:focus {
+        border-color: #66afe9;
+        box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
+    }
+
+    .form-label {
+        font-weight: bold;
+        color: #495057;
+        display: block;
+        text-align: center; /* Align label to the left */
+    }
+
+    .form-control {
+        height: 35px;
+        font-size: 0.9rem;
+        margin-left:150px
+    }
+
+    .mb-3 {
+        margin-bottom: 1.25rem; /* Increase margin between form fields */
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+        /* For the links */
+        .text-center p {
+            margin: 0;
+            font-size: 0.85rem;
+        }
+</style>

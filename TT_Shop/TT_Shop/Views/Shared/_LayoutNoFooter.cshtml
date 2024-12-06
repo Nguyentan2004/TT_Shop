@@ -19,7 +19,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
-
 </head>
 <body>
     <!-- Thanh điều hướng -->
@@ -39,22 +38,27 @@
                     <p></p>
 
 
-                    <li class="nav-item w-50">
+                    <li class="nav-item" style="width: 400px">
                         <form class="d-flex" method="get" action="@Url.Action("Search", "Products")">
                             <input class="form-control me-2" type="search" name="query" placeholder="Nhập sản phẩm" aria-label="Search" />
-                            <button class="btn btn-outline-success" type="submit">Tìm kiếm</button>
+                            <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i>Tìm kiếm</button>
                         </form>
                     </li>
                     <li></li>
 
-                    <li class="nav-item w-25">
-                        <a href="@Url.Action("Index", "Cart")">Giỏ hàng (<span id="cartItemCount">@((Session["Cart"] as List<TT_Shop.Models.CartItem>)?.Count ?? 0)</span>)</a>
+                    <li class="nav-item" style="margin-left:20px; margin-right:20px">
+                        <a href="@Url.Action("Index", "Cart")" style="color: black; text-decoration: none">
+                            <i class="fas fa-cart-plus"></i>
+                            <i class="fas fa-cart-plus fa-3x text-center"></i>
+                        </a>
+                        <a href="@Url.Action("Index", "Cart")" style="color: black; font-size: 40px; text-decoration: none " class="text-center "> <span id="cartItemCount">@((Session["Cart"] as List<TT_Shop.Models.CartItem>)?.Count ?? 0)</span></a>
                     </li>
+
 
                     @if (Session["User"] != null)
                     {
                         TT_Shop.Models.User user = Session["User"] as TT_Shop.Models.User;
-                        <li class="nav-item dropdown w-50">
+                        <li class="nav-item dropdown ">
                             <a class="nav-link dropdown-toggle text-white" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Xin chào, @user.username <!-- Assuming user has a Name property -->
                             </a>
@@ -71,10 +75,10 @@
 
                     else
                     {
-                        <li class="nav-item w-25">
+                        <li class="nav-item">
                             @Html.ActionLink("Đăng nhập", "Login", "User", null, new { @class = "nav-link text-white" })
                         </li>
-                        <li class="nav-item w-25">
+                        <li class="nav-item">
                             @Html.ActionLink("Đăng ký", "Register", "User", null, new { @class = "nav-link text-white" })
                         </li>
                     }
