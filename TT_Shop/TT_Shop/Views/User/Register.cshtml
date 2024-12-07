@@ -5,64 +5,155 @@
     Layout = "~/Views/Shared/_LayoutNoFooter.cshtml";
 }
 
-<h4 style="color:red; text-align:center;">@ViewBag.Thongbao</h4>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg mt-5">
+                <div class="card-body p-4">
+                    <div class="text-center">
+                        <!-- Profile Image (Optional, can add logo) -->
+                        <img src="~/images/z6070122817451_87cdede07bf9194d02212570930d82e0.jpg"
+                             class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3" width="100px" alt="Profile Picture">
+                    </div>
+                    <h4 class="text-center text-dark" style="font-size: 1.2rem;">ĐĂNG KÝ</h4>
+                    <p class="text-center text-dark" style="font-size: 0.9rem;">Tạo tài khoản mới của bạn</p>
 
-<h3 style="text-align:center">ĐĂNG KÝ</h3>
-<table align="center">
-    @using (Html.BeginForm("Register", "User", FormMethod.Post))
-    {
-        @Html.ValidationSummary(true)
-        <tr style="height:40px">
-            <td align="right">Họ và Tên:</td>
-            <td>
-                @Html.TextBoxFor(model => model.fullname)
-                <span style="color:red">@ViewData["LoiName"]</span>
-            </td>
-        </tr>
-        <tr style="height:40px">
-            <td align="right">Tên đăng nhập:</td>
-            <td>
-                @Html.TextBoxFor(model => model.username)
-                <span style="color:red">@ViewData["Loi1"]</span>
-            </td>
-        </tr>
+                    @using (Html.BeginForm("Register", "User", FormMethod.Post))
+                    {
+                        @Html.ValidationSummary(true)
 
-        <tr style="height:40px">
-            <td align="right">Mật khẩu:</td>
-            <td>
-                @Html.PasswordFor(model => model.password)
-                <span style="color:red">@ViewData["Loi2"]</span>
-            </td>
-        </tr>
+                        <!-- Full Name Field -->
+                        <div class="mb-3">
+                            @Html.Label("fullname", "Họ và Tên", new { @class = "form-label" })
+                            <div class="centered-form">
+                                @Html.TextBoxFor(model => model.fullname, new { @class = "form-control", placeholder = "Họ và Tên" })
+                            </div>
+                            <div class="centered-form">
+                                <span style="color:red">@ViewData["LoiName"]</span>
+                            </div>
+                        </div>
 
-        <tr style="height:40px">
-            <td align="right">Nhập lại mật khẩu:</td>
-            <td>
-                <input type="password" name="confirmPassword" />
-                <span style="color:red">@ViewData["Loi3"]</span>
-            </td>
-        </tr>
+                        <!-- Username Field -->
+                        <div class="mb-3">
+                            @Html.Label("username", "Tên đăng nhập", new { @class = "form-label" })
+                            <div class="centered-form">
+                                @Html.TextBoxFor(model => model.username, new { @class = "form-control", placeholder = "Tên đăng nhập" })
+                            </div>
+                            <div class="centered-form">
+                                <span style="color:red">@ViewData["Loi1"]</span>
+                            </div>
+                        </div>
 
-        <tr style="height:40px">
-            <td align="right">Email:</td>
-            <td>
-                @Html.TextBoxFor(model => model.email)
-                <span style="color:red">@ViewData["Loi4"]</span>
-            </td>
-        </tr>
+                        <!-- Password Field -->
+                        <div class="mb-3">
+                            @Html.Label("password", "Mật khẩu", new { @class = "form-label" })
+                            <div class="centered-form">
+                                @Html.PasswordFor(model => model.password, new { @class = "form-control", placeholder = "Mật khẩu" })
+                            </div>
+                            <div class="centered-form">
+                                <span style="color:red">@ViewData["Loi2"]</span>
+                            </div>
+                        </div>
 
-        <tr style="height:40px">
-            <td colspan="2" align="center">
-                <input type="Submit" value="Đăng ký" />
-            </td>
-        </tr>
-        <tr style="height:40px">
-            <td colspan="2" align="center">
-                <p>Đã có tài khoản? <a href="/User/login">Đăng nhập</a></p>
-            </td>
-        </tr>
+                        <!-- Confirm Password Field -->
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">Nhập lại mật khẩu</label>
+                            <div class="centered-form">
+                                <input type="password" name="confirmPassword" class="form-control" placeholder="Nhập lại mật khẩu" />
+                            </div>
+                            <div class="centered-form">
+                                <span style="color:red">@ViewData["Loi3"]</span>
+                            </div>
+                        </div>
+
+                        <!-- Email Field -->
+                        <div class="mb-3">
+                            @Html.Label("email", "Email", new { @class = "form-label" })
+                            <div class="centered-form">
+                                @Html.TextBoxFor(model => model.email, new { @class = "form-control", placeholder = "Email" })
+                            </div>
+                            <div class="centered-form">
+                                <span style="color:red">@ViewData["Loi4"]</span>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="text-center">
+                            <input type="submit" value="Đăng ký" class="btn btn-primary w-100 mb-3" />
+                        </div>
+
+                        <!-- Login Link -->
+                        <div class="text-center">
+                            <p class="mb-0" style="font-size: 0.85rem;">Đã có tài khoản? <a href="/User/Login" class="text-dark fw-bold">Đăng nhập</a></p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
-</table>
+
+    .card-body {
+        padding: 1.5rem;
+    }
+
+    .profile-image-pic {
+        border: 4px solid #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+
+    .centered-form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .form-control:focus {
+        border-color: #66afe9;
+        box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
+    }
+
+    .form-label {
+        font-weight: bold;
+        color: #495057;
+        display: block;
+        text-align: center;
+    }
+
+    .form-control {
+        height: 35px;
+        font-size: 0.9rem;
+    }
+
+    .mb-3 {
+        margin-bottom: 1.25rem;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+        .text-center p {
+            margin: 0;
+            font-size: 0.85rem;
+        }
+</style>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />

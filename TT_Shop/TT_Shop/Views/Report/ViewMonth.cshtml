@@ -1,0 +1,96 @@
+﻿@model IEnumerable<TT_Shop.Models.Order>
+
+@{
+    ViewBag.Title = "Danh sách đơn hàng trong tháng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1 class="text-primary text-center">Danh sách đơn hàng trong tháng @ViewBag.SelectedMonth</h1>
+
+<table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>Trạng thái đơn hàng</th>
+            <th>Tổng tiền</th>
+            <th>Địa chỉ giao hàng</th>
+            <th>Ngày đặt hàng</th>
+            <th>Ngày cập nhật</th>
+            <th>Khách hàng</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @if (item.order_status == "Pending")
+                    {
+                        <span class="badge bg-warning text-dark">Chưa giải quyết</span>
+                    }
+                    else if (item.order_status == "Approved")
+                    {
+                        <span class="badge bg-success">Đã duyệt</span>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.order_status)
+                    }
+                </td>
+                <td>
+                    @(item.total_amount?.ToString("N2") + " VNĐ" ?? "N/A")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.shipping_address)
+                </td>
+                <td>
+                    @(item.order_date?.ToString("dd/MM/yyyy") ?? "N/A")
+                </td>
+                <td>
+                    @(item.updated_at?.ToString("dd/MM/yyyy") ?? "N/A")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.fullname)
+                </td>
+                <td>
+                    <div class="btn-group" role="group">
+                        @using (Html.BeginForm("Details", "Orders", new { id = item.order_id }, FormMethod.Get))
+                        {
+                            <button type="submit" class="btn btn-info btn-sm me-2">Chi tiết</button>
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Pagination Controls -->
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        @if (ViewBag.CurrentPage > 1)
+        {
+            <li class="page-item">
+                <a class="page-link" href="@Url.Action("ViewMonth", new { month = ViewBag.SelectedMonth, page = ViewBag.CurrentPage - 1 })" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+        }
+
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                <a class="page-link" href="@Url.Action("ViewMonth", new { month = ViewBag.SelectedMonth, page = i })">@i</a>
+            </li>
+        }
+
+        @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+        {
+            <li class="page-item">
+                <a class="page-link" href="@Url.Action("ViewMonth", new { month = ViewBag.SelectedMonth, page = ViewBag.CurrentPage + 1 })" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        }
+    </ul>
+</nav>

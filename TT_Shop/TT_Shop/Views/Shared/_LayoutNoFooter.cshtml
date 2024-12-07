@@ -39,22 +39,13 @@
 
 
                     <li class="nav-item" style="width: 400px">
-                        <form class="d-flex" method="get" action="@Url.Action("Search", "Products")">
-                            <input class="form-control me-2" type="search" name="query" placeholder="Nhập sản phẩm" aria-label="Search" />
-                            <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i>Tìm kiếm</button>
+                        <form class="d-flex align-items-center" method="get" action="@Url.Action("Search", "Products")">
+                            <input class="form-control me-2" style="height: 50px; flex: 1;" type="search" name="query" placeholder="Nhập sản phẩm" aria-label="Search" />
+                            <button class="btn btn-outline-success align-items-center" ; type="submit">
+                                <i class="fas fa-search"></i> Tìm kiếm
+                            </button>
                         </form>
                     </li>
-                    <li></li>
-
-                    <li class="nav-item" style="margin-left:20px; margin-right:20px">
-                        <a href="@Url.Action("Index", "Cart")" style="color: black; text-decoration: none">
-                            <i class="fas fa-cart-plus"></i>
-                            <i class="fas fa-cart-plus fa-3x text-center"></i>
-                        </a>
-                        <a href="@Url.Action("Index", "Cart")" style="color: black; font-size: 40px; text-decoration: none " class="text-center "> <span id="cartItemCount">@((Session["Cart"] as List<TT_Shop.Models.CartItem>)?.Count ?? 0)</span></a>
-                    </li>
-
-
                     @if (Session["User"] != null)
                     {
                         TT_Shop.Models.User user = Session["User"] as TT_Shop.Models.User;

@@ -314,6 +314,7 @@
     <Content Include="Views\Home\ReviewPartial.cshtml" />
     <Content Include="Views\Shared\_LayoutNoFooter.cshtml" />
     <Content Include="Views\User\ForgotPassword.cshtml" />
+    <Content Include="Views\Report\ViewMonth.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

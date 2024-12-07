@@ -105,14 +105,18 @@ namespace TTshop.Controllers
         [HttpPost]
         public ActionResult _SalesDetails(string month)
         {
-            var model = new OrdersReportViewModel();
-            // Populate the model with sales details for the specified month
-            // Example:
-            model.SalesDetails = GetSalesDetailsForMonth(month);
+            // Lấy dữ liệu chi tiết bán hàng cho tháng được chọn
+            var salesDetails = GetSalesDetailsForMonth(month);
 
+            // Tạo mô hình dữ liệu
+            var model = new OrdersReportViewModel
+            {
+                SalesDetails = salesDetails
+            };
+
+            // Trả về PartialView với mô hình dữ liệu
             return PartialView("_SalesDetails", model);
         }
-
 
         private List<SalesDetail> GetSalesDetailsForMonth(string month)
         {
@@ -123,6 +127,32 @@ namespace TTshop.Controllers
             new SalesDetail { ProductName = "Product 1", QuantitySold = 10 },
             new SalesDetail { ProductName = "Product 2", QuantitySold = 5 }
         };
+        }
+
+        //private ActionResult ViewMonth()
+        //{
+        //    return View();
+        //}
+        public ActionResult ViewMonth(string month, int page = 1, int pageSize = 10)
+        {
+            var yearMonth = month.Split('-');
+            int year = int.Parse(yearMonth[0]);
+            int monthNumber = int.Parse(yearMonth[1]);
+
+            var orders = db.Orders
+                .Where(o => DbFunctions.TruncateTime(o.order_date).Value.Year == year && DbFunctions.TruncateTime(o.order_date).Value.Month == monthNumber)
+                .Include(o => o.Order_Details)
+                .Include(o => o.User)
+                .OrderBy(o => o.order_date)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            ViewBag.CurrentPage = page;
+            ViewBag.TotalPages = (int)Math.Ceiling((double)db.Orders.Count(o => DbFunctions.TruncateTime(o.order_date).Value.Year == year && DbFunctions.TruncateTime(o.order_date).Value.Month == monthNumber) / pageSize);
+            ViewBag.SelectedMonth = month;
+
+            return View(orders);
         }
     }
 }
