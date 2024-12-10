@@ -120,17 +120,13 @@
                 data: form.serialize(),
                 success: function (response) {
                     if (response.success) {
-                        // Thông báo thành công
                         showNotification('Sản phẩm đã được xóa khỏi giỏ hàng thành công.');
-                        // Tùy chọn: xóa sản phẩm khỏi DOM hoặc làm mới giỏ hàng
                         form.closest('tr').remove();
                     } else {
-                        // Thông báo lỗi
                         showNotification('Không thể xóa sản phẩm khỏi giỏ hàng.');
                     }
                 },
                 error: function () {
-                    // Thông báo lỗi hệ thống
                     showNotification('Đã xảy ra lỗi khi xóa sản phẩm.');
                 }
             });
@@ -144,7 +140,6 @@
             });
         }
 
-        // Thêm một số kiểu dáng cơ bản cho thông báo
         $('<style>')
             .prop('type', 'text/css')
             .html(`

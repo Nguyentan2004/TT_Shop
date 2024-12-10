@@ -13,7 +13,6 @@
                 {
                     <li class="list-group-item border-0 p-2">
                         <a href="@Url.Action("Category", "Home", new { id = category.category_id })" class="text-dark sidebar-link d-flex align-items-center">
-                            <!-- Biểu tượng FontAwesome cho danh mục -->
                             <i class="fa fa-tags me-2"> </i>@category.name
                         </a>
                     </li>
@@ -29,7 +28,6 @@
     </ul>
 </div>
 
-<!-- Thêm CSS để làm đẹp -->
 <style>
     .sidebar-link {
         font-size: 16px;
@@ -39,12 +37,12 @@
     }
 
         .sidebar-link:hover {
-            color: #007bff; /* Màu khi hover */
+            color: #007bff;
             text-decoration: underline;
         }
 
         .sidebar-link i {
-            font-size: 18px; /* Biểu tượng nhỏ hơn một chút */
+            font-size: 18px;
         }
 </style>
 

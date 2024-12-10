@@ -9,40 +9,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<style>
-    .custom-link {
-        color: black;
-        text-decoration: none;
-    }
-
-        .custom-link:hover {
-            color: black;
-            text-decoration: none;
-        }
-
-    .card:hover img {
-        transform: scale(1.05);
-        transition: transform 0.3s ease;
-    }
-
-    .toast-top-right {
-        position: fixed;
-        top: 10px;
-        right: 10px;
-    }
-
-    /* Đảm bảo nút có thể nhấn dễ dàng */
-    .card-footer a.btn {
-        z-index: 10;
-        position: relative;
-    }
-
-    /* Đảm bảo các liên kết chữ không cản trở các nút */
-    .custom-link {
-        z-index: 5; /* Liên kết chữ có chỉ số z thấp hơn nút */
-    }
-</style>
-
 <div class="container-fluid p-0">
     <div class="row no-gutters">
 
@@ -143,3 +109,37 @@
         });
     });
 </script>
+
+<style>
+    .custom-link {
+        color: black;
+        text-decoration: none;
+    }
+
+        .custom-link:hover {
+            color: black;
+            text-decoration: none;
+        }
+
+    .card:hover img {
+        transform: scale(1.05);
+        transition: transform 0.3s ease;
+    }
+
+    .toast-top-right {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+    }
+
+    /* Đảm bảo nút có thể nhấn dễ dàng */
+    .card-footer a.btn {
+        z-index: 10;
+        position: relative;
+    }
+
+    /* Đảm bảo các liên kết chữ không cản trở các nút */
+    .custom-link {
+        z-index: 5; /* Liên kết chữ có chỉ số z thấp hơn nút */
+    }
+</style>

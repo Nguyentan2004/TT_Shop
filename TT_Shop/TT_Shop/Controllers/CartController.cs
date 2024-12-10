@@ -55,7 +55,6 @@ namespace TT_Shop.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Sản phẩm đã hết hàng.");
             }
 
-
             List<CartItem> cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>();
             var cartItem = cart.FirstOrDefault(c => c.IdSanPham == product_id);
 
@@ -155,7 +154,6 @@ namespace TT_Shop.Controllers
             return Json(new { success = true, message = "Xóa sản phẩm khỏi giỏ hàng." }, JsonRequestBehavior.AllowGet);
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult XoaHetGioHang()
@@ -237,11 +235,10 @@ namespace TT_Shop.Controllers
 
             db.SaveChanges();
 
-            // Create a payment record
             var payment = new Payment
             {
                 order_id = order.order_id,
-                payment_method = "Banking", // Ensure this value matches the allowed values in the database
+                payment_method = "Banking", 
                 payment_status = "Completed",
                 payment_date = DateTime.Now
             };
@@ -253,12 +250,9 @@ namespace TT_Shop.Controllers
             }
             catch (DbUpdateException ex)
             {
-                // Log the inner exception message
                 var innerException = ex.InnerException?.InnerException?.Message;
-                // Handle the exception as needed
             }
 
-            // Clear the cart
             Session["Cart"] = null;
 
             return View();
@@ -267,7 +261,6 @@ namespace TT_Shop.Controllers
 
         private IEnumerable<CartItem> GetCartItems()
         {
-            // Replace with your logic to get cart items from the session or database
             return Session["Cart"] as List<CartItem> ?? new List<CartItem>();
         }
 
@@ -279,17 +272,14 @@ namespace TT_Shop.Controllers
                 return HttpNotFound();
             }
 
-            // Lấy tổng số sản phẩm trong danh mục
-            int pageSize = 9;  // Số sản phẩm hiển thị mỗi trang
+            int pageSize = 9; 
             int totalProducts = db.Products.Count(p => p.category_id == id);
 
-            // Tính tổng số trang
             int totalPages = (int)Math.Ceiling(totalProducts / (double)pageSize);
 
-            // Lấy danh sách sản phẩm theo trang
             var products = db.Products
                              .Where(p => p.category_id == id)
-                             .OrderBy(p => p.product_id)  // Sắp xếp theo ID sản phẩm hoặc theo một thuộc tính khác
+                             .OrderBy(p => p.product_id)
                              .Skip((page - 1) * pageSize)
                              .Take(pageSize)
                              .ToList();

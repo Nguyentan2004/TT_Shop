@@ -89,20 +89,16 @@ namespace TTshop.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Retrieve the existing user from the database
                 var existingUser = await db.Users.FindAsync(user.user_id);
                 if (existingUser == null)
                 {
                     return HttpNotFound();
                 }
 
-                // Preserve the original created_at value
                 user.created_at = existingUser.created_at;
 
-                // Set the updated_at field to the current date and time
                 user.updated_at = DateTime.Now;
 
-                // Update the user entity
                 db.Entry(existingUser).CurrentValues.SetValues(user);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");

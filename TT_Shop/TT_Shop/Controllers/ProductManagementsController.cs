@@ -16,7 +16,6 @@ namespace TTshop.Controllers
     {
         private QLTTShopEntities db = new QLTTShopEntities();
 
-        // GET: ProductManagements
         public async Task<ActionResult> Index(int page = 1, int pageSize = 10)
         {
             var products = db.Products
@@ -33,7 +32,6 @@ namespace TTshop.Controllers
         }
 
 
-        // GET: ProductManagements/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -48,16 +46,12 @@ namespace TTshop.Controllers
             return View(product);
         }
 
-        // GET: ProductManagements/Create
         public ActionResult Create()
         {
             ViewBag.category_id = new SelectList(db.Categories, "category_id", "name");
             return View();
         }
 
-        // POST: ProductManagements/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "product_id,name,description,price,stock,category_id,created_at")] Product product, HttpPostedFileBase image)

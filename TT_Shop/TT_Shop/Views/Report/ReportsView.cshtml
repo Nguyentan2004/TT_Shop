@@ -1,7 +1,6 @@
 ﻿@model TT_Shop.Models.OrdersReportViewModel
 @using System.Globalization
 
-
 @{
     ViewBag.Title = "Báo cáo doanh thu";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -30,12 +29,11 @@
                         {
                             <tr>
                                 <td>@item.Key</td>
-                                <td>@item.Value.ToString("C", new CultureInfo("vi-VN"))</td>
-                                <td>@Model.TotalProductsSold</td>
+                                <td>@item.Value.TotalIncome.ToString("C", new CultureInfo("vi-VN"))</td>
+                                <td>@item.Value.TotalProductsSold</td>
                                 <td>
                                     @Html.ActionLink("Xem chi tiết bán hàng", "ViewMonth", "Report", new { month = item.Key }, new { @class = "btn btn-primary btn-sm" })
                                 </td>
-
                             </tr>
                         }
                     }
@@ -46,7 +44,6 @@
                         </tr>
                     }
                 </tbody>
-
             </table>
         </div>
     </div>
@@ -70,11 +67,41 @@
                 <h3>Báo cáo ngày: @Model.SelectedDate.ToString("yyyy-MM-dd")</h3>
                 <p>Tổng đơn hàng: <span class="font-weight-bold">@Model.TotalOrders</span></p>
                 <p>Doanh thu trong ngày: <span class="text-success font-weight-bold">@Model.DailyIncome.ToString("C", new CultureInfo("vi-VN"))</span></p>
+                <h4>Danh sách đơn hàng</h4>
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Mã đơn hàng</th>
+                            <th>Ngày đặt hàng</th>
+                            <th>Tổng tiền</th>
+                            <th>Khách hàng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Orders != null && Model.Orders.Any())
+                        {
+                            foreach (var order in Model.Orders)
+                            {
+                                <tr>
+                                    <td>@order.OrderId</td>
+                                    <td>@order.OrderDate.ToString("yyyy-MM-dd")</td>
+                                    <td>@order.TotalAmount.ToString("C", new CultureInfo("vi-VN"))</td>
+                                    <td>@order.CustomerName</td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="4" class="text-center text-muted">Không có đơn hàng nào</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
     }
 
-    <!-- Modal -->
     <div class="modal fade" id="salesDetailsModal" tabindex="-1" role="dialog" aria-labelledby="salesDetailsModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -85,12 +112,40 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <!-- Content loaded via AJAX -->
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        @if (ViewBag.CurrentPage > 1)
+        {
+            <li class="page-item">
+                <a class="page-link" href="@Url.Action("ReportsView", new { page = ViewBag.CurrentPage - 1 })" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+        }
+
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                <a class="page-link" href="@Url.Action("ReportsView", new { page = i })">@i</a>
+            </li>
+        }
+
+        @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+        {
+            <li class="page-item">
+                <a class="page-link" href="@Url.Action("ReportsView", new { page = ViewBag.CurrentPage + 1 })" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        }
+    </ul>
+</nav>
 
 @section scripts {
     <script>
@@ -114,3 +169,4 @@
         });
     </script>
 }
+

@@ -31,15 +31,12 @@ namespace TT_Shop.Controllers
 
             if (!string.IsNullOrEmpty(TenDN) && !string.IsNullOrEmpty(Matkhau))
             {
-                // Kiểm tra người dùng trong cơ sở dữ liệu
                 var user = db.Users.FirstOrDefault(u => u.username == TenDN && u.password == Matkhau);
 
                 if (user != null)
                 {
-                    // Nếu thông tin đăng nhập hợp lệ, lưu thông tin người dùng vào session
-                    Session["User"] = user; // Store the entire user object
-                    Session["user_id"] = user.user_id; // Lưu user_id vào session
-                                                       // Chuyển hướng đến trang chủ hoặc trang dashboard
+                    Session["User"] = user; 
+                    Session["user_id"] = user.user_id; 
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -54,7 +51,7 @@ namespace TT_Shop.Controllers
         public ActionResult Logout()
         {
             Session["User"] = null;
-            Session["user_id"] = null; // Xóa user_id khỏi session
+            Session["user_id"] = null; 
             return RedirectToAction("Index", "Home");
         }
 
@@ -67,22 +64,18 @@ namespace TT_Shop.Controllers
 
             var khachHang = Session["User"] as User;
 
-            // Get the orders for the current user
             var orders = db.Orders.Where(o => o.user_id == khachHang.user_id)
             .OrderBy(o => o.order_id)
                                   .Skip((page - 1) * PageSize)
                                   .Take(PageSize)
                                   .ToList();
 
-            // Calculate total pages
             int totalOrders = db.Orders.Count(o => o.user_id == khachHang.user_id);
             int totalPages = (int)Math.Ceiling((double)totalOrders / PageSize);
 
-            // Set ViewBag properties for pagination
             ViewBag.TotalPages = totalPages;
             ViewBag.CurrentPage = page;
 
-            // Set the orders to the user model
             khachHang.Orders = orders;
 
             return View(khachHang);
@@ -137,7 +130,6 @@ namespace TT_Shop.Controllers
                     return View();
                 }
 
-                // Set default role to "customer"
                 user.role = "customer";
 
                 try

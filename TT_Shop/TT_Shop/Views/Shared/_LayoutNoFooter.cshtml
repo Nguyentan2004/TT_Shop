@@ -21,7 +21,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-    <!-- Thanh điều hướng -->
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm">
         <div class="container">
             @Html.ActionLink("Điện tử tối cổ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
@@ -31,7 +30,6 @@
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
-                    <!-- Other nav items can go here if needed -->
                 </ul>
 
                 <ul class="navbar-nav ml-auto">
@@ -51,7 +49,7 @@
                         TT_Shop.Models.User user = Session["User"] as TT_Shop.Models.User;
                         <li class="nav-item dropdown ">
                             <a class="nav-link dropdown-toggle text-white" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Xin chào, @user.username <!-- Assuming user has a Name property -->
+                                Xin chào, @user.username 
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="userDropdown">
                                 <li><a class="dropdown-item" href="@Url.Action("Details", "User")">Thông tin cá nhân</a></li>
@@ -79,7 +77,6 @@
         </div>
     </nav>
 
-    <!-- Nội dung chính -->
     <div class="container-fluid p-0">
         <div class="row no-gutters">
 
@@ -91,7 +88,6 @@
 
     </div>
 
-    <!-- Scripts -->
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

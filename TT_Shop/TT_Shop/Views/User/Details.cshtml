@@ -36,7 +36,6 @@
                             @Html.DisplayFor(model => model.email)
                         </dd>
 
-                        <!-- Bạn có thể thêm nhiều trường thông tin khác tại đây -->
                     </dl>
                 </div>
             </div>
@@ -61,7 +60,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Vòng lặp qua danh sách đơn hàng -->
                             @foreach (var order in Model.Orders)
                             {
                                 <tr>
@@ -74,11 +72,11 @@
                                         }
                                         else if (order.order_status == "Approved")
                                         {
-                                            <span class="badge badge-success" style="color: #28a745;">Đã duyệt</span> <!-- Màu xanh lá cây -->
+                                            <span class="badge badge-success" style="color: #28a745;">Đã duyệt</span> 
                                         }
                                         else
                                         {
-                                            <span class="badge badge-danger" style="color: #dc3545;">Đã hủy</span> <!-- Màu đỏ -->
+                                            <span class="badge badge-danger" style="color: #dc3545;">Đã hủy</span> 
                                         }
                                     </td>
 
@@ -91,7 +89,6 @@
                         </tbody>
                     </table>
 
-                    <!-- Pagination -->
                     <nav aria-label="Page navigation">
                         <ul class="pagination">
                             @for (int i = 1; i <= ViewBag.TotalPages; i++)
@@ -124,12 +121,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Vòng lặp qua danh sách đánh giá -->
                             @foreach (var review in Model.Product_Reviews)
                             {
                                 <tr>
                                     <td>@review.Product.name</td>
-                                    <td>@review.created_at</td> <!-- Hiển thị ngày đánh giá mà không định dạng -->
+                                    <td>@review.created_at</td>
                                     <td>@review.comment</td>
                                     <td>
                                         @for (int i = 1; i <= (review.rating ?? 0); i++)
@@ -151,5 +147,4 @@
     </div>
 </main>
 
-<!-- Thêm liên kết tới các thư viện như FontAwesome cho sao -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">

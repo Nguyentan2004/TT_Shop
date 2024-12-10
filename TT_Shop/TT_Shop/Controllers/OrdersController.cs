@@ -15,12 +15,6 @@ namespace TTshop.Controllers
     {
         private QLTTShopEntities db = new QLTTShopEntities();
 
-        // GET: Orders
-        //public async Task<ActionResult> Index()
-        //{
-        //    var orders = db.Orders.Include(o => o.User);
-        //    return View(await orders.ToListAsync());
-        //}
         public async Task<ActionResult> Index(int page = 1, int pageSize = 15)
         {
             var orders = db.Orders
@@ -36,9 +30,6 @@ namespace TTshop.Controllers
             return View(await orders.ToListAsync());
         }
 
-
-
-        // GET: Orders/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -56,16 +47,12 @@ namespace TTshop.Controllers
             return View(order);
         }
 
-        // GET: Orders/Create
         public ActionResult Create()
         {
             ViewBag.user_id = new SelectList(db.Users, "user_id", "fullname");
             return View();
         }
 
-        // POST: Orders/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "order_id,user_id,order_status,total_amount,shipping_address,order_date,updated_at")] Order order)
@@ -112,7 +99,6 @@ namespace TTshop.Controllers
             return View(order);
         }
 
-        // GET: Orders/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,16 +121,12 @@ namespace TTshop.Controllers
                 return HttpNotFound();
             }
 
-            // Retrieve related Order_Details entries
             var orderDetails = db.Order_Details.Where(od => od.order_id == id);
 
-            // Remove related Order_Details entries
             db.Order_Details.RemoveRange(orderDetails);
 
-            // Remove the Order
             db.Orders.Remove(order);
 
-            // Save changes
             await db.SaveChangesAsync();
 
             return RedirectToAction("Index");

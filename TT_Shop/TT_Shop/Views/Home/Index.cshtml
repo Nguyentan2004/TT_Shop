@@ -9,31 +9,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<style>
-    .custom-link {
-        color: black;
-        text-decoration: none;
-    }
-
-        .custom-link:hover {
-            color: black;
-            text-decoration: none;
-        }
-
-    /* Customizing the hover effect on product images */
-    .card:hover img {
-        transform: scale(1.05);
-        transition: transform 0.3s ease;
-    }
-
-    /* Customizing the notification position */
-    .toast-top-right {
-        position: fixed;
-        top: 10px;
-        right: 10px;
-    }
-</style>
-
 <p></p>
 <div class="container-fluid p-0">
     <div class="row no-gutters">
@@ -71,7 +46,7 @@
                             </div>
                         </div>
 
-                        @* Close and open a new row every 3 products *@
+                        @* *@
                         productCount++;
                         if (productCount % 3 == 0)
                         {
@@ -127,16 +102,38 @@
                 data: { product_id: productId },
                 success: function(response) {
                     if (response.success) {
-                        toastr.success(response.message); // Thông báo thành công
-                        $('#cartItemCount').text(response.totalQuantity); // Cập nhật số lượng sản phẩm trong giỏ
+                        toastr.success(response.message);
+                        $('#cartItemCount').text(response.totalQuantity); 
                     } else {
-                        toastr.error(response.message); // Thông báo lỗi
+                        toastr.error(response.message); 
                     }
                 },
                 error: function() {
-                    toastr.error('Đã xảy ra lỗi khi thêm sản phẩm vào giỏ hàng.'); // Thông báo lỗi hệ thống
+                    toastr.error('Đã xảy ra lỗi khi thêm sản phẩm vào giỏ hàng.');
                 }
             });
         });
     });
 </script>
+<style>
+    .custom-link {
+        color: black;
+        text-decoration: none;
+    }
+
+        .custom-link:hover {
+            color: black;
+            text-decoration: none;
+        }
+
+    .card:hover img {
+        transform: scale(1.05);
+        transition: transform 0.3s ease;
+    }
+
+    .toast-top-right {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+    }
+</style>

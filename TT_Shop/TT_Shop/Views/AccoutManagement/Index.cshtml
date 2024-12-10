@@ -38,7 +38,6 @@
                     @Html.DisplayFor(modelItem => item.email)
                 </td>
                 <td>
-                    <!-- Kiểm tra vai trò và thay thế bằng tên hiển thị tiếng Việt -->
                     @if (item.role == "customer")
                     {
                         <span>Khách hàng</span>
@@ -49,7 +48,7 @@
                     }
                     else
                     {
-                        <span>@item.role</span> <!-- Nếu có vai trò khác, hiển thị tên vai trò -->
+                        <span>@item.role</span>
                     }
                 </td>
                 <td>
@@ -73,7 +72,6 @@
 </table>
 
 
-<!-- Pagination Controls -->
 <nav aria-label="Page navigation">
     <ul class="pagination justify-content-center">
         @if (ViewBag.CurrentPage > 1)
@@ -103,8 +101,6 @@
     </ul>
 </nav>
 
-
-<!-- Modal Structure -->
 <div class="modal fade" id="modalWindow" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -113,7 +109,6 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
             </div>
             <div class="modal-body">
-                <!-- Nội dung sẽ được tải vào đây -->
             </div>
         </div>
     </div>

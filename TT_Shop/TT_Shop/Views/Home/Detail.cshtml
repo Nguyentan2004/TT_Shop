@@ -36,12 +36,9 @@
 
 <main class="container mt-5">
     <div class="row">
-        <!-- Sidebar bên trái -->
         <div class="col-md-9">
-            <!-- Thông tin sản phẩm -->
             <div class="row">
                 <div class="col-md-6">
-                    <!-- Hình ảnh sản phẩm -->
                     <img src="@Url.Content("~/Images/Images/" + Model.image_url)" alt="@Model.name" class="img-fluid rounded shadow-sm" />
                 </div>
 
@@ -64,7 +61,7 @@
             </div>
 
             <hr />
-            <!-- Đánh giá sản phẩm -->
+
             <div class="row mt-4">
                 <div class="col-md-12">
                     <h3 class="section-title">Đánh giá sản phẩm</h3>
@@ -82,7 +79,7 @@
                                                 <strong>@userName</strong> <small class="text-muted">@review.created_at</small>
                                             </div>
                                             <div>
-                                                @RenderStars(review.rating) <!-- Show rating as stars -->
+                                                @RenderStars(review.rating) 
                                             </div>
                                         </div>
                                         <p class="mt-2">@comment</p>
@@ -106,11 +103,9 @@
                             </ul>
                         </nav>
 
-                        <!-- Form đánh giá và bình luận -->
                         <form id="reviewForm" method="post">
                             <input type="hidden" name="productId" value="@Model.product_id" />
 
-                            <!-- Đánh giá -->
                             <div class="form-group">
                                 <label for="rating">Đánh giá (1-5):</label>
                                 <div id="star-rating" class="star-rating">
@@ -122,8 +117,6 @@
                                 <input type="hidden" id="rating" name="rating" required />
                             </div>
 
-
-                            <!-- Bình luận -->
                             <div class="form-group">
                                 <label for="comment">Bình luận:</label>
                                 <textarea id="comment" name="comment" class="form-control" rows="3" required></textarea>
@@ -137,7 +130,6 @@
 
             <hr />
 
-            <!-- Sản phẩm liên quan -->
             <div class="row mt-4">
                 <div class="col-md-12">
                     <h3 class="section-title">Sản phẩm liên quan</h3>
@@ -167,7 +159,6 @@
             </div>
         </div>
 
-        <!-- Sidebar bên phải -->
         <div class="col-md-3">
             @Html.Partial("RightSidebar")
         </div>
@@ -188,21 +179,20 @@
                     },
                     success: function (response) {
                         if (response.success) {
-                            toastr.success(response.message); // Thông báo thành công
-                            $('#cartItemCount').text(response.totalQuantity); // Cập nhật số lượng sản phẩm trong giỏ
+                            toastr.success(response.message); 
+                            $('#cartItemCount').text(response.totalQuantity); 
                         } else {
-                            toastr.error(response.message); // Thông báo lỗi
+                            toastr.error(response.message);
                         }
                     },
                     error: function () {
-                        toastr.error('Đã xảy ra lỗi khi thêm sản phẩm vào giỏ hàng.'); // Thông báo lỗi hệ thống
+                        toastr.error('Đã xảy ra lỗi khi thêm sản phẩm vào giỏ hàng.');
                     }
                 });
             });
 
-            // Ajax gửi form đánh giá và bình luận
             $('#reviewForm').submit(function (e) {
-                e.preventDefault(); // Prevent default form submission
+                e.preventDefault(); 
 
                 var productId = $('input[name="productId"]').val();
                 var rating = $('#rating').val();
@@ -218,7 +208,7 @@
                     },
                     success: function (response) {
                         toastr.success('Đánh giá và bình luận đã được thêm thành công.');
-                        location.reload(); // Reload the page after successful submission
+                        location.reload(); 
                     },
                     error: function () {
                         toastr.error('Đã xảy ra lỗi khi gửi bình luận.');
@@ -226,7 +216,6 @@
                 });
             });
 
-            // Xử lý sự kiện khi người dùng chọn số sao
             $('#star-rating .fa-star').click(function () {
                 var rating = $(this).data('value');
                 $('#rating').val(rating);
@@ -246,7 +235,6 @@
             color: #f39c12;
         }
 
-    /* Additional Styles for Review Section */
     .review-section {
         background-color: #f9f9f9;
         border-radius: 8px;

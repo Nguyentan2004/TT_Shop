@@ -13,7 +13,6 @@ namespace TT_Shop.Controllers
     {
         private QLTTShopEntities db = new QLTTShopEntities();
 
-        // Phương thức để lấy danh sách Categories và lưu trữ trong ViewBag
         private void LoadCategories()
         {
             var categories = db.Categories.ToList();
@@ -22,9 +21,9 @@ namespace TT_Shop.Controllers
 
         public ActionResult Index(int page = 1, int pageSize = 6)
         {
-            LoadCategories(); // Call LoadCategories to populate ViewBag.Categories
+            LoadCategories(); 
             var products = db.Products
-                .OrderByDescending(p => p.created_at) // Order by created_at in descending order
+                .OrderByDescending(p => p.created_at) 
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToList();
@@ -35,19 +34,19 @@ namespace TT_Shop.Controllers
         }
 
 
-        public ActionResult About()
-        {
-            LoadCategories(); // Gọi phương thức LoadCategories để lấy danh sách Categories
-            ViewBag.Message = "Trang mô tả.";
-            return View();
-        }
+        //public ActionResult About()
+        //{
+        //    LoadCategories(); // Gọi phương thức LoadCategories để lấy danh sách Categories
+        //    ViewBag.Message = "Trang mô tả.";
+        //    return View();
+        //}
 
-        public ActionResult Contact()
-        {
-            LoadCategories(); // Gọi phương thức LoadCategories để lấy danh sách Categories
-            ViewBag.Message = "Trang liên hệ.";
-            return View();
-        }
+        //public ActionResult Contact()
+        //{
+        //    LoadCategories(); // Gọi phương thức LoadCategories để lấy danh sách Categories
+        //    ViewBag.Message = "Trang liên hệ.";
+        //    return View();
+        //}
 
         public ActionResult Detail(int id, int page = 1)
         {
@@ -58,18 +57,16 @@ namespace TT_Shop.Controllers
                 return HttpNotFound();
             }
 
-            // Fetch related products based on category or other criteria
             var relatedProducts = db.Products
                 .Where(p => p.category_id == product.category_id && p.product_id != id)
-                .Take(4) // Limit the number of related products
+                .Take(4) 
                 .ToList();
 
             ViewBag.RelatedProducts = relatedProducts;
 
-            // Fetch reviews for the product including user information
             var reviews = db.Product_Reviews
                             .Where(r => r.product_id == id)
-                            .OrderByDescending(r => r.created_at) // Ensure correct ordering by created_at in descending order
+                            .OrderByDescending(r => r.created_at)
                             .Skip((page - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
@@ -123,22 +120,18 @@ namespace TT_Shop.Controllers
                 return HttpNotFound();
             }
 
-            // Lấy tổng số sản phẩm trong danh mục
-            int pageSize = 6;  // Số sản phẩm hiển thị mỗi trang
+            int pageSize = 6; 
             int totalProducts = db.Products.Count(p => p.category_id == id);
 
-            // Tính tổng số trang
             int totalPages = (int)Math.Ceiling(totalProducts / (double)pageSize);
 
-            // Lấy danh sách sản phẩm theo trang
             var products = db.Products
                              .Where(p => p.category_id == id)
-                             .OrderBy(p => p.product_id)  // Sắp xếp theo ID sản phẩm hoặc theo một thuộc tính khác
+                             .OrderBy(p => p.product_id) 
                              .Skip((page - 1) * pageSize)
                              .Take(pageSize)
                              .ToList();
 
-            // Truyền dữ liệu sang view
             ViewBag.CategoryName = category.name;
             ViewBag.CategoryId = id;
             ViewBag.CurrentPage = page;
