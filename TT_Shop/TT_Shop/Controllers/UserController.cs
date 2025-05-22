@@ -31,7 +31,17 @@ namespace TT_Shop.Controllers
 
             if (!string.IsNullOrEmpty(TenDN) && !string.IsNullOrEmpty(Matkhau))
             {
-                var user = db.Users.FirstOrDefault(u => u.username == TenDN && u.password == Matkhau);
+                var user = db.Users.FirstOrDefault(u => u.username == TenDN);
+                if (user != null && PasswordHelper.VerifyPassword(Matkhau, user.password))
+                {
+                    Session["User"] = user;
+                    Session["user_id"] = user.user_id;
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ViewBag.Thongbao = "Tên đăng nhập hoặc mật khẩu không đúng!";
+                }
 
                 if (user != null)
                 {
@@ -131,6 +141,7 @@ namespace TT_Shop.Controllers
                 }
 
                 user.role = "customer";
+                user.password = PasswordHelper.HashPassword(user.password); // Hash password here
 
                 try
                 {
@@ -156,6 +167,7 @@ namespace TT_Shop.Controllers
 
             return View();
         }
+
 
         public ActionResult OrderDetails(int id)
         {
