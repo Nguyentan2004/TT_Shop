@@ -17,39 +17,46 @@
                     <h4 class="text-center text-dark" style="font-size: 1.2rem;">ĐĂNG NHẬP</h4>
                     <p class="text-center text-dark" style="font-size: 0.9rem;">Đăng nhập vào tài khoản của bạn để tiếp tục</p>
 
+                    @if (ViewBag.Thongbao != null)
+                    {
+                        <div class="alert alert-danger text-center" style="font-size: 0.95rem;">
+                            @ViewBag.Thongbao
+                        </div>
+                    }
+
                     @using (Html.BeginForm())
                     {
                         @Html.ValidationSummary(true)
 
-                <div class="mb-3">
-                    @Html.Label("TenDN", "Tên đăng nhập", new { @class = "form-label" })
-                    <div class="centered-form">
-                        @Html.TextBox("TenDN", null, new { @class = "form-control", placeholder = "Tên đăng nhập", id = "TenDN" })
-                    </div>
-                    <div class="centered-form">
-                        <span style="color:red">@ViewData["Loi1"]</span>
-                    </div>
+                        <div class="mb-3">
+                            @Html.Label("TenDN", "Tên đăng nhập", new { @class = "form-label" })
+                            <div class="centered-form">
+                                @Html.TextBox("TenDN", null, new { @class = "form-control", placeholder = "Tên đăng nhập", id = "TenDN" })
+                            </div>
+                            <div class="centered-form">
+                                <span style="color:red">@ViewData["Loi1"]</span>
+                            </div>
 
-                </div>
-
-                <div class="mb-3">
-                    @Html.Label("Matkhau", "Mật khẩu", new { @class = "form-label" })
-                    <div class="centered-form">
-                        @Html.Password("Matkhau", null, new { @class = "form-control", placeholder = "Mật khẩu", id = "Matkhau" })
-                    </div>
-                    <div class="centered-form">
-                        <span style="color:red">@ViewData["Loi2"]</span>
                         </div>
-                    </div>
 
-                    <div class="text-center">
-                        <input type="submit" value="Đăng nhập" class="btn btn-primary w-100 mb-3" />
-                    </div>
+                        <div class="mb-3">
+                            @Html.Label("Matkhau", "Mật khẩu", new { @class = "form-label" })
+                            <div class="centered-form">
+                                @Html.Password("Matkhau", null, new { @class = "form-control", placeholder = "Mật khẩu", id = "Matkhau" })
+                            </div>
+                            <div class="centered-form">
+                                <span style="color:red">@ViewData["Loi2"]</span>
+                            </div>
+                        </div>
 
-                    <div class="text-center">
-                        <p class="mb-0" style="font-size: 0.85rem;">Chưa có tài khoản? <a href="/User/Register" class="text-dark fw-bold">Đăng ký</a></p>
-                        <p class="mb-0" style="font-size: 0.85rem;">Quên mật khẩu? <a href="/User/ForgotPassword" class="text-dark fw-bold">Nhấn vào đây</a></p>
-                    </div>
+                        <div class="text-center">
+                            <input type="submit" value="Đăng nhập" class="btn btn-primary w-100 mb-3" />
+                        </div>
+
+                        <div class="text-center">
+                            <p class="mb-0" style="font-size: 0.85rem;">Chưa có tài khoản? <a href="/User/Register" class="text-dark fw-bold">Đăng ký</a></p>
+                            <p class="mb-0" style="font-size: 0.85rem;">Quên mật khẩu? <a href="/User/ForgotPassword" class="text-dark fw-bold">Nhấn vào đây</a></p>
+                        </div>
                     }
                 </div>
             </div>

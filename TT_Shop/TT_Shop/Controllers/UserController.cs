@@ -31,31 +31,60 @@ namespace TT_Shop.Controllers
 
             if (!string.IsNullOrEmpty(TenDN) && !string.IsNullOrEmpty(Matkhau))
             {
+                var now = DateTime.Now;
+                var threeMinutesAgo = now.AddMinutes(-3);
+                var oneMinuteAgo = now.AddMinutes(-1);
+
+                // Đếm số lần đăng nhập sai trong 3 phút gần nhất
+                var recentFails = db.FailedLoginHistories
+                    .Where(f => f.Username == TenDN && f.AttemptTime >= threeMinutesAgo)
+                    .OrderByDescending(f => f.AttemptTime)
+                    .ToList();
+
+                // Nếu có 5 lần sai và lần gần nhất dưới 1 phút thì chặn
+                if (recentFails.Count >= 5 && recentFails.First().AttemptTime >= oneMinuteAgo)
+                {
+                    ViewBag.Thongbao = "Tài khoản bị tạm khóa 1 phút do đăng nhập sai quá nhiều lần. Vui lòng thử lại sau.";
+                    return View();
+                }
+
                 var user = db.Users.FirstOrDefault(u => u.username == TenDN);
                 if (user != null && PasswordHelper.VerifyPassword(Matkhau, user.password))
                 {
                     Session["User"] = user;
                     Session["user_id"] = user.user_id;
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    ViewBag.Thongbao = "Tên đăng nhập hoặc mật khẩu không đúng!";
-                }
 
-                if (user != null)
-                {
-                    Session["User"] = user; 
-                    Session["user_id"] = user.user_id; 
+                    // Lưu lịch sử đăng nhập thành công
+                    var loginHistory = new LoginHistory
+                    {
+                        UserId = user.user_id,
+                        LoginTime = now,
+                        IPAddress = Request.UserHostAddress,
+                        UserAgent = Request.UserAgent
+                    };
+                    db.LoginHistories.Add(loginHistory);
+                    db.SaveChanges();
+
                     return RedirectToAction("Index", "Home");
                 }
                 else
                 {
+                    // Lưu lịch sử đăng nhập thất bại
+                    db.FailedLoginHistories.Add(new FailedLoginHistory
+                    {
+                        UserId = user?.user_id,
+                        Username = TenDN,
+                        AttemptTime = now,
+                        IPAddress = Request.UserHostAddress
+                    });
+                    db.SaveChanges();
+
                     ViewBag.Thongbao = "Tên đăng nhập hoặc mật khẩu không đúng!";
                 }
             }
             return View();
         }
+
 
 
         public ActionResult Logout()
