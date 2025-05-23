@@ -264,6 +264,9 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <None Include="D:/TTShop/TT_Shop/TT_Shop/TT_Shop/Views/Cart/\CompleteConfirm.cshtml">
+      <Link>CompleteConfirm.cshtml</Link>
+    </None>
     <None Include="Properties\PublishProfiles\nntanxd-001-site1 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\nntanxd-001-site1 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
@@ -331,6 +334,7 @@
     <Content Include="Views\Shared\_LayoutNoFooter.cshtml" />
     <Content Include="Views\User\ForgotPassword.cshtml" />
     <Content Include="Views\Report\ViewMonth.cshtml" />
+    <Content Include="Views\Cart\CompleteConfirm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

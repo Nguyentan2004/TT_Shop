@@ -47,32 +47,12 @@
                     <h5><strong>Tổng thanh toán: </strong>@String.Format("{0:N0}", cart.Sum(i => i.Gia.GetValueOrDefault() * i.SoLuong.GetValueOrDefault())) VND</h5>
                 </div>
                 <div class="mt-4">
-                    @using (Html.BeginForm("CompleteConfirm", "Cart", FormMethod.Post))
-                    {
-                        @Html.AntiForgeryToken()
-                        <div class="mb-3">
-                            <label for="paymentMethod" class="form-label">Phương thức thanh toán</label>
-                            <select id="paymentMethod" name="paymentMethod" class="form-select" required>
-                                <option value="Banking">Chuyển khoản ngân hàng</option>
-                                <option value="VNPay">VNPay</option>
-                                <option value="Cash">Tiền mặt</option>
-                            </select>
-                        </div>
+                    <form method="get" action="@Url.Action("CompleteConfirm", "Cart")">
                         <button type="submit" class="btn btn-success btn-lg">Xác nhận thanh toán</button>
-                    }
+                    </form>
                     <a href="@Url.Action("Index", "Cart")" class="btn btn-outline-secondary btn-lg mt-3">Quay lại giỏ hàng</a>
                 </div>
             }
         </div>
     </div>
 </div>
-<script>
-    document.getElementById('paymentForm').addEventListener('submit', function (e) {
-        var method = document.getElementById('paymentMethod').value;
-        if (method === 'VNPay') {
-            e.preventDefault();
-            this.action = '@Url.Action("VNPayPayment", "Cart")';
-            this.submit();
-        }
-    });
-</script>

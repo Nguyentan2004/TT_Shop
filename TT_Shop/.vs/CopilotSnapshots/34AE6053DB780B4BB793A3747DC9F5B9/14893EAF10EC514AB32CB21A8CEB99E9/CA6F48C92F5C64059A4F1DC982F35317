@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Xác nhận thanh toán";
+    Layout = "~/Views/Shared/_LayoutNoFooter.cshtml";
+    var isSuccess = false;
+    var message = "";
+
+    if (ViewBag.IsSuccess != null)
+    {
+        isSuccess = (bool)ViewBag.IsSuccess;
+    }
+    if (ViewBag.Message != null)
+    {
+        message = ViewBag.Message.ToString();
+    }
+}
+
+<div class="container-fluid p-4">
+    <div class="card">
+        <div class="card-header bg-warning text-white">
+            <h4>Xác nhận thanh toán</h4>
+        </div>
+        <div class="card-body text-center">
+            @if (isSuccess)
+            {
+                <div class="alert alert-success">@message</div>
+                <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Về trang chủ</a>
+            }
+            else
+            {
+                <div class="alert alert-danger">@message</div>
+                <a href="@Url.Action("Index", "Cart")" class="btn btn-warning">Quay lại giỏ hàng</a>
+            }
+        </div>
+    </div>
+</div>

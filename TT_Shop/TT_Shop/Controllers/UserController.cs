@@ -10,7 +10,7 @@ namespace TT_Shop.Controllers
 {
     public class UserController : Controller
     {
-        // GET: User
+            // GET: User
         private QLTTShopEntities db = new QLTTShopEntities();
         public ActionResult login()
         {

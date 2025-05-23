@@ -1,6 +1,7 @@
 ﻿@{
     ViewBag.Title = "Complete";
     Layout = "~/Views/Shared/_LayoutNoFooter.cshtml";
+    var isPaid = ViewBag.IsPaid as bool? ?? false;
 }
 
 <div class="container-fluid p-4">
@@ -9,15 +10,19 @@
             <h4>Xác nhận thanh toán</h4>
         </div>
         <div class="card-body text-center">
-            <div class="my-4">
-                <img src="~/images/QRThanhToan.png" alt="QR Thanh Toán" class="img-fluid" style="max-width: 200px;" />
-            </div>
-            <div class="mt-4">
-                <form method="post" action="@Url.Action("Complete", "Cart")">
+            @if (isPaid)
+            {
+                <div class="alert alert-success">Thanh toán VNPay thành công! Mã giao dịch: @ViewBag.TransactionNo</div>
+                <form method="post" action="@Url.Action("VNPayPayment", "Cart")">
                     @Html.AntiForgeryToken()
-                    <button type="submit" class="btn btn-success btn-lg">Đã thanh toán</button>
+                    <button type="submit" class="btn btn-primary btn-lg">Thanh toán qua VNPay</button>
                 </form>
-            </div>
+            }
+            else
+            {
+                <div class="alert alert-danger">Thanh toán chưa thành công hoặc bị hủy. Vui lòng thử lại.</div>
+                <a href="@Url.Action("Payment", "Cart")" class="btn btn-warning">Quay lại thanh toán</a>
+            }
         </div>
     </div>
 </div>
